@@ -23,21 +23,22 @@ if($result = mysqli_query($link, $sql)){
 	mysqli_free_result($result);
 }
 
-//function getblocks() {
+function getblocks($link) {
 
-	$sql = "SELECT blockid, time, letter FROM blocks";
+	$sql = "SELECT blockid, time, letter, geometry FROM blocks";
 
 	if($result = mysqli_query($link, $sql)){
 		if(mysqli_num_rows($result) > 0){
 			while($row = mysqli_fetch_array($result)){
 				$blockname[$row['blockid']] = $row['time']."&".$row['letter'];
+				$blockgeom[$row['blockid']] = $row['geometry'];
 			}
 		}
 		// Free result set
 		mysqli_free_result($result);
 	}
-//	return $blockname;
-//}
+	return array($blockname, $blockgeom);
+}
 
 ?>
 
