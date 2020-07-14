@@ -17,7 +17,8 @@ void 0!==c?e&&"set"in e&&void 0!==(d=e.set(a,c,b))?d:a[b]=c:e&&"get"in e&&null!=
     var x = document.getElementById(id).getAttribute("fill");
 
     if ( x == 'red') {
-      document.getElementById(id).setAttribute('fill', '#F2F2F2');
+      document.getElementById(id).setAttribute('fill', 'url(#flag'+blockTeams[id]+')');
+
     } else {
       document.getElementById(id).setAttribute('fill', 'red');
     }
