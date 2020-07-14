@@ -1,8 +1,23 @@
 <?php include("db.php");?>  <!-- Login Session and database functions -->
 <?php include("header.php");?>  <!-- Header. Replace if you want to customize -->
 <?php include("menubar.php");?>  <!-- Common top menu bar -->
-<?php list($blockname,$blockgeom)=getblocks($link);
+<?php 
+list($blockname,$blockgeom,$blockown,$blockownid,$blocknext,$blocknextid,$teamids)=getblocks($link);
+list($abilname,$abilfluff,$abildesc,$teamabil)=getabilities($link, $teamid);
+$numteamabil = 0;
+foreach($teamabil as $on){
+	if($on)$numteamabil++;
+}
 ?>
+
+<script>
+var blockTeams = <?php echo json_encode($blockownid); ?>;
+var blockNextTeams = <?php echo json_encode($blocknextid); ?>;
+</script>
+<script>
+document.write(blockTeams[1]);
+document.write("BLAH");
+</script>
 
 	<!---->				<!---->
 	<!--       TITLE        -->
@@ -13,26 +28,57 @@
 		<ul> 
 <?php
 	if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-		echo '<li> <i> Welcome, ', $teamname,'</i> </li>';
-		echo '<ol><li> Your team Id is ', $teamid,'</li>';
-		echo '<li> Your player names are: ', $player_names,'</li></ol>';
+		echo "<li> <i> Welcome, ", $teamname,"</i> </li>\n";
+		echo "<ol><li> Your team Id is ", $teamid,"</li>\n";
+		echo "<li> Your player names are: ", $player_names,"</li>\n";
+		echo "<li> You have ",$numteamabil," abilities.</li>\n";
+		echo "<li> Your email is: ",$email,"</li></ol>";
+
 	}
 
 ?>
 			<li> <i> Hover over a city block to highlight and show block address. </i> </li>
-			<li> <i> Click on said block to claim it for your team. </i> </li>
+			<li> <i> Click on blocks to select them, then click on an ability (if you have any). </i> </li>
 		</ul>
 	</p>
 
 	<!---->				<!---->
 	<!-- 		SVG         -->
 	<!---->				<!---->
+
 	<div id="info-box"></div>
 	<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	width="1397.674px" height="1059.007px" viewBox="0 0 1397.674 1059.007" enable-background="new 0 0 1397.674 1059.007"
 	xml:space="preserve" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="us-map" preserveAspectRatio="xMinYMin meet" sodipodi:docname="Republican_Party_presidential_primaries_results,_2016.svg" inkscape:version="0.91 r13725" x="0px" y="0px" width="959px" height="593px" viewBox="174 100 959 593" enable-background="new 174 100 959 593" xml:space="preserve">
 	<sodipodi:namedview bordercolor="#666666" objecttolerance="10" pagecolor="#ffffff" borderopacity="1" gridtolerance="10" guidetolerance="10" inkscape:cx="509.19152" inkscape:cy="282.2353" inkscape:zoom="1.2137643" showgrid="false" id="namedview71" inkscape:current-layer="g5" inkscape:window-maximized="1" inkscape:window-y="-8" inkscape:window-x="-8" inkscape:pageopacity="0" inkscape:window-height="1017" inkscape:window-width="1920" inkscape:pageshadow="2"> </sodipodi:namedview>>  
-	<g class = "blocks">
+
+
+    <defs>
+<?php
+foreach($teamids as $tid => $name){
+	if($tid==0){$fw=1400;$fh=1060;}else{$fw=100;$fh=100;}
+	echo "<pattern id=\"flag",$tid,"\" patternUnits=\"userSpaceOnUse\" width=\"".$fw."\" height=\"".$fh."\">\n";
+        echo " <image xlink:href=\"flags/flag",$tid,".png\" width=\"".$fw."\" height=\"".$fh."\"/>\n";
+	echo "</pattern>\n";
+}
+?>
+    </defs>
+
+<?php 
+foreach($teamabil as $tid => $on) {
+	if($on){
+		echo "<g>\n";
+		echo "<a xlink:href=\"BRCMap_index.php\">\n";
+		echo "<rect x=\"",698-($tid%2)*(190+80)+40,"\" y=\"",85+60*(int)(($tid-1)/2),"\" rx=\"20\" ry=\"20\" width=\"190\" height=\"50\"\n";
+		echo "style=\"fill:red;stroke:black;stroke-width:5;opacity:0.\5\" />\n";
+		echo "<foreignobject x=\"",698-($tid%2)*(190+80)+45,"\" y=\"",90+60*(int)(($tid-1)/2),"\" width=\"180\" height=\"40\"><div xmlns=\"http://www.w3.org/1999/xhtml\"><center><font color=\"yellow\">",$abilname[$tid],"</font></center></div></foreignobject>\n";
+//		echo "<text x=\"",698-($tid%2)*(190+80)+50,"\" y=\"",160+60*(int)(($tid-1)/2),"\" font-family=\"Verdana\" font-size=\"12\" fill=\"yellow\">",$abilname[$tid],"</text>\n";
+		echo "</a>\n";
+		echo "</g>\n";
+	}
+}
+?>
+
 <circle
   id="131" data-info="<div>Sector:  Center Camp </div>"
     onclick="changeColor(id)"
@@ -42,7 +88,7 @@
     r="88.25"/>
 		<circle id="man" data-info="<div>Sector:  The Man </div>" 
 			onclick="changeColor(id)" 
-			fill="#F2F2F2" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" 
+			fill="url(#flag5)" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" 
 			cx="698.355" cy="362.538" r="54.783"/>
 			<circle id="temple" data-info="<div>Sector:  The Temple </div>" 
 				onclick="changeColor(id)"  
@@ -97,15 +143,22 @@
 													stroke="#000000" stroke-linecap="round" stroke-linejoin="round" 
 													cx="1233.202" cy="363.93" r="10.8"/>
 
+
+
 <!--BEGIN blocks-->
 
 <?php
 foreach($blockgeom as $id => $d) {
 	echo "<path\n";
-	echo "id=\"".$id."\" data-info=\"<div>Sector: ".$blockname[$id]." </div>\"\n";
+	echo "id=\"".$id."\" data-info=\"<div>Sector: ".$blockname[$id]."<br>\nOwner: ".$blockown[$id];
+	if(isset($blocknext[$id])){
+		echo "<br>\nUnderneath: ".$blocknext[$id];
+	}
+	echo " </div>\"\n";
 	echo "onclick=\"changeColor(id)\"\n";
-	echo "fill=\"#".str_pad(dechex($id%256),2,"0",STR_PAD_LEFT)."f2f2\"\n";
+        echo "fill=\"url(#flag",$blockownid[$id],")\" \n";
 	echo "d=\"".$d."\"/>\n";
+
 }
 ?>
 
