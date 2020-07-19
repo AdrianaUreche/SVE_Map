@@ -17,8 +17,10 @@ void 0!==c?e&&"set"in e&&void 0!==(d=e.set(a,c,b))?d:a[b]=c:e&&"get"in e&&null!=
     var x = document.getElementById(id).getAttribute("fill");
 
     if ( x == 'red') {
+//      document.getElementById(id).setAttribute('fill', 'url(#flag'+blockNextTeams[id]+')');
+//      document.getElementById(id).setAttribute('stroke', '#ff0000');
+//    } else if (x == 'url(#flag'+blockNextTeams[id]+')') {
       document.getElementById(id).setAttribute('fill', 'url(#flag'+blockTeams[id]+')');
-
     } else {
       document.getElementById(id).setAttribute('fill', 'red');
     }
@@ -53,12 +55,12 @@ void 0!==c?e&&"set"in e&&void 0!==(d=e.set(a,c,b))?d:a[b]=c:e&&"get"in e&&null!=
 
       // });
 
-$("path, circle, rect").hover(function(e) {
+$("path, circle").hover(function(e) {
   $('#info-box').css('display','block');
   $('#info-box').html($(this).data('info'));
 });
 
-$("path, circle, rect").mouseleave(function(e) {
+$("path, circle").mouseleave(function(e) {
   $('#info-box').css('display','none');
 });
 

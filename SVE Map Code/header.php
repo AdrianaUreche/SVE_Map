@@ -13,7 +13,7 @@ s" />
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 </head>
 
- <style> body {background-image: url("images/playaBackground.png");} </style>
+ <style> body {background-image: url("images/playaBackground.jpg");} </style>
 
 <body>
 
