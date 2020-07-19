@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<link rel="stylesheet" type="text/css" href="formatting_code/css/BRCMapCSS.css" />
+<link rel="stylesheet" type="text/css" href="formatting_code/css/DropdownCSS.css" />
+<link rel="stylesheet" type="text/css" href="formatting_code/css/MenuCSS.css" />
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+body{	
+	Background-color: black;
+	Background-repeat: no-repeat;
+	Background-attachment: fixed;
+	Background-size: cover;
+}
+
+img {
+	width: 100%;
+	height: auto;
+}
+
+h1 {
+	text-align: center;
+	font-size:60px;
+	font-family: calibri;
+	Color: tomato;
+	margin-top: 0px;
+}
+h2 {
+	text-align: center;
+	font-size:50px;
+	font-family: calibri;
+	Color: tomato;
+	margin-top: 0px;
+}
+
+p {
+ 	text-align: center;
+  	font-size: 50px;
+  	font-family: calibri;
+  	font-weight: bold;
+	Color: tomato;
+  	margin-top: 0px;
+}
+
+
+
+img {
+	width: 100%;
+	height: auto;
+	margin-top: 0px;
+}
+
+
+.container {
+  height: 1px;
+  position: relative;
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+
+.button {
+  border: none;
+  color: white;
+  Background-color: tomato;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+
+<h1 >Scientists Vs. Everyone</h1>
+<h2 >The Space Time Fabric will fall apart in:</h2>
+
+<!-- Display the countdown timer in an element -->
+<p id="CountdownCLock"></p>
+
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Aug 30, 2020 12:00:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="CountdownCLock"
+  document.getElementById("CountdownCLock").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+
+  // If the count down is finished we need to open the main page (still to add)
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("CountdownCLock").innerHTML = "EXPIRED";
+  }
+}, 1000);
+
+</script>
+
+<div class="container">
+  <div class="center">
+<button class="button button1">Register Team</button>
+<button class="button button1">Game Rules</button>
+ </div>
+</div>
+<img src= "BlackHoleGif.gif">
+
+</body>
+</html>
