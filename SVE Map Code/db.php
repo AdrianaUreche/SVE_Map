@@ -22,6 +22,40 @@ if($result = mysqli_query($link, $sql)){
 	mysqli_free_result($result);
 }
 
+function getabilities($link, $teamid) {
+
+	$sql = "SELECT abilityid, abilityname, ability_fluff_text, ability_desc FROM abilities";
+
+        if($result = mysqli_query($link, $sql)){
+                if(mysqli_num_rows($result) > 0){
+                        while($row = mysqli_fetch_array($result)){
+                                $abilid = $row['abilityid'];
+                                list($abilid, $abilname[$abilid], $abilfluff[$abilid], $abildesc[$abilid]) = $row;
+				$teamabil[$abilid] = FALSE;;
+
+                        }
+                }
+                // Free result set
+                mysqli_free_result($result);
+
+	}
+
+	$sql = "SELECT abilityid from abilityactive where teamid = '$teamid'";
+
+        if($result = mysqli_query($link, $sql)){
+                if(mysqli_num_rows($result) > 0){
+                        while($row = mysqli_fetch_array($result)){
+                                $abilid = $row['abilityid'];
+				$teamabil[$abilid] = TRUE;
+			}
+		}
+		// Free result set
+                mysqli_free_result($result);
+	}
+
+        return array($abilname, $abilfluff, $abildesc, $teamabil);
+}
+
 function getachievements($link) {
 
         $sql = "SELECT achid, name, description, flufftext, impact, max_num FROM achievements";
@@ -49,7 +83,6 @@ function getachievements($link) {
         return array($achname, $achdescription, $achfluff, $achimpact, $achmaxnum, $achteam, $achflag);
 }
 
-
 function getblocks($link) {
 
 	$sql = "SELECT blockid, time, letter, geometry FROM blocks";
@@ -57,14 +90,36 @@ function getblocks($link) {
 	if($result = mysqli_query($link, $sql)){
 		if(mysqli_num_rows($result) > 0){
 			while($row = mysqli_fetch_array($result)){
-				$blockname[$row['blockid']] = $row['time']."&".$row['letter'];
-				$blockgeom[$row['blockid']] = $row['geometry'];
+				$blockid = $row['blockid'];
+				$blockname[$blockid] = $row['time']."&".$row['letter'];
+				$blockgeom[$blockid] = $row['geometry'];
+				$bsql = "SELECT blocksides.side, blocksides.teamid, teams.teamname FROM blocksides, teams WHERE (blocksides.side = 0 OR blocksides.side = 1) AND blocksides.blockid = '$blockid' AND teams.teamid = blocksides.teamid";
+				if($bresult = mysqli_query($link, $bsql)){
+					if(mysqli_num_rows($bresult) > 0){
+						while($brow = mysqli_fetch_array($bresult)){
+							if($brow['side']==0){
+								$blockownid[$blockid] = $brow['teamid'];
+								$blockown[$blockid] = $brow['teamname'];
+							} else {
+								$blocknextid[$blockid] = $brow['teamid'];
+								$blocknext[$blockid] = $brow['teamname'];
+							}
+							$teamids[$brow['teamid']] = $brow['teamname'];
+						}
+
+					} else {
+						$blockownid[$blockid] = 0;
+						$blockown[$blockid] = "Playa";
+						$teamids[0] = "Playa";
+					}
+				}
+				mysqli_free_result($bresult);
 			}
 		}
 		// Free result set
 		mysqli_free_result($result);
 	}
-	return array($blockname, $blockgeom);
+	return array($blockname, $blockgeom, $blockown, $blockownid, $blocknext, $blocknextid, $teamids);
 }
 
 ?>
