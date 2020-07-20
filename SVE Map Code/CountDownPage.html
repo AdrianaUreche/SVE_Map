@@ -101,12 +101,13 @@ p {
   display: inline-block;
   font-size: 25px;
   cursor: pointer;
-  	margin-right:2px;
-	margin-left:2px;
+  margin-right:2px;
+  margin-left:2px;
+  border-radius: 5px;
 }
 
 
-.button-facebook {background-color: #3B5998;}
+.button-facebook {background-color: #4267B2;}
 
 //image container code
 * {
@@ -210,18 +211,24 @@ img {
 </style>
 </head>
 
+
+
 <body>
+
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0" nonce="xpBUNARO"></script>
+
 <div class="wrapper">
 
 	<h1 style="margin-top:60px;"> 
 		Scientists VS. Everyone 
 	</h1>
-	<h2 style="margin-top:200px;">
+	<h2>
 		The Space Time Fabric will fall apart in:
 	</h2>
 
 	
-	<p id="CountdownCLock"> 
+	<p id="CountdownCLock" style="font-size:60px"> 
 	</p>
 
 	<script>
@@ -256,14 +263,21 @@ img {
 	</script>
 
 
-		<button class="button" onclick="location.href='BRCMap_Instructions.html';" >
-			Game Rules
+		<button class="button button-facebook" onclick="window.location.href='https://www.facebook.com/events/3176665699080869/?notif_t=plan_user_invited&notif_id=1595264538751360';">
+      		Facebook Event Page
+      	</button>
+
+		<button class="button"  >
+			Game Rules - Under Construction
 		</button>
 		
-		<button class="button button-facebook" onclick="window.location.href='https://www.facebook.com/groups/3371121606283992/?ref=group_header';">
-      		Facebook 
-      	</button>
+		<!  onclick="location.href='BRCMap_Instructions.html';">
 	
+	
+<div class="fb-like" style="margin-top: 25px; margin-left:4px;" data-href="http://sve.nukees.com/" data-width="200" data-layout="button" data-action="like" data-size="large" data-share="true"></div>
+
+
+
 		<div class="container">
 		<h3 style="font-size:30px; text-decoration: underline;margin-top: 50px;"> 
 			What is it?
@@ -275,7 +289,7 @@ img {
 
 
 		<h3 style="font-size:30px; text-decoration: underline;margin-top:50px"> 
-			Scientists versus...
+			Scientists Versus...
 		</h3>
 
 		<h3 style="font-size:25px;"> 
