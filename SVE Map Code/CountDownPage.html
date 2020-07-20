@@ -21,7 +21,14 @@ body{
 	height: 100%;
 }
 
+.wrapper{
+	margin-right:auto;
+	margin-left:auto;
+	max-width: 960px;
+	padding-right:10px;
+	padding-left:10px;
 
+}
 
 h1 {
 	text-align: center;
@@ -41,6 +48,14 @@ h2 {
 
 }
 
+
+h3 {
+	Color: white;
+	margin-top: 0px;
+
+}
+
+
 p {
  	text-align: center;
   	font-size: 50px;
@@ -56,15 +71,16 @@ p {
 .container {
   height: auto;
   width: auto;
-  position: relative;
+  background-color:black;
+  opacity: 0.7;
 }
 
-.center {
-  position: absolute;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
+//.center {
+  //position: absolute;
+  //left: 50%;
+  //-ms-transform: translate(-50%, -50%);
+  //transform: translate(-50%, -50%);
+//}
 
 
 .button {
@@ -98,11 +114,7 @@ img {
   	left: 50%;
   	-ms-transform: translate(-50%, -50%);
   	transform: translate(-50%, -50%);
-  	text-align: center;
-  	background-color: #222;
   	padding: 2px 16px;
-  	color: white;
-  	width: 1000px;
 }
 
 /* Hide the images by default */
@@ -120,8 +132,7 @@ img {
 .prev,
 .next {
   cursor: pointer;
-  position: absolute;
-  top: 40%;
+  position: relative;
   width: auto;
   padding: 16px;
   margin-top: -50px;
@@ -148,9 +159,9 @@ img {
 /* Number text (1/3 etc) */
 .numbertext {
   color: #f2f2f2;
-  font-size: 12px;
+  font-size: 20px;
   padding: 8px 12px;
-  position: absolute;
+  position: relative;
   top: 0;
 }
 
@@ -160,7 +171,7 @@ img {
   background-color: black;
   padding: 2px 16px;
   color: white;
-  width: 1000px;
+  width: 100%;
   opacity:0.75;
 }
 
@@ -191,13 +202,18 @@ img {
 </head>
 
 <body>
+<div class="wrapper">
+<div class="container">
+	<h1 style="margin-top:60px;"> 
+		Scientists VS. Everyone 
+	</h1>
+	<h2 style="margin-top:200px;">
+		The Space Time Fabric will fall apart in:
+	</h2>
 
-<div>
-	<h1 style="margin-top:60px;">Scientists VS. Everyone</h1>
-	<h2 style="margin-top:200px;">The Space Time Fabric will fall apart in:</h2>
-
-	<!-- Display the countdown timer in an element -->
-	<p id="CountdownCLock" ></p>
+	
+	<p id="CountdownCLock"> 
+	</p>
 
 	<script>
 		// Set the date we're counting down to
@@ -206,145 +222,110 @@ img {
 		// Update the count down every 1 second
 		var x = setInterval(function() {
 
-	  	// Get today's date and time
-	  	var now = new Date().getTime();
+	  		// Get today's date and time
+	  		var now = new Date().getTime();
 
-	  	// Find the distance between now and the count down date
-	  	var distance = countDownDate - now;
+	  		// Find the distance between now and the count down date
+	  		var distance = countDownDate - now;
 
-	 	// Time calculations for days, hours, minutes and seconds
-	 	var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-	  	var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-	  	var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-	  	var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+	 		// Time calculations for days, hours, minutes and seconds
+	 		var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+	  		var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+	  		var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+	  		var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-	  	// Display the result in the element with id="CountdownCLock"
-	  	document.getElementById("CountdownCLock").innerHTML = days + "d " + hours + "h "
-	  	+ minutes + "m " + seconds + "s ";
+	  		// Display the result in the element with id="CountdownCLock"
+	  		document.getElementById("CountdownCLock").innerHTML = days + "d " + hours + "h "
+	  		+ minutes + "m " + seconds + "s ";
 
-	  	// If the count down is finished we need to open the main page (still to add)
-	  	if (distance < 0) {
-	    	clearInterval(x);
-	    	document.getElementById("CountdownCLock").innerHTML = "EXPIRED";
-	  	}
+	  		// If the count down is finished we need to open the main page (still to add)
+	  		if (distance < 0) {
+	    		clearInterval(x);
+	    		document.getElementById("CountdownCLock").innerHTML = "EXPIRED";
+	  		}
 		}, 1000);
-
 	</script>
 
-	<div class="container">
-	  <div class="center">
-		<button class="button" onclick="location.href='BRCMap_Instructions.html';" >Game Rules</button>
+
+		<button class="button" onclick="location.href='BRCMap_Instructions.html';" >
+			Game Rules
+		</button>
+		
 		<button class="button button-facebook" onclick="window.location.href='https://www.facebook.com/groups/3371121606283992/?ref=group_header';">
-      Facebook </button>
-	 </div>
-	</div>
-</div>
-
-
-	<div style="margin-top:310px; font-family:calibri; color:white; background-color: black; padding: 2px 16px;opacity:0.75; width: 1000px;position: absolute;
-  left: 50%;-ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);">
-		<h3 style="font-size:30px; text-decoration: underline;"> 
+      		Facebook 
+      	</button>
+	
+		
+		<h3 style="font-size:30px; text-decoration: underline;margin-top: 50px;"> 
 			What is it?
 		</h3>
+
 		<h3 style="font-size:25px;"> 
 			"Scientists vs. Everyone” combines quests, puzzles, a board game, and an RPG in a weeklong adventure to occupy Black Rock City.  Normally played on the playa, this year the puzzles, quests, and game board will be created online, for you to complete from your couches.  Form your team now and get ready for the fight of your life.  Well, I mean the fight of everyone else’s life.  The fight of the universe!  This universe, I mean.  The expendable one.
 		</h3>
 
 
-		<h3 style="font-size:30px; text-decoration: underline;"> 
+		<h3 style="font-size:30px; text-decoration: underline;margin-top:50px"> 
 			Scientists versus...
 		</h3>
+
 		<h3 style="font-size:25px;"> 
 			In 2018, it was “Scientists vs. Robots.”  In 2019, the Scientists turned their reality-warping offense towards the (presumed) enemy, Kafka.  It did not go well for the universe.  Now in 2020, finding ourselves in the darkest timeline, we Scientists will turn our unbridled technologies towards all the forces of the multiverse to find our way back to the good universe, by any means, at any cost.  This year, join SCIENTISTS VS. EVERYONE.
 		</h3>
 
-	</div>
-
-
-
-//Image gallery
-
-
-
-
-<div style="margin-top:780px; position: relative;font-size:25px;">
-
-	<div class="container">
-		<div class="center">
+		
 			
-			
-			<div class="caption-ImageContainer">
-					 <h4 style="font-family:calibri; color:white;"> Slideshow Gallery</h4>
-					  	</div>
+		<h3 style="font-size:30px;margin-top:50px;"> Gallery </h3>
 
-			<div class="ImageContainer" style="margin-top:350px;" >	
-
-		  		<div class="container">
-					<div class="center">
-		 	 			<div class="mySlides">
-		    				<div class="numbertext">1 / 6</div>
-		    				<img src="images/SvE_2020_logo.png" style="height:500px">
-		  				</div>
-
-						<div class="mySlides">
-						    <div class="numbertext">2 / 6</div>
-						    <img src="images/FNA_frontage.jpg" style="height:500px">
-						</div>
-
-						<div class="mySlides">
-						    <div class="numbertext">3 / 6</div>
-						    <img src="images/board_darren.jpg" style="height:500px">
-						</div>
-		    
-		  				<div class="mySlides">
-						    <div class="numbertext">4 / 6</div>
-						    <img src="images/thefolly.jpg" style="height:500px">
-		  				</div>
-
-		  				<div class="mySlides">
-						    <div class="numbertext">5 / 6</div>
-						    <img src="images/darren.jpg" style="height:500px">
-		  				</div>
-		    
-		  				<div class="mySlides">
-						    <div class="numbertext">6 / 6</div>
-						    <img src="images/board_eric_freya.jpg" style="height:500px">
-		  				</div>
-		    
 					  	<a class="prev" onclick="plusSlides(-1)">❮</a>
 					  	<a class="next" onclick="plusSlides(1)">❯</a>
 
-					  	<div class="caption-ImageContainer">
-					    	<h4 style="font-family:calibri; color:white; padding: 2px 16px;" id="caption"></h4>
-					  	</div>
+					  	</div>	
+
+		 	 			<div class="mySlides">
+		    				<img src="images/SvE_2020_logo.png" style="width:100%">
+		  				</div>
+
+						<div class="mySlides">
+						    <img src="images/FNA_frontage.jpg" style="width:100%">
+						</div>
+
+						<div class="mySlides">
+						    <img src="images/board_darren.jpg" style="width:100%">
+						</div>
+		    
+		  				<div class="mySlides">
+						    <img src="images/thefolly.jpg" style="width:100%">
+		  				</div>
+
+		  				<div class="mySlides">
+						    <img src="images/darren.jpg" style="width:100%">
+		  				</div>
+		    
+		  				<div class="mySlides">
+						    <img src="images/board_eric_freya.jpg" style="width:100%">
+		  				</div>
+		    
 
 		  				<div class="row">
 		    				<div class="column">
-		      					<img class="demo cursor" src="images/SvE_2020_logo.png" style="height:100px" onclick="currentSlide(1)" alt="">
+		      					<img class="demo cursor" src="images/SvE_2020_logo.png" style="width:100%" onclick="currentSlide(1)" alt="">
 		    				</div>
 		    				<div class="column">
-		      					<img class="demo cursor" src="images/FNA_frontage.jpg" style="height:100px" onclick="currentSlide(2)" alt="">
+		      					<img class="demo cursor" src="images/FNA_frontage.jpg" style="width:100%" onclick="currentSlide(2)" alt="">
 		    				</div>
 						    <div class="column">
-						      	<img class="demo cursor" src="images/board_darren.jpg" style="height:100px"onclick="currentSlide(3)" alt="">
+						      	<img class="demo cursor" src="images/board_darren.jpg" style="width:100%"onclick="currentSlide(3)" alt="">
 						    </div>
 						    <div class="column">
-						      	<img class="demo cursor" src="images/thefolly.jpg" style="height:100px" onclick="currentSlide(4)" alt="">
+						      	<img class="demo cursor" src="images/thefolly.jpg" style="width:100%" onclick="currentSlide(4)" alt="">
 						    </div>
 						    <div class="column">
-						      	<img class="demo cursor" src="images/darren.jpg" style="height:100px" onclick="currentSlide(5)" alt="">
+						      	<img class="demo cursor" src="images/darren.jpg" style="width:100%" onclick="currentSlide(5)" alt="">
 						    </div>    
 						    <div class="column">
-						      	<img class="demo cursor" src="images/board_eric_freya.jpg" style="height:100px" onclick="currentSlide(6)" alt="">
+						      	<img class="demo cursor" src="images/board_eric_freya.jpg" style="width:100%" onclick="currentSlide(6)" alt="">
 						    </div>
-		  				</div>
-					</div>
-				</div>
-			</div>
-		</div>
-  	</div>   
-</div>
 
 
 <script>
@@ -378,7 +359,6 @@ function showSlides(n) {
 }
 </script>
 
-
-
+</div>
 </body>
 </html>
