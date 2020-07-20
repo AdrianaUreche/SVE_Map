@@ -83,14 +83,118 @@ p {
 
 .button-facebook {background-color: #3B5998;}
 
+//image container code
+* {
+  box-sizing: border-box;
+}
+
+img {
+  vertical-align: middle;
+}
+
+/* Position the image container (needed to position the left and right arrows) */
+.ImageContainer {
+  	position: relative;
+  	left: 50%;
+  	-ms-transform: translate(-50%, -50%);
+  	transform: translate(-50%, -50%);
+  	text-align: center;
+  	background-color: #222;
+  	padding: 2px 16px;
+  	color: white;
+  	width: 1000px;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+  
+}
+
+/* Add a pointer when hovering over the thumbnail images */
+.cursor {
+  cursor: pointer;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* Container for image text */
+.caption-ImageContainer {
+  text-align: center;
+  background-color: black;
+  padding: 2px 16px;
+  color: white;
+  width: 1000px;
+  opacity:0.75;
+}
+
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Six columns side by side */
+.column {
+  float: left;
+  width: 16.66%;
+}
+
+/* Add a transparency effect for thumnbail images */
+.demo {
+  opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+  opacity: 1;
+}
+
 </style>
 </head>
 
 <body>
 
 <div>
-	<h1 style="margin-top:20px;">Scientists VS. Everyone</h1>
-	<h2 style="margin-top:110px;">The Space Time Fabric will fall apart in:</h2>
+	<h1 style="margin-top:60px;">Scientists VS. Everyone</h1>
+	<h2 style="margin-top:200px;">The Space Time Fabric will fall apart in:</h2>
 
 	<!-- Display the countdown timer in an element -->
 	<p id="CountdownCLock" ></p>
@@ -137,25 +241,144 @@ p {
 </div>
 
 
-	<div style="margin-top:200px; font-family:calibri; color:white; background-color: black; opacity:0.75; width: 1000px;position: absolute;
+	<div style="margin-top:310px; font-family:calibri; color:white; background-color: black; padding: 2px 16px;opacity:0.75; width: 1000px;position: absolute;
   left: 50%;-ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);">
-		<h3 style="font-size:20px; text-decoration: underline;"> 
+		<h3 style="font-size:30px; text-decoration: underline;"> 
 			What is it?
 		</h3>
-		<h3 style="font-size:15px;"> 
+		<h3 style="font-size:25px;"> 
 			"Scientists vs. Everyone” combines quests, puzzles, a board game, and an RPG in a weeklong adventure to occupy Black Rock City.  Normally played on the playa, this year the puzzles, quests, and game board will be created online, for you to complete from your couches.  Form your team now and get ready for the fight of your life.  Well, I mean the fight of everyone else’s life.  The fight of the universe!  This universe, I mean.  The expendable one.
 		</h3>
 
 
-		<h3 style="font-size:20px; text-decoration: underline;"> 
+		<h3 style="font-size:30px; text-decoration: underline;"> 
 			Scientists versus...
 		</h3>
-		<h3 style="font-size:15px;"> 
+		<h3 style="font-size:25px;"> 
 			In 2018, it was “Scientists vs. Robots.”  In 2019, the Scientists turned their reality-warping offense towards the (presumed) enemy, Kafka.  It did not go well for the universe.  Now in 2020, finding ourselves in the darkest timeline, we Scientists will turn our unbridled technologies towards all the forces of the multiverse to find our way back to the good universe, by any means, at any cost.  This year, join SCIENTISTS VS. EVERYONE.
 		</h3>
 
 	</div>
+
+
+
+//Image gallery
+
+
+
+
+<div style="margin-top:780px; position: relative;font-size:25px;">
+
+	<div class="container">
+		<div class="center">
+			
+			
+			<div class="caption-ImageContainer">
+					 <h4 style="font-family:calibri; color:white;"> Slideshow Gallery</h4>
+					  	</div>
+
+			<div class="ImageContainer" style="margin-top:350px;" >	
+
+		  		<div class="container">
+					<div class="center">
+		 	 			<div class="mySlides">
+		    				<div class="numbertext">1 / 6</div>
+		    				<img src="images/SvE_2020_logo.png" style="height:500px">
+		  				</div>
+
+						<div class="mySlides">
+						    <div class="numbertext">2 / 6</div>
+						    <img src="images/FNA_frontage.jpg" style="height:500px">
+						</div>
+
+						<div class="mySlides">
+						    <div class="numbertext">3 / 6</div>
+						    <img src="images/board_darren.jpg" style="height:500px">
+						</div>
+		    
+		  				<div class="mySlides">
+						    <div class="numbertext">4 / 6</div>
+						    <img src="images/thefolly.jpg" style="height:500px">
+		  				</div>
+
+		  				<div class="mySlides">
+						    <div class="numbertext">5 / 6</div>
+						    <img src="images/darren.jpg" style="height:500px">
+		  				</div>
+		    
+		  				<div class="mySlides">
+						    <div class="numbertext">6 / 6</div>
+						    <img src="images/board_eric_freya.jpg" style="height:500px">
+		  				</div>
+		    
+					  	<a class="prev" onclick="plusSlides(-1)">❮</a>
+					  	<a class="next" onclick="plusSlides(1)">❯</a>
+
+					  	<div class="caption-ImageContainer">
+					    	<h4 style="font-family:calibri; color:white; padding: 2px 16px;" id="caption"></h4>
+					  	</div>
+
+		  				<div class="row">
+		    				<div class="column">
+		      					<img class="demo cursor" src="images/SvE_2020_logo.png" style="height:100px" onclick="currentSlide(1)" alt="The Woods">
+		    				</div>
+		    				<div class="column">
+		      					<img class="demo cursor" src="images/FNA_frontage.jpg" style="height:100px" onclick="currentSlide(2)" alt="Cinque Terre">
+		    				</div>
+						    <div class="column">
+						      	<img class="demo cursor" src="images/board_darren.jpg" style="height:100px"onclick="currentSlide(3)" alt="Mountains and fjords">
+						    </div>
+						    <div class="column">
+						      	<img class="demo cursor" src="images/thefolly.jpg" style="height:100px" onclick="currentSlide(4)" alt="Northern Lights">
+						    </div>
+						    <div class="column">
+						      	<img class="demo cursor" src="images/darren.jpg" style="height:100px" onclick="currentSlide(5)" alt="Nature and sunrise">
+						    </div>    
+						    <div class="column">
+						      	<img class="demo cursor" src="images/board_eric_freya.jpg" style="height:100px" onclick="currentSlide(6)" alt="Snowy Mountains">
+						    </div>
+		  				</div>
+					</div>
+				</div>
+			</div>
+		</div>
+  	</div>   
+</div>
+
+
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  var captionText = document.getElementById("caption");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  captionText.innerHTML = dots[slideIndex-1].alt;
+}
+</script>
+
+
 
 </body>
 </html>
