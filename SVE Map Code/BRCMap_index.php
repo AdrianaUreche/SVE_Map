@@ -3,10 +3,13 @@
 <?php include("menubar.php");?>  <!-- Common top menu bar -->
 <?php 
 list($blockname,$blockgeom,$blockown,$blockownid,$blocknext,$blocknextid,$teamids)=getblocks($link);
-list($abilname,$abilfluff,$abildesc,$teamabil)=getabilities($link, $teamid);
 $numteamabil = 0;
-foreach($teamabil as $on){
-	if($on)$numteamabil++;
+
+if(isset($teamid)){
+	list($abilname,$abilfluff,$abildesc,$teamabil)=getabilities($link, $teamid);
+	foreach($teamabil as $on){
+		if($on)$numteamabil++;
+	}
 }
 ?>
 
@@ -102,17 +105,19 @@ g:hover .abilitybutton {
 }
 </style>
 <?php
-foreach($teamabil as $tid => $on) {
-	if($on){
-		echo "<g>\n";
-		echo "<rect class=\"abilitybutton\" id=\"ability\" x=\"",698-($tid%2)*(190+80)+40,"\" y=\"",85+60*(int)(($tid-1)/2),"\" rx=\"20\" ry=\"20\" width=\"190\" height=\"50\"\n";
-		echo "onclick=\"abilityActivate(",$tid,")\" \n";
-		echo "style=\"stroke:black;stroke-width:5;opacity:0.\5\" />\n";
-		echo "<foreignobject ";
-		echo "onclick=\"abilityActivate(",$tid,")\" \n";
-		echo "x=\"",698-($tid%2)*(190+80)+45,"\" y=\"",90+60*(int)(($tid-1)/2),"\" width=\"180\" height=\"40\"><div xmlns=\"http://www.w3.org/1999/xhtml\"><center><font class=\"abilitytext\" color=\"yellow\">",$abilname[$tid],"</font></center></div></foreignobject>\n";
-//		echo "<text x=\"",698-($tid%2)*(190+80)+50,"\" y=\"",160+60*(int)(($tid-1)/2),"\" font-family=\"Verdana\" font-size=\"12\" fill=\"yellow\">",$abilname[$tid],"</text>\n";
-		echo "</g>\n";
+if(isset($teamabil)&&$numteamabil>0) {
+	foreach($teamabil as $tid => $on) {
+		if($on){
+			echo "<g>\n";
+			echo "<rect class=\"abilitybutton\" id=\"ability\" x=\"",698-($tid%2)*(190+80)+40,"\" y=\"",85+60*(int)(($tid-1)/2),"\" rx=\"20\" ry=\"20\" width=\"190\" height=\"50\"\n";
+			echo "onclick=\"abilityActivate(",$tid,")\" \n";
+			echo "style=\"stroke:black;stroke-width:5;opacity:0.\5\" />\n";
+			echo "<foreignobject ";
+			echo "onclick=\"abilityActivate(",$tid,")\" \n";
+			echo "x=\"",698-($tid%2)*(190+80)+45,"\" y=\"",90+60*(int)(($tid-1)/2),"\" width=\"180\" height=\"40\"><div xmlns=\"http://www.w3.org/1999/xhtml\"><center><font class=\"abilitytext\" color=\"yellow\">",$abilname[$tid],"</font></center></div></foreignobject>\n";
+			//		echo "<text x=\"",698-($tid%2)*(190+80)+50,"\" y=\"",160+60*(int)(($tid-1)/2),"\" font-family=\"Verdana\" font-size=\"12\" fill=\"yellow\">",$abilname[$tid],"</text>\n";
+			echo "</g>\n";
+		}
 	}
 }
 ?>
