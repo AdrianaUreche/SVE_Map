@@ -13,20 +13,48 @@
 
 <style>
 
-body{	
-	Background-image: url('images/BlackHoleGif.gif');
-	Background-repeat: no-repeat;
-	Background-attachment: fixed;
-	Background-size: cover;
-	height: 100%;
+body, html {
+  height: 100%;
+  margin: 0;
 }
 
+.playa {
+  background-image: url("images/playaBackground2.jpg");
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+  color: black;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 25px;
+  opacity: 0.7;
+}
+
+.blackhole{
+  background-image: url('images/BlackHoleGif.gif');
+  height: 320%;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+  color: black;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 25px;
+  z-index:+1;
+}
+
+
+
+
 .wrapper{
-	margin-right:auto;
-	margin-left:auto;
+	margin-right:15%;
+	margin-left:15%;
 	max-width: 960px;
 	padding-right:10px;
 	padding-left:10px;
+	position: absolute;
+	top: 0px;
 
 }
 
@@ -217,7 +245,10 @@ img {
 
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0" nonce="xpBUNARO"></script>
-
+<div class="blackhole">
+<div class="playa"
+</div>
+</div>
 <div class="wrapper">
 
 	<h1 style="margin-top:60px;"> 
