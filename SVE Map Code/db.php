@@ -1,25 +1,39 @@
 <?php
 // Initialize the session
-session_start();
+ini_set('session.gc_maxlifetime', 86400);
+
+session_set_cookie_params(86400);
+if (session_status() !== PHP_SESSION_ACTIVE) {
+	session_start([
+		'cookie_lifetime' => 86400
+	]);
+}
 
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+	$teamname = htmlspecialchars($_SESSION["teamname"]);
+	if(isset($_SESSION["abilityerror"])) {
+		$alert = $_SESSION["abilityerror"];
+		echo "<script>alert(\"",$alert,"\");</script>";
 
-// Define variables and initialize with empty values
-$teamname = htmlspecialchars($_SESSION["teamname"]);
+		unset($_SESSION["abilityerror"]);
+	}
 }
 
 // Include config file
 require_once "config.php";
 
-$sql = "SELECT teamid, player_names, email, impact_factor, action_points, action_points_used FROM teams WHERE teamname = '$teamname'";
+if(isset($teamname)) {
 
-if($result = mysqli_query($link, $sql)){
-	if(mysqli_num_rows($result) > 0){
-		$row = mysqli_fetch_array($result);
-		list($teamid, $player_names, $email, $impact, $action_points, $action_points_used) = $row;
+	$sql = "SELECT teamid, player_names, email, impact_factor, action_points, action_points_used FROM teams WHERE teamname = '$teamname'";
+
+	if($result = mysqli_query($link, $sql)){
+		if(mysqli_num_rows($result) > 0){
+			$row = mysqli_fetch_array($result);
+			list($teamid, $player_names, $email, $impact, $action_points, $action_points_used) = $row;
+		}
+		// Free result set
+		mysqli_free_result($result);
 	}
-	// Free result set
-	mysqli_free_result($result);
 }
 
 function getabilities($link, $teamid) {
@@ -93,7 +107,7 @@ function getblocks($link) {
 				$blockid = $row['blockid'];
 				$blockname[$blockid] = $row['time']."&".$row['letter'];
 				$blockgeom[$blockid] = $row['geometry'];
-				$bsql = "SELECT blocksides.side, blocksides.teamid, teams.teamname FROM blocksides, teams WHERE (blocksides.side = 0 OR blocksides.side = 1) AND blocksides.blockid = '$blockid' AND teams.teamid = blocksides.teamid";
+				$bsql = "SELECT blocksides.side, blocksides.teamid, teams.teamname FROM blocksides, teams WHERE blocksides.blockid = '$blockid' AND teams.teamid = blocksides.teamid";
 				if($bresult = mysqli_query($link, $bsql)){
 					if(mysqli_num_rows($bresult) > 0){
 						while($brow = mysqli_fetch_array($bresult)){
