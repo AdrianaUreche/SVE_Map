@@ -6,42 +6,56 @@
 
 <head>
   <style>
-  <!-- define general style elements -->
-    table, th, td {
-        float: left;
-        text-align: center;
+  .collapsible {
+      background-color: hsla(0, 0%, 100%, 0.3);
+      color: white;
+      cursor: pointer;
+      padding: 18px;
+      width: 100%;
+      border: none;
+      text-align: center;
+      outline: none;
+      font-size: 15px;
     }
-    th, td {
-        padding: 10px;
-        border: 1px solid black;
-    }
-    table {
-        border: 5px outset blue;
-    }
-    th {
-        border-bottom: 5px inset blue;
-        
-    }
-    td {
-        
+
+    .active, .collapsible:hover {
+      background-color: #555;
     }
     
-    <!-- define style elemtns for Sub table -->
-    .Sub table, th, td {
+    .content {
+      padding: 0 18px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease-out;
+      /*background: rgba(255, 255, 255, 0.3) */
+      background-color: hsla(0, 0%, 100%, 0.3);
+      text-align: center;
+      text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    }
+      
+  /*<!-- define general style elements -->*/
+    
+    /*<!-- define style elemtns for Sub table -->*/
+    table.Sub{
+        margin-left:auto; 
+        margin-right:auto;
+        border: 5px solid black;
+        background-image: radial-gradient(black , white, 0.5);
+        color: black;
+        text-align: center;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    }
+    th.Sub{
+        background-image: linear-gradient(to right, red , yellow);
+        padding: 10px;
+        text-align: center;
+    }
+    td.Sub{
+        padding: 10px;
+        text-align: center;
+    }
 
-    }
-    .Sub th, td {
-
-    }
-    .Sub table {
-
-    }
-    .Sub th {
-        border-right: 5px inset blue;
-    }
-    .Sub td {
-        
-    }
   </style>
 </head>
 
@@ -49,40 +63,55 @@
 <?php list($achname, $achdescription, $achfluff, $achimpact, $achmaxnum, $achteam, $achflag)=getachievements($link); 
 
 if(isset($achname)) {
-
+    
 foreach($achname as $aid => $aname) {
-    echo "<table class=\"Main\">";
-    echo   "<tr>";
-	echo     "<th>",$aname,"</th>";
-	echo   "</tr>";
-	echo   "<tr>";
-	echo     "<td>",$achfluff[$aid],"</td";
-	echo   "</tr>";
-	echo   "<tr>";
-	echo     "<td>",$achdescription[$aid],"</td>";
-	echo   "</tr>";
-	echo   "<tr>";
-	echo     "<td> Impact = ",$achimpact[$aid],"</td>";
-	echo   "</tr>";
-	echo   "<tr>";
-	echo     "<td> Max number = ",$achmaxnum[$aid],"</td>";
-	echo   "</tr>";
-	echo "</table>";
+    echo "<button class=\"collapsible\">",$aname,"</button>";
+    echo "<div class=\"content\">";
+        echo "<p> ",$achfluff[$aid], " </p>";
+        echo "<p> ",$achdescription[$aid]," </p>";
+        echo "<p> Impact = ",$achimpact[$aid]," </p>";
+        echo "<p> Max number = ",$achmaxnum[$aid]," </p>";
+
+    echo "</div>";
+
 	if(isset($achteam[$aid])) {
 	    echo "<table class=\"Sub\">";
+	    echo "<tr class=\"Sub\">";
 	    foreach($achteam[$aid] as $atid => $ateam) {
-	        echo "<tr>";
-		    echo   "<th> ",$ateam,"</th>";
-		    echo   "<td> Team number = ",$achflag[$aid][$atid],"</td>";
-		    echo "</tr>";
+		    echo   "<th class=\"Sub\"> ",$ateam,"</th>";
+		  //  echo   "<td class=\"Sub\"> Team number = ",$achflag[$aid][$atid],"</td>";
 	    }
+	    echo "</tr>";
 	    echo "</table>";
 	}
-
 }
 
 }
 ?>
+
+<script type="text/javascript">
+// pass PHP variable declared above to JavaScript variable
+// var achname = <?php echo json_encode($achname) ?>;
+
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+
+</script>
+
+
+
 
 </body>
 <!--CONTENT GOES HERE-->
