@@ -99,7 +99,7 @@ function getachievements($link) {
 
 function getblocks($link) {
 
-	$sql = "SELECT blockid, time, letter, geometry FROM blocks";
+	$sql = "SELECT blockid, time, letter, geometry, num_sides FROM blocks";
 
 	if($result = mysqli_query($link, $sql)){
 		if(mysqli_num_rows($result) > 0){
@@ -107,7 +107,8 @@ function getblocks($link) {
 				$blockid = $row['blockid'];
 				$blockname[$blockid] = $row['time']."&".$row['letter'];
 				$blockgeom[$blockid] = $row['geometry'];
-				$bsql = "SELECT blocksides.side, blocksides.teamid, teams.teamname FROM blocksides, teams WHERE blocksides.blockid = '$blockid' AND teams.teamid = blocksides.teamid";
+				$num_sides = $row['num_sides'];
+				$bsql = "SELECT blocksides.side, blocksides.teamid, teams.teamname FROM blocksides, teams WHERE blocksides.blockid = '$blockid' AND teams.teamid = blocksides.teamid ORDER BY blocksides.side";
 				if($bresult = mysqli_query($link, $bsql)){
 					if(mysqli_num_rows($bresult) > 0){
 						while($brow = mysqli_fetch_array($bresult)){
@@ -120,13 +121,13 @@ function getblocks($link) {
 							}
 							$teamids[$brow['teamid']] = $brow['teamname'];
 						}
-
 					} else {
 						$blockownid[$blockid] = 0;
 						$blockown[$blockid] = "Playa";
 						$teamids[0] = "Playa";
 					}
 				}
+				if($num_sides<=1) $blocknextid[$blockid] = -1;
 				mysqli_free_result($bresult);
 			}
 		}
