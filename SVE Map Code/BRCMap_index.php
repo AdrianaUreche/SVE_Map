@@ -93,7 +93,7 @@ function abilityActivate(aid) {
 </pattern>
 <?php
 foreach($teamids as $tid => $name){
-	if($tid==0){$fw=1400;$fh=1060;}else{$fw=100;$fh=100;}
+	if($tid==0){$fw=1400;$fh=1060;}else{$fw=50;$fh=50;}
 	echo "<pattern id=\"flag",$tid,"\" patternUnits=\"userSpaceOnUse\" width=\"".$fw."\" height=\"".$fh."\">\n";
         echo " <image xlink:href=\"flags/flag",$tid,".png\" width=\"".$fw."\" height=\"".$fh."\"/>\n";
 	echo "</pattern>\n";
@@ -120,7 +120,7 @@ if(isset($teamabil)&&$numteamabil>0) {
 			echo "<g>\n";
 			echo "<rect class=\"abilitybutton\" id=\"ability\" x=\"",698-($tid%2)*(190+80)+40,"\" y=\"",85+60*(int)(($tid-1)/2),"\" rx=\"20\" ry=\"20\" width=\"190\" height=\"50\"\n";
 			echo "onclick=\"abilityActivate(",$tid,")\" \n";
-			echo "style=\"stroke:black;stroke-width:5;opacity:0.\5\" />\n";
+			echo "style=\"stroke:black;stroke-width:5;opacity:1\" />\n";
 			echo "<foreignobject ";
 			echo "onclick=\"abilityActivate(",$tid,")\" \n";
 			echo "x=\"",698-($tid%2)*(190+80)+45,"\" y=\"",90+60*(int)(($tid-1)/2),"\" width=\"180\" height=\"40\"><div xmlns=\"http://www.w3.org/1999/xhtml\"><center><font class=\"abilitytext\" color=\"yellow\">",$abilname[$tid],"</font></center></div></foreignobject>\n";
@@ -144,9 +144,11 @@ echo "data-info=\"<div>Sector:  The Man<br>\nOwner: ".$blockown[0];
 if(isset($blocknext[0])){
 	echo "<br>\nUnderneath: ".$blocknext[0];
 }
+if($blocknextid[0]<0) echo "<br>PERMIFIED!";
 echo " </div>\"\n";
-echo "onclick=\"changeColor(id)\"\n";
+if($blockownid[0]!=666)echo "onclick=\"changeColor(id)\"\n";
 echo "fill=\"url(#flag",$blockownid[0],")\" \n";
+if($blocknextid[0]<0) echo "style=\"stroke:black;stroke-width:8;opacity:1 \"";
 ?>
 stroke="#000000" stroke-linecap="round" stroke-linejoin="round" 
 cx="698.355" cy="362.538" r="54.783"/>
@@ -157,9 +159,11 @@ echo "data-info=\"<div>Sector:  The Temple<br>\nOwner: ".$blockown[314];
 if(isset($blocknext[314])){
         echo "<br>\nUnderneath: ".$blocknext[314];
 }
+if($blocknextid[314]<0) echo "<br>PERMIFIED!";
 echo " </div>\"\n";
-echo "onclick=\"changeColor(id)\"\n";
+if($blockownid[314]!=666)echo "onclick=\"changeColor(id)\"\n";
 echo "fill=\"url(#flag",$blockownid[314],")\" \n";
+if($blocknextid[314]<0) echo "style=\"stroke:black;stroke-width:8;opacity:1 \"";
 ?>
 stroke="#000000" stroke-linecap="round" stroke-linejoin="round" 
 cx="699.265" cy="56.11" r="42.283"/> 
@@ -213,12 +217,12 @@ foreach($blockgeom as $id => $d) {
 	if ($id>0&&$id!=314) {
 		echo "<path\n";
 		echo "id=\"".$id."\" data-info=\"<div>Sector: ".$blockname[$id]."<br>\nOwner: ".$blockown[$id];
-		if(isset($blocknext[$id])){
-			echo "<br>\nUnderneath: ".$blocknext[$id];
-		}
+		if(isset($blocknext[$id])) echo "<br>\nUnderneath: ".$blocknext[$id];
+		if($blocknextid[$id]<0) echo "<br>PERMIFIED!";
 		echo " </div>\"\n";
-		echo "onclick=\"changeColor(id)\"\n";
+		if($blockownid[$id]!=666)echo "onclick=\"changeColor(id)\"\n";
 		echo "fill=\"url(#flag",$blockownid[$id],")\" \n";
+		if($blocknextid[$id]<0) echo "style=\"stroke:black;stroke-width:8;opacity:1 \"";
 		echo "d=\"".$d."\"/>\n";
 	}
 }
