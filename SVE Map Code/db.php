@@ -36,6 +36,12 @@ if(isset($teamname)) {
 	}
 }
 
+function error($msg) {
+	$_SESSION['abilityerror'] = $msg;
+	header("Location: BRCMap_index.php");
+	exit;
+}
+
 function getabilities($link, $teamid) {
 
 	$sql = "SELECT abilityid, abilityname, ability_fluff_text, ability_desc FROM abilities";
@@ -82,8 +88,7 @@ function getachievements($link) {
                                 $nsql = "SELECT teams.teamname, teams.teamid from achieved, teams where achieved.achid = '$achid' AND achieved.teamid = teams.teamid";
 				if($achresult = mysqli_query($link, $nsql)){
 		                        while($arow = mysqli_fetch_array($achresult)){
-						$ateam = $arow['teamname'];
-						list($achteam[$achid][$ateam], $achflag[$achid][$ateam]) = $arow;
+						$achteam[$achid][$arow['teamid']] = $arow['teamname'];
 					}
 
 				}
