@@ -112,8 +112,28 @@ g:hover .abilitybutton {
 	fill: #ec008c;
 	opacity: 1;
 }
+.gainabilitybutton {
+        fill: #0088ff;
+}
+g:hover .gainabilitybutton {
+        fill: #8888ff;
+        opacity: 1;
+}
 </style>
+
 <?php
+if(isset($teamname)&&$numteamabil<8) {
+	echo "<g>\n";
+	echo "<rect class=\"gainabilitybutton\" id=\"ability\" x=\"",698-(190+80)+40,"\" y=\"",85-60,"\" rx=\"20\" ry=\"20\" width=\"170\" height=\"50\"\n";
+	echo "onclick=\"abilityActivate(0)\" \n";
+	echo "style=\"stroke:black;stroke-width:5;opacity:1\" />\n";
+	echo "<foreignobject ";
+	echo "onclick=\"abilityActivate(0)\" \n";
+	echo "x=\"",698-(190+80)+45,"\" y=\"",90-60,"\" width=\"160\" height=\"40\"><div xmlns=\"http://www.w3.org/1999/xhtml\"><center><font class=\"abilitytext\" color=\"yellow\">Gain new ability</font></center></div></foreignobject>\n";
+                        //              echo "<text x=\"",698-($tid%2)*(190+80)+50,"\" y=\"",160+60*(int)(($tid-1)/2),"\" font-family=\"Verdana\" font-size=\"12\" fill=\"yellow\">",$abilname[$tid],"</text>\n";
+	echo "</g>\n";
+}
+
 if(isset($teamabil)&&$numteamabil>0) {
 	foreach($teamabil as $tid => $on) {
 		if($on){
@@ -130,6 +150,19 @@ if(isset($teamabil)&&$numteamabil>0) {
 	}
 }
 ?>
+
+<path
+id="125" data-info="<div>Sector: 6:00&B<br>
+Owner: Playa <br>
+(not in play)</div>"
+fill="url(#flag0)" 
+d="M792.852,728.104c2.57,9.399,6.11,22.43,10.31,37.85c-5.1,1.04-18.93,3.83-26.2,5.3c8.41-12.56,13.89-27.24,15.46-43.05L792.852,728.104z"/>
+<path
+id="145" data-info="<div>Sector: 6:30&B<br>
+Owner: Playa <br>
+(not in play)</div>"
+fill="url(#flag0)"
+d="M604.352,728.144c1.58,15.819,7.05,30.5,15.47,43.06c-7.28-1.48-21.13-4.27-26.21-5.31c4.2-15.421,7.75-28.46,10.31-37.841L604.352,728.144z"/>
 
 <circle
   id="131" data-info="<div>Sector:  Center Camp </div>"
