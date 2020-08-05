@@ -1,12 +1,6 @@
 <?php include("db.php");?>  <!-- Login Session and database functions -->
 <?php
 
-function error($msg) {
-	$_SESSION['abilityerror'] = $msg;
-	header("Location: BRCMap_index.php");
-	exit;
-}
-
 list($blockname,$blockgeom,$blockown,$blockownid,$blocknext,$blocknextid,$teamids)=getblocks($link);
 $teamblocks = array_keys($blockownid, $teamid);
 $numteamabil = 0;
@@ -197,7 +191,7 @@ if(isset($teamid)){
 $ability = $_POST['ability'];
 $blocksel = json_decode($_POST['blocksclicked'], true);
 
-if(!$teamabil[$ability]) {
+if(!$teamabil[$ability] && $ability!=0) {
         error("Sorry, you don't have that ability.  Frankly, I'm not sure how you even got this message.  Stop cheating.");
 }
 
@@ -208,6 +202,9 @@ if($action_points<=0) {
 
 
 switch ($ability) {
+case 0:
+	error ("Sorry, I haven't programmed this yet.");
+	break;
 case 1:
 	if(sizeof($blocksel)==0) error("You didn't select any blocks!");
 	if($impact<sizeof($blocksel)) error("Sorry, you can only occupy as many blocks as your impact factor.");	
@@ -459,7 +456,7 @@ if (!mysqli_query($link, $sql)) {
 }
 mysqli_close($link);
 
-header("Location: BRCMap_index.php");
+header("Location: achievementcheck.php");
 
 //echo "<p>Ability #",$ability," clicked.<p>Blocks clicked:\n";
 //echo "<p><ul>";
