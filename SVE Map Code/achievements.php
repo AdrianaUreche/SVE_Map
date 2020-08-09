@@ -4,13 +4,18 @@
 <?php include("header.php");?>  <!-- Header. Replace if you want to customize -->
 <?php include("menubar.php");?>  <!-- Common top menu bar -->
 
+<?php 
+list($achname, $achdescription, $achfluff, $achimpact, $achmaxnum, $achteam)=getachievements($link);
+?>
+
 <head>
   <style>
   .collapsible {
-      background-color: hsla(0, 0%, 100%, 0.3);
-      color: white;
+      background-color: hsla(0, 0%, 100%, 0.5);
+      text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+      color: yellow;
       cursor: pointer;
-      padding: 18px;
+      padding: 10px;
       width: 100%;
       border: none;
       text-align: center;
@@ -19,7 +24,7 @@
     }
 
     .active, .collapsible:hover {
-      background-color: #555;
+      background-color: #0000FF;
     }
     
     .content {
@@ -47,7 +52,7 @@
         text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
     }
     th.Sub{
-        background-image: linear-gradient(to right, red , yellow);
+        /*background-image: linear-gradient(to right, red , yellow);*/
         padding: 10px;
         text-align: center;
     }
@@ -60,7 +65,9 @@
 </head>
 
 <body>
-<?php list($achname, $achdescription, $achfluff, $achimpact, $achmaxnum, $achteam, $achflag)=getachievements($link); 
+
+<?php 
+
 
 if(isset($achname)) {
     
@@ -78,7 +85,9 @@ foreach($achname as $aid => $aname) {
 	    echo "<table class=\"Sub\">";
 	    echo "<tr class=\"Sub\">";
 	    foreach($achteam[$aid] as $atid => $ateam) {
-		    echo   "<th class=\"Sub\"> ",$ateam,"</th>";
+		  //  echo   "<th class=\"Sub\"> ",$ateam,"</th>";
+		    echo   "<th class=\"Sub\" background=\"/flags/flag",$atid,".png\"> ",$ateam,"</th>";
+		  //  echo " <image xlink:href=\"flags/flag",$tid,".png\" width=\"".$fw."\" height=\"".$fh."\"/>\n";
 		  //  echo   "<td class=\"Sub\"> Team number = ",$achflag[$aid][$atid],"</td>";
 	    }
 	    echo "</tr>";
@@ -117,5 +126,3 @@ for (i = 0; i < coll.length; i++) {
 <!--CONTENT GOES HERE-->
 
 <?php include("tail.php");?>  <!-- Contact inf and end body/html tags->
-
-</html>
