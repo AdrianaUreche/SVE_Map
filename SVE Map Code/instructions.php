@@ -12,7 +12,7 @@ body, html {
 
 
 .transbox {
-  width: 600px;
+  width: 1300px;
   padding: 50px;
   margin: 20px;
   background-color: #ffffff;
@@ -30,8 +30,8 @@ body, html {
 
 .middle {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 25%;
+  left: 45%;
   margin: 5%;
   transform: translate(-50%, -50%);
   text-align: justify;
@@ -49,7 +49,7 @@ hr {
 
   <div class="middle">
     <div class="transbox">
-    <h1>General Board Rules</h1>
+    <h1>How to Play the Game</h1>
     <hr>
     	<ol>
   			<li>Anything “removable” on the game board is a “block” that may be occupied by a team, except for Center Camp (which is the reward for winning the game).</li>

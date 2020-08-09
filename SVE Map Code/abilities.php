@@ -12,7 +12,7 @@ body, html {
 
 
 .transbox {
-  width: 600px;
+  width: 1300px;
   padding: 50px;
   margin: 20px;
   background-color: #ffffff;
@@ -30,8 +30,8 @@ body, html {
 
 .middle {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 30%;
+  left: 45%;
   margin: 5%;
   transform: translate(-50%, -50%);
   text-align: justify;
@@ -49,7 +49,7 @@ hr {
 
   <div class="middle">
     <div class="transbox">
-    <h1>General Board Rules</h1>
+    <h1>Descriptions of Abilities</h1>
     <hr>
     	<ol>
   			<li><b>Occupy Adjacent Blocks.</b> Draw your team’s pattern on a number of unoccupied blocks, equal to your team’s impact factor, adjacent to blocks your team already occupies.  If your impact factor is greater than the number of available blocks, occupy only those available blocks.</li>

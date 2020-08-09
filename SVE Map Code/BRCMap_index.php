@@ -14,6 +14,7 @@ if(isset($teamid)){
 
 ?>
 
+
 <script>
 var blockTeams = <?php echo json_encode($blockownid); ?>;
 var blockNextTeams = <?php echo json_encode($blocknextid); ?>;
@@ -55,22 +56,7 @@ function abilityActivate(aid) {
 
 	<p id='demo'>
 		<ul> 
-<?php
-	if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-		echo "<li> <i> Welcome, ", $teamname,"</i> </li>\n";
-		echo "<ol><li> Your team Id is ", $teamid,"</li>\n";
-		echo "<li> Your player names are: ", $player_names,"</li>\n";
-		echo "<li> You have ",$numteamabil," abilities.</li>\n";
-		echo "<li> You have ",$action_points," action points.</li>\n";
-		echo "<li> You have ",$impact," impact factor.</li>\n";
-		if(isset($alert)){
-			echo "<li> ALERT: ",$alert,"</li>\n";
-		};
-		echo "<li> Your email is: ",$email,"</li></ol>";
 
-	}
-
-?>
 			<li> <i> Hover over a city block to highlight and show block address. </i> </li>
 			<li> <i> Click on blocks to select them, then click on an ability (if you have any). </i> </li>
 		</ul>
@@ -89,7 +75,7 @@ function abilityActivate(aid) {
 
 <defs>
 <pattern id="CC" patternUnits="objectBoundingBox" width="1" height="1">
- <image xlink:href="images/SVE_logoCC.png" width="176" height="176"/>
+ <image xlink:href="images/SvE_2020_logo.png" width="176" height="176"/>
 </pattern>
 <?php
 foreach($teamids as $tid => $name){
@@ -177,11 +163,11 @@ echo "data-info=\"<div>Sector:  The Man<br>\nOwner: ".$blockown[0];
 if(isset($blocknext[0])){
 	echo "<br>\nUnderneath: ".$blocknext[0];
 }
-if($blocknextid[0]<0) echo "<br>PERMIFIED!";
+if(isset($blocknextid[0]) && $blocknextid[0]<0) echo "<br>PERMIFIED!";
 echo " </div>\"\n";
 if($blockownid[0]!=666)echo "onclick=\"changeColor(id)\"\n";
 echo "fill=\"url(#flag",$blockownid[0],")\" \n";
-if($blocknextid[0]<0) echo "style=\"stroke:black;stroke-width:8;opacity:1 \"";
+if(isset($blocknextid[0]) && $blocknextid[0]<0) echo "style=\"stroke:black;stroke-width:8;opacity:1 \"";
 ?>
 stroke="#000000" stroke-linecap="round" stroke-linejoin="round" 
 cx="698.355" cy="362.538" r="54.783"/>
@@ -192,11 +178,11 @@ echo "data-info=\"<div>Sector:  The Temple<br>\nOwner: ".$blockown[314];
 if(isset($blocknext[314])){
         echo "<br>\nUnderneath: ".$blocknext[314];
 }
-if($blocknextid[314]<0) echo "<br>PERMIFIED!";
+if(isset($blocknextid[314]) && $blocknextid[314]<0) echo "<br>PERMIFIED!";
 echo " </div>\"\n";
 if($blockownid[314]!=666)echo "onclick=\"changeColor(id)\"\n";
 echo "fill=\"url(#flag",$blockownid[314],")\" \n";
-if($blocknextid[314]<0) echo "style=\"stroke:black;stroke-width:8;opacity:1 \"";
+if(isset($blocknextid[314]) && $blocknextid[314]<0) echo "style=\"stroke:black;stroke-width:8;opacity:1 \"";
 ?>
 stroke="#000000" stroke-linecap="round" stroke-linejoin="round" 
 cx="699.265" cy="56.11" r="42.283"/> 
@@ -251,11 +237,11 @@ foreach($blockgeom as $id => $d) {
 		echo "<path\n";
 		echo "id=\"".$id."\" data-info=\"<div>Sector: ".$blockname[$id]."<br>\nOwner: ".$blockown[$id];
 		if(isset($blocknext[$id])) echo "<br>\nUnderneath: ".$blocknext[$id];
-		if($blocknextid[$id]<0) echo "<br>PERMIFIED!";
+		if(isset($blocknextid[$id]) && $blocknextid[$id]<0) echo "<br>PERMIFIED!";
 		echo " </div>\"\n";
 		if($blockownid[$id]!=666)echo "onclick=\"changeColor(id)\"\n";
 		echo "fill=\"url(#flag",$blockownid[$id],")\" \n";
-		if($blocknextid[$id]<0) echo "style=\"stroke:black;stroke-width:8;opacity:1 \"";
+		if(isset($blocknextid[$id]) && $blocknextid[$id]<0) echo "style=\"stroke:black;stroke-width:8;opacity:1 \"";
 		echo "d=\"".$d."\"/>\n";
 	}
 }
@@ -2863,9 +2849,11 @@ c0.08,0.021,0.17,0.04,0.25,0.05c5.59,1.26,9.96,5.74,11.06,11.4c0.04,0.22,0.08,0.
 		</ol>
 	</p> -->
 
+
 	<!---->				<!---->
 	<!-- DROPDOWN MENU      -->
 	<!---->				<!---->
+<!--
 	<div class="w3-container">
 		<div class="w3-dropdown-hover w3-right">
 			<button class="w3-button w3-black">Dropdown</button>
@@ -2877,7 +2865,7 @@ c0.08,0.021,0.17,0.04,0.25,0.05c5.59,1.26,9.96,5.74,11.06,11.4c0.04,0.22,0.08,0.
 		</div>
 		<div class="w3-clear"></div>
 	</div>
-
+-->
 	<!-- 	<div class="dropdown">
 		<button id="myBtn" class="dropbtn">Dropdown</button>
 		<div id="myDropdown" class="dropdown-content">
@@ -2887,7 +2875,6 @@ c0.08,0.021,0.17,0.04,0.25,0.05c5.59,1.26,9.96,5.74,11.06,11.4c0.04,0.22,0.08,0.
 		</div>
 	</div> -->
 
-
 <?php 
-include("tail.php");
+include("tail_withmenu.php");
 ?>
