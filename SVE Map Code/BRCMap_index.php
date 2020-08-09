@@ -14,7 +14,6 @@ if(isset($teamid)){
 
 ?>
 
-
 <script>
 var blockTeams = <?php echo json_encode($blockownid); ?>;
 var blockNextTeams = <?php echo json_encode($blocknextid); ?>;
@@ -56,7 +55,6 @@ function abilityActivate(aid) {
 
 	<p id='demo'>
 		<ul> 
-
 			<li> <i> Hover over a city block to highlight and show block address. </i> </li>
 			<li> <i> Click on blocks to select them, then click on an ability (if you have any). </i> </li>
 		</ul>
@@ -75,7 +73,7 @@ function abilityActivate(aid) {
 
 <defs>
 <pattern id="CC" patternUnits="objectBoundingBox" width="1" height="1">
- <image xlink:href="images/SvE_2020_logo.png" width="176" height="176"/>
+ <image xlink:href="images/SvE_2020_logo_sq.png" width="176" height="176"/>
 </pattern>
 <?php
 foreach($teamids as $tid => $name){
@@ -109,15 +107,28 @@ g:hover .gainabilitybutton {
 
 <?php
 if(isset($teamname)&&$numteamabil<8) {
+	echo "<a href=\"abilities.php\" style=\"text-decoration: none\">";
 	echo "<g>\n";
 	echo "<rect class=\"gainabilitybutton\" id=\"ability\" x=\"",698-(190+80)+40,"\" y=\"",85-60,"\" rx=\"20\" ry=\"20\" width=\"170\" height=\"50\"\n";
-	echo "onclick=\"abilityActivate(0)\" \n";
+//	echo "onclick=\"abilityActivate(0)\" \n";
 	echo "style=\"stroke:black;stroke-width:5;opacity:1\" />\n";
 	echo "<foreignobject ";
-	echo "onclick=\"abilityActivate(0)\" \n";
+//	echo "onclick=\"abilityActivate(0)\" \n";
 	echo "x=\"",698-(190+80)+45,"\" y=\"",90-60,"\" width=\"160\" height=\"40\"><div xmlns=\"http://www.w3.org/1999/xhtml\"><center><font class=\"abilitytext\" color=\"yellow\">Gain new ability</font></center></div></foreignobject>\n";
                         //              echo "<text x=\"",698-($tid%2)*(190+80)+50,"\" y=\"",160+60*(int)(($tid-1)/2),"\" font-family=\"Verdana\" font-size=\"12\" fill=\"yellow\">",$abilname[$tid],"</text>\n";
-	echo "</g>\n";
+	echo "</g></a>\n";
+}
+
+if(isset($teamid) && isset($teamid) && !in_array($teamid,$blockownid)) {
+        echo "<g>\n";
+	echo "<rect class=\"gainabilitybutton\" id=\"ability\" x=\"",698+60,"\" y=\"",85-60,"\" rx=\"20\" ry=\"20\" width=\"170\" height=\"50\"\n";
+	echo "onclick=\"abilityActivate(0)\" \n";
+        echo "style=\"stroke:black;stroke-width:5;opacity:1\" />\n";
+	echo "<foreignobject ";
+	echo "onclick=\"abilityActivate(0)\" \n";
+        echo "x=\"",698+65,"\" y=\"",90-60,"\" width=\"160\" height=\"40\"><div xmlns=\"http://www.w3.org/1999/xhtml\"><center><font class=\"abilitytext\" color=\"yellow\">Occupy One Starter Block</font></center></div></foreignobject>\n";
+                        //              echo "<text x=\"",698-($tid%2)*(190+80)+50,"\" y=\"",160+60*(int)(($tid-1)/2),"\" font-family=\"Verdana\" font-size=\"12\" fill=\"yellow\">",$abilname[$tid],"</text>\n";
+        echo "</g></a>\n";
 }
 
 if(isset($teamabil)&&$numteamabil>0) {
@@ -2849,11 +2860,9 @@ c0.08,0.021,0.17,0.04,0.25,0.05c5.59,1.26,9.96,5.74,11.06,11.4c0.04,0.22,0.08,0.
 		</ol>
 	</p> -->
 
-
 	<!---->				<!---->
 	<!-- DROPDOWN MENU      -->
 	<!---->				<!---->
-<!--
 	<div class="w3-container">
 		<div class="w3-dropdown-hover w3-right">
 			<button class="w3-button w3-black">Dropdown</button>
@@ -2865,7 +2874,7 @@ c0.08,0.021,0.17,0.04,0.25,0.05c5.59,1.26,9.96,5.74,11.06,11.4c0.04,0.22,0.08,0.
 		</div>
 		<div class="w3-clear"></div>
 	</div>
--->
+
 	<!-- 	<div class="dropdown">
 		<button id="myBtn" class="dropbtn">Dropdown</button>
 		<div id="myDropdown" class="dropdown-content">
@@ -2874,6 +2883,7 @@ c0.08,0.021,0.17,0.04,0.25,0.05c5.59,1.26,9.96,5.74,11.06,11.4c0.04,0.22,0.08,0.
 			<a href="#contact">Contact</a>
 		</div>
 	</div> -->
+
 
 <?php 
 include("tail_withmenu.php");
