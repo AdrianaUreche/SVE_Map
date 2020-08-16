@@ -96,7 +96,7 @@ if(isset($blockownid)) {
     echo "<div class=\"board\">";
     $iter = 1;
     foreach($lead as $tid => $tscore) {
-        if($tid>0){
+        if($tid!=0){
             if($iter==1){
                 echo "<div id=\"star-five\" class=\"star1\"></div>";
             }
