@@ -66,7 +66,8 @@ function abilityActivate(aid) {
 
 	<div id="info-box"></div>
 	<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	width="1397.674px" height="1059.007px" viewBox="0 0 1397.674 1059.007" enable-background="new 0 0 1397.674 1059.007"
+	width="1048px" height="794px" viewBox="0 0 1397.674 1059.007" enable-background="new 0 0 1397.674
+ 1059.007"
 	xml:space="preserve" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="us-map" preserveAspectRatio="xMinYMin meet" sodipodi:docname="Republican_Party_presidential_primaries_results,_2016.svg" inkscape:version="0.91 r13725" x="0px" y="0px" width="959px" height="593px" viewBox="174 100 959 593" enable-background="new 174 100 959 593" xml:space="preserve">
 	<sodipodi:namedview bordercolor="#666666" objecttolerance="10" pagecolor="#ffffff" borderopacity="1" gridtolerance="10" guidetolerance="10" inkscape:cx="509.19152" inkscape:cy="282.2353" inkscape:zoom="1.2137643" showgrid="false" id="namedview71" inkscape:current-layer="g5" inkscape:window-maximized="1" inkscape:window-y="-8" inkscape:window-x="-8" inkscape:pageopacity="0" inkscape:window-height="1017" inkscape:window-width="1920" inkscape:pageshadow="2"> </sodipodi:namedview>  
 
@@ -77,9 +78,9 @@ function abilityActivate(aid) {
 </pattern>
 <?php
 foreach($teamids as $tid => $name){
-	if($tid==0){$fw=1400;$fh=1060;}else{$fw=50;$fh=50;}
+	if($tid==0){$fw=1400;$fh=1060;}else{$fw=32;$fh=32;}
 	echo "<pattern id=\"flag",$tid,"\" patternUnits=\"userSpaceOnUse\" width=\"".$fw."\" height=\"".$fh."\">\n";
-        echo " <image xlink:href=\"flags/flag",$tid,".png\" width=\"".$fw."\" height=\"".$fh."\"/>\n";
+        echo " <image href=\"flags/flag",$tid,".png\" width=\"".$fw."\" height=\"".$fh."\"/>\n";
 	echo "</pattern>\n";
 }
 ?>
@@ -119,7 +120,7 @@ if(isset($teamname)&&$numteamabil<8) {
 	echo "</g></a>\n";
 }
 
-if(isset($teamid) && isset($teamid) && !in_array($teamid,$blockownid)) {
+if(isset($teamid) && !in_array($teamid,$blockownid) && $action_points>0) {
         echo "<g>\n";
 	echo "<rect class=\"gainabilitybutton\" id=\"ability\" x=\"",698+60,"\" y=\"",85-60,"\" rx=\"20\" ry=\"20\" width=\"170\" height=\"50\"\n";
 	echo "onclick=\"abilityActivate(0)\" \n";
@@ -174,11 +175,11 @@ echo "data-info=\"<div>Sector:  The Man<br>\nOwner: ".$blockown[0];
 if(isset($blocknext[0])){
 	echo "<br>\nUnderneath: ".$blocknext[0];
 }
-if(isset($blocknextid[0]) && $blocknextid[0]<0) echo "<br>PERMIFIED!";
+if(isset($blocknextid[0]) && $blocknextid[0]<-1) echo "<br>PERMIFIED!";
 echo " </div>\"\n";
-if($blockownid[0]!=666)echo "onclick=\"changeColor(id)\"\n";
+if($blockownid[0]!=-1)echo "onclick=\"changeColor(id)\"\n";
 echo "fill=\"url(#flag",$blockownid[0],")\" \n";
-if(isset($blocknextid[0]) && $blocknextid[0]<0) echo "style=\"stroke:black;stroke-width:8;opacity:1 \"";
+if(isset($blocknextid[0]) && $blocknextid[0]<-1) echo "style=\"stroke:black;stroke-width:8;opacity:1 \"";
 ?>
 stroke="#000000" stroke-linecap="round" stroke-linejoin="round" 
 cx="698.355" cy="362.538" r="54.783"/>
@@ -189,11 +190,11 @@ echo "data-info=\"<div>Sector:  The Temple<br>\nOwner: ".$blockown[314];
 if(isset($blocknext[314])){
         echo "<br>\nUnderneath: ".$blocknext[314];
 }
-if(isset($blocknextid[314]) && $blocknextid[314]<0) echo "<br>PERMIFIED!";
+if(isset($blocknextid[314]) && $blocknextid[314]<-1) echo "<br>PERMIFIED!";
 echo " </div>\"\n";
-if($blockownid[314]!=666)echo "onclick=\"changeColor(id)\"\n";
+if($blockownid[314]!=-1)echo "onclick=\"changeColor(id)\"\n";
 echo "fill=\"url(#flag",$blockownid[314],")\" \n";
-if(isset($blocknextid[314]) && $blocknextid[314]<0) echo "style=\"stroke:black;stroke-width:8;opacity:1 \"";
+if(isset($blocknextid[314]) && $blocknextid[314]<-1) echo "style=\"stroke:black;stroke-width:8;opacity:1 \"";
 ?>
 stroke="#000000" stroke-linecap="round" stroke-linejoin="round" 
 cx="699.265" cy="56.11" r="42.283"/> 
@@ -244,15 +245,15 @@ cx="1233.202" cy="363.93" r="10.8"/>
 
 <?php
 foreach($blockgeom as $id => $d) {
-	if ($id>0&&$id!=314) {
+	if ($id!=0&&$id!=314) {
 		echo "<path\n";
 		echo "id=\"".$id."\" data-info=\"<div>Sector: ".$blockname[$id]."<br>\nOwner: ".$blockown[$id];
 		if(isset($blocknext[$id])) echo "<br>\nUnderneath: ".$blocknext[$id];
-		if(isset($blocknextid[$id]) && $blocknextid[$id]<0) echo "<br>PERMIFIED!";
+		if(isset($blocknextid[$id]) && $blocknextid[$id]<-1) echo "<br>PERMIFIED!";
 		echo " </div>\"\n";
-		if($blockownid[$id]!=666)echo "onclick=\"changeColor(id)\"\n";
+		if($blockownid[$id]!=-1)echo "onclick=\"changeColor(id)\"\n";
 		echo "fill=\"url(#flag",$blockownid[$id],")\" \n";
-		if(isset($blocknextid[$id]) && $blocknextid[$id]<0) echo "style=\"stroke:black;stroke-width:8;opacity:1 \"";
+		if(isset($blocknextid[$id]) && $blocknextid[$id]<-1) echo "style=\"stroke:black;stroke-width:8;opacity:1 \"";
 		echo "d=\"".$d."\"/>\n";
 	}
 }
