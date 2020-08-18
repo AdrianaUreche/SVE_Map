@@ -1,20 +1,41 @@
 <?php
 // Initialize the session
+<<<<<<< HEAD
 ini_set('session.gc_maxlifetime', 86400);
 
 session_set_cookie_params(86400);
+=======
+>>>>>>> origin/devMap
 if (session_status() !== PHP_SESSION_ACTIVE) {
 	session_start([
 		'cookie_lifetime' => 86400
 	]);
+<<<<<<< HEAD
+=======
+	ini_set('session.gc_maxlifetime', 86400);
+
+	session_set_cookie_params(86400);
+
+>>>>>>> origin/devMap
 }
 
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 	$teamname = htmlspecialchars($_SESSION["teamname"]);
+<<<<<<< HEAD
 	if(isset($_SESSION["abilityerror"])) {
 		$alert = $_SESSION["abilityerror"];
 		echo "<script>alert(\"",$alert,"\");</script>";
 
+=======
+        if(isset($_SESSION["achievements"])) {
+		$achtext = $_SESSION["achievements"];
+                echo "<script>alert(\"",$achtext,"\");</script>"; 
+                unset($_SESSION["achievements"]);
+	}
+	if(isset($_SESSION["abilityerror"])) {
+		$alert = $_SESSION["abilityerror"];
+		echo "<script>alert(\"",$alert,"\");</script>";
+>>>>>>> origin/devMap
 		unset($_SESSION["abilityerror"]);
 	}
 }
@@ -78,7 +99,11 @@ function getabilities($link, $teamid) {
 
 function getachievements($link) {
 
+<<<<<<< HEAD
         $sql = "SELECT achid, name, description, flufftext, impact, max_num FROM achievements";
+=======
+        $sql = "SELECT achid, name, description, flufftext, impact, max_num FROM achievements ORDER BY achid";
+>>>>>>> origin/devMap
 
         if($result = mysqli_query($link, $sql)){
                 if(mysqli_num_rows($result) > 0){
@@ -142,5 +167,33 @@ function getblocks($link) {
 	return array($blockname, $blockgeom, $blockown, $blockownid, $blocknext, $blocknextid, $teamids);
 }
 
+<<<<<<< HEAD
+=======
+function getblockgrid($link) {
+                
+        $sql = "SELECT blockid, begin_row, end_row, begin_sec, end_sec FROM blocks";
+
+        if($result = mysqli_query($link, $sql)){
+                if(mysqli_num_rows($result) > 0){
+                       while(list($bid, $br, $er, $bs, $es) = mysqli_fetch_array($result)) {
+                               $brs[$bid] = $br;
+                               $bss[$bid] = $bs;
+                               for($i=$br;$i<=$er;$i++)
+                                for($j=$bs;$j<=$es;$j++)
+                                        $bgrid[$i][$j]=$bid;
+                       }
+               } else {
+                       error ("NO RESULTS. Please report this to the admins.");
+               }
+        } else {
+                error("DATABASE ERROR. Please report this to the admins.");
+        }
+        mysqli_free_result($result);
+
+	return array($brs,$bss,$bgrid);
+
+}
+
+>>>>>>> origin/devMap
 ?>
 

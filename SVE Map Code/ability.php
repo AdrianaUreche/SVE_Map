@@ -5,6 +5,11 @@ list($blockname,$blockgeom,$blockown,$blockownid,$blocknext,$blocknextid,$teamid
 $teamblocks = array_keys($blockownid, $teamid);
 $numteamabil = 0;
 
+<<<<<<< HEAD
+=======
+
+// I think this isn't used.  Probably doesn't even work.
+>>>>>>> origin/devMap
 function getneighbors($link, $bid) {
 
         $sql = "SELECT begin_row, end_row, begin_sec, end_sec FROM blocks WHERE blockid = ".$bid;
@@ -27,7 +32,11 @@ function getneighbors($link, $bid) {
                         if($nresult = mysqli_query($link, $nsql)){
                                 if(mysqli_num_rows($nresult) > 0){
                                         while($team=mysqli_fetch_array($nresult)){
+<<<<<<< HEAD
 						echo "BLOCK: ".$team['blockid']."<br>";
+=======
+//						echo "BLOCK: ".$team['blockid']."<br>";
+>>>>>>> origin/devMap
 						$blockl[] = $team['blockid'];
 					}
 
@@ -38,7 +47,11 @@ function getneighbors($link, $bid) {
                 }
         }
         mysqli_free_result($result);
+<<<<<<< HEAD
 	echo "BLOCKLIST: ",$blockl,"<p>";
+=======
+//	echo "BLOCKLIST: ",$blockl,"<p>";
+>>>>>>> origin/devMap
         RETURN $blockl;
 }
 
@@ -203,7 +216,17 @@ if($action_points<=0) {
 
 switch ($ability) {
 case 0:
+<<<<<<< HEAD
 	error ("Sorry, I haven't programmed this yet.");
+=======
+        if(sizeof($blocksel)==0) error("You didn't select any blocks!");
+        if(sizeof($blocksel)>1) error("You can only select one block on which to start (or restart) the game.");
+	if($blocksel[0]==0 || $blocksel[0]==314) error("Sorry, you can't occupy The Man or The Temple as your starting position.");
+
+	if($blockownid[$blocksel[0]]!=0) error("Sorry, you can only start the game on an unoccupied playa block.");
+        occupyblocks($link, $teamid, $blocksel);
+
+>>>>>>> origin/devMap
 	break;
 case 1:
 	if(sizeof($blocksel)==0) error("You didn't select any blocks!");
@@ -240,6 +263,7 @@ case 2:
 	if(sizeof($newblock)!=sizeof($blocksel))error("Sorry, the blocks you selected must be adjacent to each other.");
 	
 //	echo "NBA: ".sizeof($newblock).", BS: ",sizeof($blocksel)."<br>\n";
+<<<<<<< HEAD
 
         $sql = "SELECT blockid, begin_row, end_row, begin_sec, end_sec FROM blocks";
 //	echo $sql;
@@ -260,6 +284,10 @@ case 2:
 		error("DATABASE ERROR. Please report this to the admins.");
 	}
 	mysqli_free_result($result);
+=======
+        
+	list($brs,$bss,$bgrid) = getblockgrid($link);
+>>>>>>> origin/devMap
 
 	$minimum=$impact;
 	foreach($newblock as $blockid => $value) {
