@@ -1,3 +1,9 @@
+<?php
+if(isset($_SESSION["achievements"])) {
+	$achtext = $_SESSION["achievements"];
+	unset($_SESSION["achievements"]);
+}
+?>
 <?php include("db.php");?>  <!-- Login Session and database functions -->
 <<<<<<< HEAD
 <?php include("header.php");?>  <!-- Header. Replace if you want to customize -->
@@ -84,10 +90,10 @@ foreach ($achname as $aid => $aname) {
 				for($j=0;$j<sizeof($bgrid[0]);$j++) {
 					$bid = $bgrid[$i][$j];
 					$tid = $blockownid[$bid];
-					if(isset($bgrid[$i][$j]) && $tid!=0 && $tid!=666 && $tid != $teamid) {
+					if(isset($bgrid[$i][$j]) && $tid!=0 && $tid!=-1 && $tid != $teamid) {
 						$tcheck[$tid] += 0;
 //						echo "(",$i,",",$j,"): ",$tid,"<br>\n";
-						if ($tcheck[$tid]==0 && $tid!=0 && $tid!=666) {
+						if ($tcheck[$tid]==0 && $tid!=0 && $tid!=-1) {
 							$upt = $blockownid[$bgrid[$i+1][$j]]; 
 							$dot = $blockownid[$bgrid[$i-1][$j]];
 							$let = $blockownid[$bgrid[$i][$j-1]];
@@ -95,7 +101,7 @@ foreach ($achname as $aid => $aname) {
 							if($tid==4) echo $upt,",",$dot,",",$let,",",$rit,"<br>";
 							if(($upt!=$tid && $upt!=$teamid) || ($dot!=$tid && $dot!=$teamid) || ($let!=$tid && $let!=$teamid) || ($rit!=$tid && $rit!=$teamid)) $tcheck[$tid]++;
 						}
-//						if($tid!=0 && $tid!=666) echo "TEAM CHECK [",$tid,",",$bid,"]: ",$tcheck[$tid],"<br>";
+//						if($tid!=0 && $tid!=-1) echo "TEAM CHECK [",$tid,",",$bid,"]: ",$tcheck[$tid],"<br>";
 					}				
 
 				}

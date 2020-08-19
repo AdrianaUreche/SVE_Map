@@ -1,5 +1,3 @@
-<html>
-
 <?php include("db.php");?>  <!-- Login Session and database functions -->
 <?php include("header.php");?>  <!-- Header. Replace if you want to customize -->
 <?php include("menubar.php");?>  <!-- Common top menu bar -->
@@ -8,7 +6,6 @@
 list($blockname,$blockgeom,$blockown,$blockownid,$blocknext,$blocknextid,$teamids)=getblocks($link);
 ?>
 
-<head>
   <style>
 <<<<<<< HEAD
   p {
@@ -101,9 +98,6 @@ list($blockname,$blockgeom,$blockown,$blockownid,$blocknext,$blocknextid,$teamid
     }
 >>>>>>> origin/devMap
   </style>
-</head>
-
-<body>
 
 <?php 
 
@@ -140,6 +134,9 @@ if(isset($blockownid)) {
         }
 >>>>>>> origin/devMap
     }
+    if($iter==1) {
+	    echo "<p style= \"background: url(flags/flag0.png)\" >No players yet!</p>\n";
+    }
     echo "</div>";
  }
 ?>
@@ -150,10 +147,13 @@ if(isset($blockownid)) {
 
 
 
+<<<<<<< HEAD
 
 </body>
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/devMap
 <!--CONTENT GOES HERE-->
 >>>>>>> origin/devMap
 
