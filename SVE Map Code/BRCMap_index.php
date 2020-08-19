@@ -2838,54 +2838,7 @@ c0.08,0.021,0.17,0.04,0.25,0.05c5.59,1.26,9.96,5.74,11.06,11.4c0.04,0.22,0.08,0.
 <script src="formatting_code/js/BRCMapJS.js"></script>
 <script src="formatting_code/js/DropdownJS.js"></script>
 
-<!----><!---->
-<!-- DISPLAY INFO TEXT -->
-<!----><!---->
-<!-- 	<p> Click below to reveal BRC (c.2020, known-Universe) </p>
-
-	<button class="button button1" onclick="buttonActions()"> Come with us now on a journey through time and space </button>
-
-	<p id='demo' style='display: none'>
-		<ul> 
-			<li> <i> Hover over a city block to highlight. </i> </li>
-			<li> <i> Click on said block to travel to a mysterious corner of the Multiverse... </i> </li>
-		</ul>
-	</p>
-
-	<p id="idshow" style='display: none'>
-		<ol>
-			<li> Design created on Solidworks CAD program, saved as a .DXF file. </li>
-			<li> Imported into Adobe Illustrator for tons of cleaning up, saved an .SVG file. </li>
-			<li> Responsiveness added to the .SVG manually. </li> 
-			<li> Map and text displayed using HTML. </li>
-		</ol>
-	</p> -->
-
-	<!---->				<!---->
-	<!-- DROPDOWN MENU      -->
-	<!---->				<!---->
-	<div class="w3-container">
-		<div class="w3-dropdown-hover w3-right">
-			<button class="w3-button w3-black">Dropdown</button>
-			<div class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
-				<a href="#" class="w3-bar-item w3-button">Link 1</a>
-				<a href="#" class="w3-bar-item w3-button">Link 2</a>
-				<a href="#" class="w3-bar-item w3-button">Link 3</a>
-			</div>
-		</div>
-		<div class="w3-clear"></div>
-	</div>
-
-	<!-- 	<div class="dropdown">
-		<button id="myBtn" class="dropbtn">Dropdown</button>
-		<div id="myDropdown" class="dropdown-content">
-			<a href="#home">Home</a>
-			<a href="#about">About</a>
-			<a href="#contact">Contact</a>
-		</div>
-	</div> -->
-
 
 <?php 
-include("tail_withmenu.php");
+include("tail.php");
 ?>
