@@ -15,7 +15,6 @@ list($achname, $achdescription, $achfluff, $achimpact, $achmaxnum, $achteam)=get
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 
 
-<head>
   <style>
     #star-five {
       margin: auto;
@@ -130,6 +129,8 @@ list($achname, $achdescription, $achfluff, $achimpact, $achmaxnum, $achteam)=get
 </head>
 
 <body>
+<div class=content>
+
 
  <style> body {background-image: url("images/playaBackground.jpg");} </style>
 
