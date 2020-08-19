@@ -69,9 +69,6 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 	            // Set parameters
 	            $param_teamname = trim($_POST["teamname"]);
 
-		    $ham = 0;
-		    if(isset($_POST['ham'])) $ham = 1;
-	            
 	            // Attempt to execute the prepared statement
 	            if(mysqli_stmt_execute($stmt))
 	            {
@@ -97,18 +94,57 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 	        }
 	    }
 
-	    // Validate password
+	    $ham = 0;
+	    if(isset($_POST['ham'])) $ham = 1;
+
+
+	    // Validate email
 	    if(empty(trim($_POST["email"])))
 	    {
-	        $email_err = "Please enter an email address.";     
+		    $email_err = "Please enter an email address.";     
 	    } 
 	    elseif(!filter_var(trim($_POST["email"]), FILTER_VALIDATE_EMAIL))
 	    {
-	        $email_err = "Please enter a valid email address.";
+		    $email_err = "Please enter a valid email address.";
 	    } 
 	    else
 	    {
-	        $email = trim($_POST["email"]);
+
+		    // Prepare a select statement
+		    $sql = "SELECT teamid FROM teams WHERE email = ?";
+
+		    if($stmt = mysqli_prepare($link, $sql))
+		    {
+			    // Bind variables to the prepared statement as parameters
+			    mysqli_stmt_bind_param($stmt, "s", $param_email);
+
+			    // Set parameters
+			    $param_email = trim($_POST["email"]);
+
+			    // Attempt to execute the prepared statement
+			    if(mysqli_stmt_execute($stmt))
+			    {
+				    /* store result */
+				    mysqli_stmt_store_result($stmt);
+
+				    if(mysqli_stmt_num_rows($stmt) == 1)
+				    {
+					    $email_err = "There is already a team using that email.";
+				    }
+				    else
+				    {
+					    $email = trim($_POST["email"]);
+				    }
+			    }
+			    else
+			    {
+				    echo "Oops! Something went wrong. Please try again later.";
+			    }
+
+			    // Close statement
+			    mysqli_stmt_close($stmt);
+		    }
+
 	    }
 
 	    
