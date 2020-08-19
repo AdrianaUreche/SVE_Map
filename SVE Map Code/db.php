@@ -28,13 +28,17 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 
 =======
         if(isset($_SESSION["achievements"])) {
-		$achtext = $_SESSION["achievements"];
-                echo "<script>alert(\"",$achtext,"\");</script>"; 
+		$achtext .= $_SESSION["achievements"];
+//                echo "<script>alert(\"",$achtext,"\");</script>"; 
                 unset($_SESSION["achievements"]);
 	}
 	if(isset($_SESSION["abilityerror"])) {
 		$alert = $_SESSION["abilityerror"];
+<<<<<<< HEAD
 		echo "<script>alert(\"",$alert,"\");</script>";
+>>>>>>> origin/devMap
+=======
+//		echo "<script>alert(\"",$alert,"\");</script>";
 >>>>>>> origin/devMap
 		unset($_SESSION["abilityerror"]);
 	}
@@ -51,15 +55,16 @@ if(isset($teamname)) {
 		if(mysqli_num_rows($result) > 0){
 			$row = mysqli_fetch_array($result);
 			list($teamid, $player_names, $email, $impact, $action_points, $action_points_used) = $row;
+			$player_names = htmlspecialchars($player_names);
 		}
 		// Free result set
 		mysqli_free_result($result);
 	}
 }
 
-function error($msg) {
+function error($msg, $loc = "BRCMap_index.php") {
 	$_SESSION['abilityerror'] = $msg;
-	header("Location: BRCMap_index.php");
+	header("Location: ".$loc);
 	exit;
 }
 
@@ -157,7 +162,7 @@ function getblocks($link) {
 						$teamids[0] = "Playa";
 					}
 				}
-				if($num_sides<=1) $blocknextid[$blockid] = -1;
+				if($num_sides<=1) $blocknextid[$blockid] = -2;
 				mysqli_free_result($bresult);
 			}
 		}

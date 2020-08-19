@@ -1,13 +1,14 @@
+<?php include("db.php");?>  <!-- Login Session and database functions -->
+
+
 <?php
-// Initialize the session
-session_start();
- 
 // Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: welcome.php");
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)
+{
+    header("location: teams.php");
     exit;
 }
- 
+
 // Include config file
 require_once "config.php";
  
@@ -16,28 +17,38 @@ $teamname = $password = "";
 $teamname_err = $password_err = "";
  
 // Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if($_SERVER["REQUEST_METHOD"] == "POST")
+{
  
     // Check if teamname is empty
-    if(empty(trim($_POST["teamname"]))){
+    if(empty(trim($_POST["teamname"])))
+    {
         $teamname_err = "Please enter teamname.";
-    } else{
+    } 
+    else
+    {
         $teamname = trim($_POST["teamname"]);
     }
     
     // Check if password is empty
-    if(empty(trim($_POST["password"]))){
+    if(empty(trim($_POST["password"])))
+    {
         $password_err = "Please enter your password.";
-    } else{
+    } 
+    else
+    {
         $password = trim($_POST["password"]);
     }
     
     // Validate credentials
-    if(empty($teamname_err) && empty($password_err)){
+    if(empty($teamname_err) && empty($password_err))
+    {
         // Prepare a select statement
-        $sql = "SELECT teamid, teamname, password FROM teams WHERE teamname = ?";
+        // Make sure to only select activated accounts though!
+        $sql = "SELECT teamid, teamname, password FROM teams WHERE activation_key IS NULL AND teamname = ?";
         
-        if($stmt = mysqli_prepare($link, $sql)){
+        if($stmt = mysqli_prepare($link, $sql))
+        {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_teamname);
             
@@ -45,16 +56,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_teamname = $teamname;
             
             // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
+            if(mysqli_stmt_execute($stmt))
+            {
                 // Store result
                 mysqli_stmt_store_result($stmt);
                 
                 // Check if teamname exists, if yes then verify password
-                if(mysqli_stmt_num_rows($stmt) == 1){                    
+                if(mysqli_stmt_num_rows($stmt) == 1)
+                {                    
                     // Bind result variables
                     mysqli_stmt_bind_result($stmt, $id, $teamname, $hashed_password);
-                    if(mysqli_stmt_fetch($stmt)){
-                        if(password_verify($password, $hashed_password)){
+                    if(mysqli_stmt_fetch($stmt))
+                    {
+                        if(password_verify($password, $hashed_password))
+                        {
                             // Password is correct, so start a new session
                             session_start();
                             
@@ -64,17 +79,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["teamname"] = $teamname;                            
                             
                             // Redirect user to welcome page
-                            header("location: welcome.php");
-                        } else{
+                            header("location: teams.php");
+                        } 
+                        else
+                        {
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was not valid.";
                         }
                     }
-                } else{
-                    // Display an error message if teamname doesn't exist
-                    $teamname_err = "No account found with that teamname.";
                 }
-            } else{
+                 else
+                {
+                    // Display an error message if teamname doesn't exist
+			$teamname_err = "No account found with that teamname";
+			$teamname_err .= " (you may need to activate your account--check your email for an activation link).";
+                }
+            } 
+            else
+            {
                 echo "Oops! Something went wrong. Please try again later.";
             }
 
@@ -87,22 +109,88 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     mysqli_close($link);
 }
 ?>
+<?php include("header.php");?>  <!-- Header. Replace if you want to customize -->
+<?php include("menubar.php");?>  <!-- Common top menu bar -->
+
+<style>
+    * 
+    {
+      box-sizing: border-box;
+    }
+
+
+    /* Create three equal columns that floats next to each other */
+    .teaminfo 
+    {
+      float: left;
+      width: 95%;
+      padding: 0px;
+      margin: 2%;
+      font-size: 18pt;
+    }
+
+    /* Create three equal columns that floats next to each other */
+    .column 
+    {
+      float: left;
+      width: 29%;
+      padding: 0px;
+      margin: 2%;
+    }
+
+    /* Clear floats after the columns */
+    .rowheader 
+    {
+      background-color: #333333;
+      color: #EEEEEE;
+      margin: 0;
+      padding: 10px;
+      font-weight: bold;
+      font-size: 18pt;
+    }
+
+    .row 
+    {
+      padding: 0px;
+    }
+
+    .puzzlename 
+    {
+      padding: 2%;
+      width: 95%;
+      font-weight: bold;
+      font-size: 14pt;
+      line-height: 2;
+    }
+
+    .puzzleicon 
+    {
+        float: left;
+        padding: 10px;
+    }
+
+    /* Clear floats after the columns */
+    .row:after 
+    {
+      content: "";
+      display: table;
+      clear: both;
+    }
+</style>
+
  
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="http://www.nukees.com/sve/bootstrap.css">
-    <style type="text/css">
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 350px; padding: 20px; }
-    </style>
-</head>
-<body>
-    <div class="wrapper">
-        <h2>Login</h2>
+<div class="row">
+  <!-- Empty -->
+  <div class="column">
+  </div>
+  <!-- Login -->
+  <div class="column" style="background-color:#EEEEEE;">
+    <div class="rowheader">
+        Login
+    </div>
+    <div class="wrapper" style="padding:10px">
         <p>Welcome Scientists!  What's your team name and password?</p>
+<?php if (isset($_GET['new'])) echo "<font color=red>Check your email to activate your new account before logging in.</font>";?>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group <?php echo (!empty($teamname_err)) ? 'has-error' : ''; ?>">
                 <label>Username</label>
@@ -120,5 +208,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
         </form>
     </div>    
-</body>
-</html>
+  </div>
+  <!-- Empty -->
+  <div class="column">
+  </div>
+</div>
+
+<?php include("tail.php");?>  <!-- Contact inf and end body/html tags->
