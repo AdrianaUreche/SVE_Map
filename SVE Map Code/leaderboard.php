@@ -54,9 +54,10 @@ list($blockname,$blockgeom,$blockown,$blockownid,$blocknext,$blocknextid,$teamid
       content: '';
     }
     p {
-      border: 2px solid white;
+      border: 4px solid black;
       color: white;
-      text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+      text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+      font-weight: bolder;
       text-align: center;
       margin-bottom: 0;
       border-radius: 25px;
