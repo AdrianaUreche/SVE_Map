@@ -72,6 +72,12 @@ hr {
     <li><a href="puzzle_darren_b.php" class="button1"> Puzzle Darren B </a></li>
     <li><a href="puzzle_darren_c.php" class="button1"> Puzzle Darren C </a></li>
     <li><a href="puzzle_darren_d.php" class="button1"> Puzzle Darren D </a></li>
+    <li><a href="quest_museum.php" class="button1"> Quest Museum </a></li>
+    <li><a href="quest_escaperoom.php" class="button1"> Quest Escape Room </a></li>
+    <li><a href="quest_jigsaw.php" class="button1"> Quest Jigsaw </a></li>
+    <li><a href="puzzle_crossword.php" class="button1"> Puzzle Crossword </a></li>
+
+
 </ul>
 
     </div>
