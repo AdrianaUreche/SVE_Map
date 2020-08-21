@@ -58,6 +58,7 @@ list($achname, $achdescription, $achfluff, $achimpact, $achmaxnum, $achteam)=get
     }
   .collapsible {
       background-color: hsla(0, 100%, 0%, 0.8);
+      font-weight: bolder;
       text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
       color: green;
       cursor: pointer;
@@ -81,13 +82,14 @@ list($achname, $achdescription, $achfluff, $achimpact, $achmaxnum, $achteam)=get
       
     }
     
-    .content {
+    .content_window {
       padding: 0 18px;
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.2s ease-out;
       /*background: rgba(255, 255, 255, 0.3) */
       background-color: hsla(0, 100%, 0%);
+      font-weight: bolder;
       text-align: center;
       text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
       width: 50%;
@@ -108,6 +110,7 @@ list($achname, $achdescription, $achfluff, $achimpact, $achmaxnum, $achteam)=get
         margin-left:auto; 
         margin-right:auto;
         border: 5px solid black;
+        font-weight: bolder;
         background-image: radial-gradient(black , white, 0.5);
         color: black;
         text-align: center;
@@ -118,10 +121,12 @@ list($achname, $achdescription, $achfluff, $achimpact, $achmaxnum, $achteam)=get
     th.Sub{
         /*background-image: linear-gradient(to right, red , yellow);*/
         padding: 10px;
+        font-weight: bolder;
         text-align: center;
     }
     td.Sub{
         padding: 10px;
+        font-weight: bolder;
         text-align: center;
     }
 
@@ -142,7 +147,7 @@ if(isset($achname)) {
     
 foreach($achname as $aid => $aname) {
     echo "<button class=\"collapsible\">",$aname,"</button>";
-    echo "<div class=\"content\">";
+    echo "<div class=\"content_window\">";
         echo "<p> ",$achfluff[$aid], " </p>";
         echo "<p> ",$achdescription[$aid]," </p>";
         echo "<p> Impact = ",$achimpact[$aid]," </p>";
