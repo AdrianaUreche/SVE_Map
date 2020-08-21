@@ -18,6 +18,10 @@ body, html {
   border: 2px solid black;
   opacity: 1.0;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  text-align: center;
+>>>>>>> origin/devMap
 =======
   text-align: center;
 >>>>>>> origin/devMap
@@ -59,6 +63,10 @@ width: 820px;
 margin-left: auto ;
 margin-right: auto ;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+text-align: center;
+>>>>>>> origin/devMap
 =======
 text-align: center;
 >>>>>>> origin/devMap
@@ -73,6 +81,11 @@ margin-right: auto ;
 </style>
 <body>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> origin/devMap
 =======
 
 
@@ -82,13 +95,19 @@ margin-right: auto ;
 <div id="transbox">
     <div class="post">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <p><embed src="pq/puzzle_skyline.pdf" width="800px" height="725px" /></p>
 =======
+=======
+>>>>>>> origin/devMap
         <div class="button2">
             <a href="teams.php"> <font color="red" style="font-size:50px"><b>Submit Answer Here!</b></font></a>
         </div>
 
         <p><embed src="pq/puzzle_skyline.pdf" width="800px" height="1200px" /></p>
+<<<<<<< HEAD
+>>>>>>> origin/devMap
+=======
 >>>>>>> origin/devMap
     </div>
 </div>
