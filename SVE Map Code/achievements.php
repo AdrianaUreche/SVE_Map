@@ -1,14 +1,20 @@
-<html>
-
 <?php include("db.php");?>  <!-- Login Session and database functions -->
-<?php include("header.php");?>  <!-- Header. Replace if you want to customize -->
-<?php include("menubar.php");?>  <!-- Common top menu bar -->
 
 <?php 
 list($achname, $achdescription, $achfluff, $achimpact, $achmaxnum, $achteam)=getachievements($link);
 ?>
+<!DOCTYPE html>
+<html>
 
+<link rel="stylesheet" type="text/css" href="formatting_code/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="formatting_code/css/BRCMapCSS.css" />
+<link rel="stylesheet" type="text/css" href="formatting_code/css/DropdownCSS.css" />
+<link rel="stylesheet" type="text/css" href="formatting_code/css/MenuCSS.css" />
 <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+
   <style>
     #star-five {
       margin: auto;
@@ -123,7 +129,12 @@ list($achname, $achdescription, $achfluff, $achimpact, $achmaxnum, $achteam)=get
 </head>
 
 <body>
+<div class=content>
 
+
+ <style> body {background-image: url("images/playaBackground.jpg");} </style>
+
+<?php include("menubar.php");?>  <!-- Common top menu bar -->
 <?php 
 
 
@@ -178,10 +189,5 @@ for (i = 0; i < coll.length; i++) {
 
 </script>
 
-
-
-
 </body>
-<!--CONTENT GOES HERE-->
-
 <?php include("tail.php");?>  <!-- Contact inf and end body/html tags->

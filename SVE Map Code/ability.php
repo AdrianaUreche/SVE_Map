@@ -202,7 +202,6 @@ if($action_points<=0) {
 }
 
 
-
 switch ($ability) {
 case 0:
         if(sizeof($blocksel)==0) error("You didn't select any blocks!");
@@ -292,7 +291,7 @@ case 3:
 //        echo "FLIP: ",$blockid," => ",$i,"<br>";
 
                 $sqlroot = "SELECT num_sides,flippable FROM blocks WHERE blockid = ";
-		if($blockownid[$blockid]==666)error("Sorry, at least one block you selected ".$blockname[$blockid].") has been destroyed. Radiation abounds. Bring marshmallows.");
+		if($blockownid[$blockid]==-1)error("Sorry, at least one block you selected ".$blockname[$blockid].") has been destroyed. Radiation abounds. Bring marshmallows.");
 
                 $sql = $sqlroot.$blockid;
 //              echo $sql,"<br>";
@@ -419,7 +418,7 @@ case 7:
 	if (!mysqli_query($link, $sql)) {
 		error("Error updating record: " . mysqli_error($link));
 	}
-	$sql = "UPDATE blocksides SET teamid = 666 WHERE side = 0 AND blockid = ".$blocksel[0];
+	$sql = "UPDATE blocksides SET teamid = -1 WHERE side = 0 AND blockid = ".$blocksel[0];
 	if (!mysqli_query($link, $sql)) {
                 error("Error updating record: " . mysqli_error($link));
         }
@@ -437,13 +436,16 @@ case 8:
         break;
 }
 
-$sql = "UPDATE teams SET action_points = ".(--$action_points)." WHERE teamid = ".$teamid;
+$sql = "UPDATE teams SET action_points = ".(--$action_points).", action_points_used = action_points_used + 1 WHERE teamid = ".$teamid;
 
 //echo $sql."<br>";
 
 if (!mysqli_query($link, $sql)) {
 	error("Error updating record: " . mysqli_error($link));
 }
+
+
+
 mysqli_close($link);
 
 header("Location: achievementcheck.php");
