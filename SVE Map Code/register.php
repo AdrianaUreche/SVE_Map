@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?php
 // Include config file
 require_once "config.php";
@@ -148,6 +149,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </body>
 </html>
 =======
+=======
+>>>>>>> origin/devMap
 <?php include("db.php");?>  <!-- Login Session and database functions -->
 <?php
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
@@ -845,7 +848,10 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 
 <?php include("tail.php");?>  <!-- Contact inf and end body/html tags->
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/devMap
 
+=======
+>>>>>>> origin/devMap
 =======
 >>>>>>> origin/devMap

@@ -8,8 +8,11 @@ list($blockname,$blockgeom,$blockown,$blockownid,$blocknext,$blocknextid,$teamid
 
   <style>
 <<<<<<< HEAD
+<<<<<<< HEAD
   p {
 =======
+=======
+>>>>>>> origin/devMap
     .star1{
         float right;
     }
@@ -57,12 +60,18 @@ list($blockname,$blockgeom,$blockown,$blockownid,$blocknext,$blocknextid,$teamid
       content: '';
     }
     p {
+<<<<<<< HEAD
 >>>>>>> origin/devMap
       border: 2px solid white;
+=======
+      border: 4px solid black;
+>>>>>>> origin/devMap
       color: white;
-      text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+      text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+      font-weight: bolder;
       text-align: center;
       margin-bottom: 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
       width: 50%;
       margin-left: auto;
@@ -79,6 +88,8 @@ list($blockname,$blockgeom,$blockown,$blockownid,$blocknext,$blocknextid,$teamid
       margin-top: 25px;
   }
 =======
+=======
+>>>>>>> origin/devMap
       border-radius: 25px;
       font-size: 25px;
       font-family:courier,arial,helvetica;
@@ -103,8 +114,13 @@ list($blockname,$blockgeom,$blockown,$blockownid,$blocknext,$blocknextid,$teamid
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 if(isset($blocknextid)) {
     $lead = array_count_values($blocknextid);
+=======
+if(isset($blockownid)) {
+    $lead = array_count_values($blockownid);
+>>>>>>> origin/devMap
 =======
 if(isset($blockownid)) {
     $lead = array_count_values($blockownid);
@@ -117,10 +133,13 @@ if(isset($blockownid)) {
     $iter = 1;
     foreach($lead as $tid => $tscore) {
 <<<<<<< HEAD
+<<<<<<< HEAD
         echo "<p style= \"background: url(/flags/flag",$tid,".png)\" > ",$iter, ": ", $teamids[$tid]," - ", $tscore, "</p>";
     
         $iter++;
 =======
+=======
+>>>>>>> origin/devMap
         if($tid!=0){
             if($iter==1){
                 echo "<div id=\"star-five\" class=\"star1\"></div>";
@@ -148,6 +167,7 @@ if(isset($blockownid)) {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 </body>
 <<<<<<< HEAD
@@ -155,6 +175,8 @@ if(isset($blockownid)) {
 =======
 >>>>>>> origin/devMap
 <!--CONTENT GOES HERE-->
+>>>>>>> origin/devMap
+=======
 >>>>>>> origin/devMap
 
 <?php include("tail.php");?>  <!-- Contact inf and end body/html tags->

@@ -67,17 +67,24 @@ list($achname, $achdescription, $achfluff, $achimpact, $achmaxnum, $achteam)=get
     }
   .collapsible {
       background-color: hsla(0, 100%, 0%, 0.8);
+      font-weight: bolder;
       text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
       color: green;
       cursor: pointer;
       padding: 10px;
+<<<<<<< HEAD
+>>>>>>> origin/devMap
+=======
 >>>>>>> origin/devMap
       border: none;
       text-align: center;
       outline: none;
       font-size: 15px;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/devMap
       display: block;
       width: 50%;
       margin: 0 auto;
@@ -86,29 +93,40 @@ list($achname, $achdescription, $achfluff, $achimpact, $achmaxnum, $achteam)=get
       letter-spacing: 3px;
       font-family:courier,arial,helvetica;
       
+<<<<<<< HEAD
+>>>>>>> origin/devMap
+=======
 >>>>>>> origin/devMap
     }
 
     .active, .collapsible:hover {
       background-color: #0000FF;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+      
+>>>>>>> origin/devMap
 =======
       
 >>>>>>> origin/devMap
     }
     
-    .content {
+    .content_window {
       padding: 0 18px;
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.2s ease-out;
       /*background: rgba(255, 255, 255, 0.3) */
 <<<<<<< HEAD
+<<<<<<< HEAD
       background-color: hsla(0, 0%, 100%, 0.3);
       text-align: center;
       text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 =======
+=======
+>>>>>>> origin/devMap
       background-color: hsla(0, 100%, 0%);
+      font-weight: bolder;
       text-align: center;
       text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
       width: 50%;
@@ -120,6 +138,9 @@ list($achname, $achdescription, $achfluff, $achimpact, $achmaxnum, $achteam)=get
       font-family:courier,arial,helvetica;
       border-bottom-right-radius: 20px;
       border-bottom-left-radius: 20px;
+<<<<<<< HEAD
+>>>>>>> origin/devMap
+=======
 >>>>>>> origin/devMap
     }
       
@@ -130,12 +151,17 @@ list($achname, $achdescription, $achfluff, $achimpact, $achmaxnum, $achteam)=get
         margin-left:auto; 
         margin-right:auto;
         border: 5px solid black;
+        font-weight: bolder;
         background-image: radial-gradient(black , white, 0.5);
         color: black;
         text-align: center;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        font-family:courier,arial,helvetica;
+>>>>>>> origin/devMap
 =======
         font-family:courier,arial,helvetica;
 >>>>>>> origin/devMap
@@ -143,10 +169,12 @@ list($achname, $achdescription, $achfluff, $achimpact, $achmaxnum, $achteam)=get
     th.Sub{
         /*background-image: linear-gradient(to right, red , yellow);*/
         padding: 10px;
+        font-weight: bolder;
         text-align: center;
     }
     td.Sub{
         padding: 10px;
+        font-weight: bolder;
         text-align: center;
     }
 
@@ -167,7 +195,7 @@ if(isset($achname)) {
     
 foreach($achname as $aid => $aname) {
     echo "<button class=\"collapsible\">",$aname,"</button>";
-    echo "<div class=\"content\">";
+    echo "<div class=\"content_window\">";
         echo "<p> ",$achfluff[$aid], " </p>";
         echo "<p> ",$achdescription[$aid]," </p>";
         echo "<p> Impact = ",$achimpact[$aid]," </p>";
@@ -181,12 +209,15 @@ foreach($achname as $aid => $aname) {
 	    foreach($achteam[$aid] as $atid => $ateam) {
 		  //  echo   "<th class=\"Sub\"> ",$ateam,"</th>";
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    echo   "<th class=\"Sub\" background=\"/flags/flag",$atid,".png\"> ",$ateam,"</th>";
 		  //  echo " <image xlink:href=\"flags/flag",$tid,".png\" width=\"".$fw."\" height=\"".$fh."\"/>\n";
 		  //  echo   "<td class=\"Sub\"> Team number = ",$achflag[$aid][$atid],"</td>";
 	    }
 	    echo "</tr>";
 =======
+=======
+>>>>>>> origin/devMap
 		    echo   "<th class=\"Sub\" background=\"flags/flag",$atid,".png\"> ",$ateam,"</th>";
 		  //  echo " <image xlink:href=\"flags/flag",$tid,".png\" width=\"".$fw."\" height=\"".$fh."\"/>\n";
 		  //  echo   "<td class=\"Sub\"> Team number = ",$achflag[$aid][$atid],"</td>";
@@ -194,6 +225,9 @@ foreach($achname as $aid => $aname) {
 	    echo "<div id=\"star-five\"></div>";
 	    echo "</tr>";
 	    
+<<<<<<< HEAD
+>>>>>>> origin/devMap
+=======
 >>>>>>> origin/devMap
 	    echo "</table>";
 	}
@@ -204,7 +238,10 @@ foreach($achname as $aid => $aname) {
 
 <script type="text/javascript">
 <<<<<<< HEAD
+<<<<<<< HEAD
 // pass PHP variable declared above to JavaScript variable
+=======
+>>>>>>> origin/devMap
 =======
 >>>>>>> origin/devMap
 // var achname = <?php echo json_encode($achname) ?>;
@@ -226,4 +263,8 @@ for (i = 0; i < coll.length; i++) {
 
 </script>
 
+<<<<<<< HEAD
+=======
+</body>
+>>>>>>> origin/devMap
 <?php include("tail.php");?>  <!-- Contact inf and end body/html tags->

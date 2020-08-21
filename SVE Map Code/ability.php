@@ -6,6 +6,11 @@ $teamblocks = array_keys($blockownid, $teamid);
 $numteamabil = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+// I think this isn't used.  Probably doesn't even work.
+>>>>>>> origin/devMap
 =======
 
 // I think this isn't used.  Probably doesn't even work.
@@ -33,7 +38,11 @@ function getneighbors($link, $bid) {
                                 if(mysqli_num_rows($nresult) > 0){
                                         while($team=mysqli_fetch_array($nresult)){
 <<<<<<< HEAD
+<<<<<<< HEAD
 						echo "BLOCK: ".$team['blockid']."<br>";
+=======
+//						echo "BLOCK: ".$team['blockid']."<br>";
+>>>>>>> origin/devMap
 =======
 //						echo "BLOCK: ".$team['blockid']."<br>";
 >>>>>>> origin/devMap
@@ -48,7 +57,11 @@ function getneighbors($link, $bid) {
         }
         mysqli_free_result($result);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	echo "BLOCKLIST: ",$blockl,"<p>";
+=======
+//	echo "BLOCKLIST: ",$blockl,"<p>";
+>>>>>>> origin/devMap
 =======
 //	echo "BLOCKLIST: ",$blockl,"<p>";
 >>>>>>> origin/devMap
@@ -216,8 +229,11 @@ if($action_points<=0) {
 switch ($ability) {
 case 0:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	error ("Sorry, I haven't programmed this yet.");
 =======
+=======
+>>>>>>> origin/devMap
         if(sizeof($blocksel)==0) error("You didn't select any blocks!");
         if(sizeof($blocksel)>1) error("You can only select one block on which to start (or restart) the game.");
 	if($blocksel[0]==0 || $blocksel[0]==314) error("Sorry, you can't occupy The Man or The Temple as your starting position.");
@@ -225,6 +241,9 @@ case 0:
 	if($blockownid[$blocksel[0]]!=0) error("Sorry, you can only start the game on an unoccupied playa block.");
         occupyblocks($link, $teamid, $blocksel);
 
+<<<<<<< HEAD
+>>>>>>> origin/devMap
+=======
 >>>>>>> origin/devMap
 	break;
 case 1:
@@ -263,6 +282,7 @@ case 2:
 	
 //	echo "NBA: ".sizeof($newblock).", BS: ",sizeof($blocksel)."<br>\n";
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         $sql = "SELECT blockid, begin_row, end_row, begin_sec, end_sec FROM blocks";
 //	echo $sql;
@@ -283,6 +303,10 @@ case 2:
 		error("DATABASE ERROR. Please report this to the admins.");
 	}
 	mysqli_free_result($result);
+=======
+        
+	list($brs,$bss,$bgrid) = getblockgrid($link);
+>>>>>>> origin/devMap
 =======
         
 	list($brs,$bss,$bgrid) = getblockgrid($link);
