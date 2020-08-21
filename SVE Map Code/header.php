@@ -15,5 +15,20 @@ s" />
 
  <style> body {background-image: url("images/playaBackground.jpg");} </style>
 
+<style>
+html, body {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  flex: 1 0 auto;
+}
+.footer {
+  flex-shrink: 0;
+}
+</style>
 <body>
-
+<div class=content>
