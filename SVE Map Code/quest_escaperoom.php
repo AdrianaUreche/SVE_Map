@@ -76,7 +76,7 @@ margin-right: auto ;
             <a href="teams.php"> <font color="red" style="font-size:50px"><b>Submit Answer Here!</b></font></a>
         </div>
 
-        <p><embed src="quest_home.pdf" width="800px" height="1100px" /></p>
+        <p><embed src="quest_escaperoom.pdf" width="800px" height="1100px" /></p>
     </div>
 </div>
 

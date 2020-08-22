@@ -54,10 +54,9 @@ list($blockname,$blockgeom,$blockown,$blockownid,$blocknext,$blocknextid,$teamid
       content: '';
     }
     p {
-      border: 4px solid black;
-      color: black;
-      text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white;
-      font-weight: bolder;
+      border: 2px solid white;
+      color: white;
+      text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
       text-align: center;
       margin-bottom: 0;
       border-radius: 25px;
@@ -116,5 +115,6 @@ if(isset($blockownid)) {
 
 
 
+<!--CONTENT GOES HERE-->
 
 <?php include("tail.php");?>  <!-- Contact inf and end body/html tags->

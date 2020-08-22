@@ -17,14 +17,7 @@ body, html {
   background-color: #ffffff;
   border: 2px solid black;
   opacity: 1.0;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
   text-align: center;
->>>>>>> origin/devMap
-=======
-  text-align: center;
->>>>>>> origin/devMap
 }
 
 .transbox p {
@@ -62,14 +55,7 @@ box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
 width: 820px;
 margin-left: auto ;
 margin-right: auto ;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 text-align: center;
->>>>>>> origin/devMap
-=======
-text-align: center;
->>>>>>> origin/devMap
 }
 
 p {
@@ -80,35 +66,17 @@ margin-right: auto ;
 
 </style>
 <body>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
 
->>>>>>> origin/devMap
-=======
-
-
->>>>>>> origin/devMap
   
 <!-- <div id="splash"> -->
 <div id="transbox">
     <div class="post">
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <p><embed src="pq/puzzle_skyline.pdf" width="800px" height="725px" /></p>
-=======
-=======
->>>>>>> origin/devMap
         <div class="button2">
             <a href="teams.php"> <font color="red" style="font-size:50px"><b>Submit Answer Here!</b></font></a>
         </div>
 
-        <p><embed src="pq/puzzle_skyline.pdf" width="800px" height="1200px" /></p>
-<<<<<<< HEAD
->>>>>>> origin/devMap
-=======
->>>>>>> origin/devMap
+        <p><embed src="quest_museum.pdf" width="800px" height="1100px" /></p>
     </div>
 </div>
 

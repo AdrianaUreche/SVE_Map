@@ -14,6 +14,13 @@ if(isset($teamid)){
 
 ?>
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/devMap
+=======
+>>>>>>> origin/devMap
 <script>
 var blockTeams = <?php echo json_encode($blockownid); ?>;
 var blockNextTeams = <?php echo json_encode($blocknextid); ?>;
@@ -55,6 +62,13 @@ function abilityActivate(aid) {
 
 	<p id='demo'>
 		<ul> 
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/devMap
+=======
+>>>>>>> origin/devMap
 			<li> <i> Hover over a city block to highlight and show block address. </i> </li>
 			<li> <i> Click on blocks to select them, then click on an ability (if you have any). </i> </li>
 		</ul>
@@ -71,10 +85,20 @@ function abilityActivate(aid) {
 	xml:space="preserve" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="us-map" preserveAspectRatio="xMinYMin meet" sodipodi:docname="Republican_Party_presidential_primaries_results,_2016.svg" inkscape:version="0.91 r13725" x="0px" y="0px" width="959px" height="593px" viewBox="174 100 959 593" enable-background="new 174 100 959 593" xml:space="preserve">
 	<sodipodi:namedview bordercolor="#666666" objecttolerance="10" pagecolor="#ffffff" borderopacity="1" gridtolerance="10" guidetolerance="10" inkscape:cx="509.19152" inkscape:cy="282.2353" inkscape:zoom="1.2137643" showgrid="false" id="namedview71" inkscape:current-layer="g5" inkscape:window-maximized="1" inkscape:window-y="-8" inkscape:window-x="-8" inkscape:pageopacity="0" inkscape:window-height="1017" inkscape:window-width="1920" inkscape:pageshadow="2"> </sodipodi:namedview>  
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/devMap
 
 
 <defs>
 <pattern id="CC" patternUnits="objectBoundingBox" width="1" height="1">
+<<<<<<< HEAD
+<<<<<<< HEAD
+ <image xlink:href="images/SvE_2020_logo.png" width="176" height="176"/>
+=======
+ <image xlink:href="images/SvE_2020_logo_sq.png" width="176" height="176"/>
+>>>>>>> origin/devMap
+=======
  <image xlink:href="images/SvE_2020_logo_sq.png" width="176" height="176"/>
 </pattern>
 <?php
@@ -247,6 +271,7 @@ cx="1233.202" cy="363.93" r="10.8"/>
 <defs>
 <pattern id="CC" patternUnits="objectBoundingBox" width="1" height="1">
  <image xlink:href="images/SvE_2020_logo_sq.png" width="176" height="176"/>
+>>>>>>> origin/devMap
 </pattern>
 <?php
 foreach($teamids as $tid => $name){
@@ -257,6 +282,9 @@ foreach($teamids as $tid => $name){
 }
 ?>
 </defs>
+<<<<<<< HEAD
+
+=======
 
 <<<<<<< HEAD
 <?php
@@ -2859,6 +2887,7 @@ c0.08,0.021,0.17,0.04,0.25,0.05c5.59,1.26,9.96,5.74,11.06,11.4c0.04,0.22,0.08,0.
 <!----><!---->
 <!-- 	<p> Click below to reveal BRC (c.2020, known-Universe) </p>
 =======
+>>>>>>> origin/devMap
 <style>
 .abilitytext {
 	cursor: default;
@@ -2881,6 +2910,17 @@ g:hover .gainabilitybutton {
 
 <?php
 if(isset($teamname)&&$numteamabil<8) {
+<<<<<<< HEAD
+	echo "<g>\n";
+	echo "<rect class=\"gainabilitybutton\" id=\"ability\" x=\"",698-(190+80)+40,"\" y=\"",85-60,"\" rx=\"20\" ry=\"20\" width=\"170\" height=\"50\"\n";
+	echo "onclick=\"abilityActivate(0)\" \n";
+	echo "style=\"stroke:black;stroke-width:5;opacity:1\" />\n";
+	echo "<foreignobject ";
+	echo "onclick=\"abilityActivate(0)\" \n";
+	echo "x=\"",698-(190+80)+45,"\" y=\"",90-60,"\" width=\"160\" height=\"40\"><div xmlns=\"http://www.w3.org/1999/xhtml\"><center><font class=\"abilitytext\" color=\"yellow\">Gain new ability</font></center></div></foreignobject>\n";
+                        //              echo "<text x=\"",698-($tid%2)*(190+80)+50,"\" y=\"",160+60*(int)(($tid-1)/2),"\" font-family=\"Verdana\" font-size=\"12\" fill=\"yellow\">",$abilname[$tid],"</text>\n";
+	echo "</g>\n";
+=======
 	echo "<a href=\"abilities.php\" style=\"text-decoration: none\">";
 	echo "<g>\n";
 	echo "<rect class=\"gainabilitybutton\" id=\"ability\" x=\"",698-(190+80)+40,"\" y=\"",85-60,"\" rx=\"20\" ry=\"20\" width=\"170\" height=\"50\"\n";
@@ -2903,6 +2943,7 @@ if(isset($teamid) && !in_array($teamid,$blockownid) && $action_points>0) {
         echo "x=\"",698+65,"\" y=\"",90-60,"\" width=\"160\" height=\"40\"><div xmlns=\"http://www.w3.org/1999/xhtml\"><center><font class=\"abilitytext\" color=\"yellow\">Occupy One Starter Block</font></center></div></foreignobject>\n";
                         //              echo "<text x=\"",698-($tid%2)*(190+80)+50,"\" y=\"",160+60*(int)(($tid-1)/2),"\" font-family=\"Verdana\" font-size=\"12\" fill=\"yellow\">",$abilname[$tid],"</text>\n";
         echo "</g></a>\n";
+>>>>>>> origin/devMap
 }
 
 if(isset($teamabil)&&$numteamabil>0) {
@@ -5586,7 +5627,10 @@ c0.08,0.021,0.17,0.04,0.25,0.05c5.59,1.26,9.96,5.74,11.06,11.4c0.04,0.22,0.08,0.
 <line id="" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" x1="1219.062" y1="365.453" x2="1219.402" y2="365.433"/>
 
 <line id="" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" x1="1218.572" y1="365.483" x2="1219.062" y2="365.453"/>
+<<<<<<< HEAD
+=======
 >>>>>>> 93b67037251ab149a8efc0dc6a22e1c58bc449bf
+>>>>>>> origin/devMap
 
 <line id="" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" x1="1336.962" y1="361.333" x2="1349.052" y2="361.303"/>
 
@@ -5612,7 +5656,72 @@ c0.08,0.021,0.17,0.04,0.25,0.05c5.59,1.26,9.96,5.74,11.06,11.4c0.04,0.22,0.08,0.
 <script src="formatting_code/js/BRCMapJS.js"></script>
 <script src="formatting_code/js/DropdownJS.js"></script>
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<!----><!---->
+<!-- DISPLAY INFO TEXT -->
+<!----><!---->
+<!-- 	<p> Click below to reveal BRC (c.2020, known-Universe) </p>
+
+	<button class="button button1" onclick="buttonActions()"> Come with us now on a journey through time and space </button>
+
+	<p id='demo' style='display: none'>
+		<ul> 
+			<li> <i> Hover over a city block to highlight. </i> </li>
+			<li> <i> Click on said block to travel to a mysterious corner of the Multiverse... </i> </li>
+		</ul>
+	</p>
+
+	<p id="idshow" style='display: none'>
+		<ol>
+			<li> Design created on Solidworks CAD program, saved as a .DXF file. </li>
+			<li> Imported into Adobe Illustrator for tons of cleaning up, saved an .SVG file. </li>
+			<li> Responsiveness added to the .SVG manually. </li> 
+			<li> Map and text displayed using HTML. </li>
+		</ol>
+	</p> -->
+
+
+	<!---->				<!---->
+	<!-- DROPDOWN MENU      -->
+	<!---->				<!---->
+<!--
+	<div class="w3-container">
+		<div class="w3-dropdown-hover w3-right">
+			<button class="w3-button w3-black">Dropdown</button>
+			<div class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
+				<a href="#" class="w3-bar-item w3-button">Link 1</a>
+				<a href="#" class="w3-bar-item w3-button">Link 2</a>
+				<a href="#" class="w3-bar-item w3-button">Link 3</a>
+			</div>
+		</div>
+		<div class="w3-clear"></div>
+	</div>
+-->
+	<!-- 	<div class="dropdown">
+		<button id="myBtn" class="dropbtn">Dropdown</button>
+		<div id="myDropdown" class="dropdown-content">
+			<a href="#home">Home</a>
+			<a href="#about">About</a>
+			<a href="#contact">Contact</a>
+		</div>
+	</div> -->
+
+<?php 
+include("tail_withmenu.php");
+<<<<<<< HEAD
+?>
+=======
+=======
+
+<?php 
+include("tail.php");
+>>>>>>> origin/devMap
+?>
+>>>>>>> origin/devMap
+=======
 
 <?php 
 include("tail_withmenu.php");
 ?>
+>>>>>>> origin/devMap
