@@ -1,17 +1,44 @@
 <?php
 // Initialize the session
+<<<<<<< HEAD
+<<<<<<< HEAD
+ini_set('session.gc_maxlifetime', 86400);
+
+session_set_cookie_params(86400);
+=======
+>>>>>>> origin/devMap
+=======
+>>>>>>> origin/devMap
 if (session_status() !== PHP_SESSION_ACTIVE) {
 	session_start([
 		'cookie_lifetime' => 86400
 	]);
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> origin/devMap
 	ini_set('session.gc_maxlifetime', 86400);
 
 	session_set_cookie_params(86400);
 
+<<<<<<< HEAD
+>>>>>>> origin/devMap
+=======
+>>>>>>> origin/devMap
 }
 
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 	$teamname = htmlspecialchars($_SESSION["teamname"]);
+<<<<<<< HEAD
+<<<<<<< HEAD
+	if(isset($_SESSION["abilityerror"])) {
+		$alert = $_SESSION["abilityerror"];
+		echo "<script>alert(\"",$alert,"\");</script>";
+
+=======
+=======
+>>>>>>> origin/devMap
         if(isset($_SESSION["achievements"])) {
 		$achtext .= $_SESSION["achievements"];
 //                echo "<script>alert(\"",$achtext,"\");</script>"; 
@@ -19,7 +46,15 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 	}
 	if(isset($_SESSION["abilityerror"])) {
 		$alert = $_SESSION["abilityerror"];
+<<<<<<< HEAD
+		echo "<script>alert(\"",$alert,"\");</script>";
+>>>>>>> origin/devMap
+=======
 //		echo "<script>alert(\"",$alert,"\");</script>";
+<<<<<<< HEAD
+>>>>>>> origin/devMap
+=======
+>>>>>>> origin/devMap
 		unset($_SESSION["abilityerror"]);
 	}
 }
@@ -84,7 +119,15 @@ function getabilities($link, $teamid) {
 
 function getachievements($link) {
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+        $sql = "SELECT achid, name, description, flufftext, impact, max_num FROM achievements";
+=======
         $sql = "SELECT achid, name, description, flufftext, impact, max_num FROM achievements ORDER BY achid";
+>>>>>>> origin/devMap
+=======
+        $sql = "SELECT achid, name, description, flufftext, impact, max_num FROM achievements ORDER BY achid";
+>>>>>>> origin/devMap
 
         if($result = mysqli_query($link, $sql)){
                 if(mysqli_num_rows($result) > 0){
@@ -148,6 +191,11 @@ function getblocks($link) {
 	return array($blockname, $blockgeom, $blockown, $blockownid, $blocknext, $blocknextid, $teamids);
 }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> origin/devMap
 function getblockgrid($link) {
                 
         $sql = "SELECT blockid, begin_row, end_row, begin_sec, end_sec FROM blocks";
@@ -173,5 +221,9 @@ function getblockgrid($link) {
 
 }
 
+<<<<<<< HEAD
+>>>>>>> origin/devMap
+=======
+>>>>>>> origin/devMap
 ?>
 

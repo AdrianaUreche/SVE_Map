@@ -5,6 +5,15 @@ if(isset($_SESSION["achievements"])) {
 }
 ?>
 <?php include("db.php");?>  <!-- Login Session and database functions -->
+<<<<<<< HEAD
+<<<<<<< HEAD
+<?php include("header.php");?>  <!-- Header. Replace if you want to customize -->
+<?php include("menubar.php");?>  <!-- Common top menu bar -->
+
+=======
+>>>>>>> origin/devMap
+=======
+>>>>>>> origin/devMap
 <?php list($achname, $achdescription, $achfluff, $achimpact, $achmaxnum, $achteam)=getachievements($link); 
 list($blockname,$blockgeom,$blockown,$blockownid,$blocknext,$blocknextid,$teamids)=getblocks($link);
 
@@ -23,27 +32,60 @@ function achieve($link, $aid, $teamid, $newimp) {
 //	echo $teamid," ACHIEVED ACHIEVEMENT #",$aid,"<br>";
 	$sql = "UPDATE teams SET impact_factor = ".$newimp." WHERE teamid = ".$teamid;
 	if (!mysqli_query($link, $sql)) {
+<<<<<<< HEAD
+<<<<<<< HEAD
+		error("Error updating record: " . mysqli_error($link));
+=======
 		error("Error1 updating record: " . mysqli_error($link));
+>>>>>>> origin/devMap
+=======
+		error("Error1 updating record: " . mysqli_error($link));
+>>>>>>> origin/devMap
 	}
 
 	$sql = "INSERT INTO achieved (achid, teamid) VALUES (".$aid.",".$teamid.")";
 	if (!mysqli_query($link, $sql)) {
+<<<<<<< HEAD
+<<<<<<< HEAD
+		error("Error updating record: " . mysqli_error($link));
+=======
 		error("Error2 updating record: " . mysqli_error($link));
+>>>>>>> origin/devMap
+=======
+		error("Error2 updating record: " . mysqli_error($link));
+>>>>>>> origin/devMap
         }
 
 	return true;
 }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> origin/devMap
 
 $origimpact=$impact;
 $achtext = "";
 if(in_array($teamid,$blockownid)) $achblocks[0][0] = array_search($teamid,$blockownid);
 
+<<<<<<< HEAD
+>>>>>>> origin/devMap
+=======
+>>>>>>> origin/devMap
 foreach ($achname as $aid => $aname) {
 //	echo "<br>",$aid," -- ",$aname," -- ",sizeof($achteam[$aid])," -- ",$achmaxnum[$aid],"<br>";
 	if($achmaxnum[$aid]>sizeof($achteam[$aid]) && !isset($achteam[$aid][$teamid])) {
 		switch(true) {
+<<<<<<< HEAD
+<<<<<<< HEAD
+		case ($aid <=28):
+=======
 		case ($aid >= 0 && $aid <=29):
+>>>>>>> origin/devMap
+=======
+		case ($aid >= 0 && $aid <=29):
+>>>>>>> origin/devMap
 //			echo "<br>ACHID: ",$aid,"; BLOCKS: ";
 			$by = 0;
 			foreach($achblocks[$aid] as $bid) {
@@ -51,6 +93,13 @@ foreach ($achname as $aid => $aname) {
 //				echo $bid.": ".$blockownid[$bid],", TID: ",$teamid,"<br>";
 			}
 //			echo "BY: ",$by," (out of ",sizeof($achblocks[$aid]),")<br>";
+<<<<<<< HEAD
+<<<<<<< HEAD
+			if(sizeof($achblocks[$aid])==$by) achieve($link,$aid,$teamid,$impact+$achimpact[$aid]);
+			break;
+=======
+=======
+>>>>>>> origin/devMap
 			if(sizeof($achblocks[$aid])==$by) {
 				$impact += $achimpact[$aid];
 				achieve($link,$aid,$teamid,$impact);
@@ -149,15 +198,31 @@ echo "<br>",$oteam,", ",$otimpact,", ",$aid;
 
 			break;
 
+<<<<<<< HEAD
+>>>>>>> origin/devMap
+=======
+>>>>>>> origin/devMap
 		}
 
 	}
 }
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+mysqli_close($link);
+
+=======
+=======
+>>>>>>> origin/devMap
 mysqli_close($link);
 
 if($achtext != "") $_SESSION['achievements'] = "Congratulations, you have earned the following achievements:\\n".$achtext."\\nThis increased your impact factor by ".($impact-$origimpact)."!";
 
 // echo $_SESSION['achievements'];
+<<<<<<< HEAD
+>>>>>>> origin/devMap
+=======
+>>>>>>> origin/devMap
 header("Location: BRCMap_index.php");
 
 ?>
@@ -165,4 +230,11 @@ header("Location: BRCMap_index.php");
 
 <!--CONTENT GOES HERE-->
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<?php include("tail.php");?>  <!-- Contact inf and end body/html tags->
+=======
+>>>>>>> origin/devMap
+=======
+>>>>>>> origin/devMap
 
