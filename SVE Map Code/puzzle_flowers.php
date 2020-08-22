@@ -1,6 +1,6 @@
 <?php include("db.php");?>  <!-- Login Session and database functions -->
 <?php include("header.php");?>  <!-- Header. Replace if you want to customize -->
-<?php include("menubar_pq.php");?>  <!-- Common top menu bar -->
+<?php include("menubar.php");?>  <!-- Common top menu bar -->
 
 <html>
 <style>
