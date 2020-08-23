@@ -73,7 +73,10 @@ margin-right: auto ;
 <div id="transbox">
     <div class="post">
         <div class="button2">
-            <a href="teams.php"> <font color="red" style="font-size:50px"><b>Submit Answer Here!</b></font></a>
+            <a href="teams.php"><font color="red" style="font-size:50px"><b>Submit Answer Here!</b></font></a>
+        </div>
+        <div class="button2">
+            <a href="quest_first.pdf"><font color="red" style="background-color:powderblue;" style="font-size:14px"><b>(Click here to download if you can't view the PDF below)</b></font></a>
         </div>
 
         <p><embed src="quest_first.pdf" width="800px" height="1100px" /></p>
