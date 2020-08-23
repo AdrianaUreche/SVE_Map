@@ -1,6 +1,6 @@
 <?php include("db.php");?>  <!-- Login Session and database functions -->
 <?php include("header.php");?>  <!-- Header. Replace if you want to customize -->
-<?php include("menubar.php");?>  <!-- Common top menu bar -->
+<?php include("menubar_pq.php");?>  <!-- Common top menu bar -->
 
 
 <html>
@@ -76,9 +76,9 @@ margin-right: auto ;
             <a href="teams.php"> <font color="red" style="font-size:50px"><b>Submit Answer Here!</b></font></a>
         </div>
         <div class="button2">
-            <a href="puzzle_binary.pdf"><font color="red" style="background-color:powderblue;" style="font-size:14px"><b>(Click here to download if you can't view the PDF below)</b></font></a>
+            <a href="quest_home.pdf"><font color="red" style="background-color:powderblue;" style="font-size:14px"><b>(Click here to download if you can't view the PDF below)</b></font></a>
         </div>
-        <p><embed src="puzzle_binary.pdf" width="800px" height="1100px" /></p>
+        <p><embed src="quest_home.pdf" width="800px" height="1100px" /></p>
     </div>
 </div>
 
