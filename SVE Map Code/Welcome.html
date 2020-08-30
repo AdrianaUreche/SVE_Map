@@ -171,7 +171,9 @@ img {
 .jumbotron {
       margin-bottom:0;
     }
-
+.nav_bgColor {
+	background-color: darkblue;
+}
 </style>
 </head>
 
@@ -182,7 +184,7 @@ img {
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0" nonce="xpBUNARO"></script>
 
-<nav class="navbar navbar-expand-sm bg-light fixed-top">
+<nav class="navbar navbar-expand-sm nav_bgColor fixed-top">
   <ul class="navbar-nav">
     <li class="nav-item">
       <button class="button-facebook" onclick="window.location.href='https://www.facebook.com/events/3176665699080869/?notif_t=plan_user_invited&notif_id=1595264538751360';">
@@ -201,7 +203,7 @@ img {
   </ul>
   <ul class="nav navbar-nav navbar-right">
     <li class="nav-item">
-      <a class="nav-link" href="#"> Next Office Hours: XX:XX am/pm PST XX/XX/XX </a>
+    <a class="nav-link" style="color: gold;" href="#"> Next Office Hours: XX:XX am/pm PST XX/XX/XX; <u>LINK</u> </a>
     </li>
   </ul>
 </nav>
