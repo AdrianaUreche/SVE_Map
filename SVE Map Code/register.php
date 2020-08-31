@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?php
 // Include config file
 require_once "config.php";
@@ -151,6 +152,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 =======
 =======
 >>>>>>> origin/devMap
+=======
+>>>>>>> origin/devMap
 <?php include("db.php");?>  <!-- Login Session and database functions -->
 <?php
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
@@ -178,7 +181,12 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 	$mail->Port = '465'; //465
 	$mail->isHTML();
 	$mail->Username = 'nukees';
+<<<<<<< HEAD
 	$mail->Password = 'g250vc132';
+=======
+	include("/home/nukees/sve_private/email.php");
+
+>>>>>>> origin/devMap
 //	$mail->SMTPSecure = "tls";
 	$mail->SetFrom('scientistsvseveryone@agnostica.com','Scientists Vs. Everyone');
 
@@ -209,7 +217,13 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 	    {
 	        $teamname_err = "Please enter a team name.";
 	    } 
+<<<<<<< HEAD
 	    else
+=======
+	    elseif (strlen(trim($_POST["teamname"])) > 25) {
+		$teamname_err = "Please choose a team name less than 25 characters, thanks.";
+	    } else 
+>>>>>>> origin/devMap
 	    {
 	        // Prepare a select statement
 	        $sql = "SELECT teamid FROM teams WHERE teamname = ?";
@@ -260,6 +274,13 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 	    {
 		    $email_err = "Please enter a valid email address.";
 	    } 
+<<<<<<< HEAD
+=======
+	    elseif(strlen(trim($_POST["email"])) > 256)
+            {
+                $email_err = "C'mon, no one has an email that long.";
+            }
+>>>>>>> origin/devMap
 	    else
 	    {
 
@@ -299,6 +320,13 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 		    }
 
 	    }
+<<<<<<< HEAD
+=======
+            if(strlen(trim($_POST["player_names"])) > 1024)
+            {
+                $player_names_err = "Sorry, there's a 1024 character limit on player names.  Have you thought about splitting into multiple teams?";
+            }
+>>>>>>> origin/devMap
 
 	    
 	    // Validate password
@@ -309,7 +337,15 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 	    elseif(strlen(trim($_POST["password"])) < 6)
 	    {
 	        $password_err = "Password must have at least 6 characters.";
+<<<<<<< HEAD
 	    } 
+=======
+	    }
+	    elseif(strlen(trim($_POST["password"])) > 256)
+            {
+                $password_err = "Password must have less than 256 characters.";
+            } 
+>>>>>>> origin/devMap
 	    else
 	    {
 	        $password = trim($_POST["password"]);
@@ -391,6 +427,12 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 
 	            // Close statement
 	            mysqli_stmt_close($stmt);
+<<<<<<< HEAD
+=======
+
+		    $sql = "INSERT INTO questsolved (qid, teamid, status) VALUES (0, ".$teamid.", 1)";
+		    mysqli_query($link, $sql);
+>>>>>>> origin/devMap
 	        }
 	    }
 	    
@@ -456,13 +498,22 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
                 <div class="column" style="line-height: 1.5">
 
                     <div class="form-group <?php echo (!empty($teamname_err)) ? 'has-error' : ''; ?>">
+<<<<<<< HEAD
                         <label>Team Name</label>
                         <input type="text" name="teamname" class="form-control" value="<?php echo $teamname; ?>">
+=======
+                        <label>Team Name <font size=-2>(25 char limit)</font></label>
+                        <input type="text" maxlength="25" name="teamname" class="form-control" value="<?php echo $teamname; ?>">
+>>>>>>> origin/devMap
                         <span class="help-block"><?php echo $teamname_err; ?></span>
                     </div>
 	            <div class="form-group <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
 	                <label>Email Address</label>
+<<<<<<< HEAD
 	                <input type="text" name="email" class="form-control" value="<?php echo $email; ?>">
+=======
+	                <input maxlength="255" type="text" name="email" class="form-control" value="<?php echo $email; ?>">
+>>>>>>> origin/devMap
 	                <span class="help-block"><?php echo $email_err; ?></span>
 		    <p style="font-size:8pt">Note: We're not going to spam you or sell your s%*@, we're Burners.
 		    The game is dynamic and we'll email you updates and announcements during the week of Aug 30-Sep 5.
@@ -474,17 +525,29 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
                     </div>
 	            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
 	                <label>Password</label>
+<<<<<<< HEAD
 	                <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
+=======
+	                <input maxlength="255" type="password" name="password" class="form-control" value="<?php echo $password; ?>">
+>>>>>>> origin/devMap
 	                <span class="help-block"><?php echo $password_err; ?></span>
 	            </div>
 	            <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
 	                <label>Confirm Password</label>
+<<<<<<< HEAD
 	                <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
+=======
+	                <input maxlength="255" type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
+>>>>>>> origin/devMap
 	                <span class="help-block"><?php echo $confirm_password_err; ?></span>
 	            </div>
 	            <div class="form-group <?php echo (!empty($player_names_err)) ? 'has-error' : ''; ?>">
 	                <label>Player names</label>
+<<<<<<< HEAD
 					<textarea name="player_names" rows="5" cols="40" class="form-control"><?php echo $player_names; ?></textarea>
+=======
+					<textarea maxlength="1023" name="player_names" rows="5" cols="40" class="form-control"><?php echo $player_names; ?></textarea>
+>>>>>>> origin/devMap
 	                <span class="help-block"><?php echo $player_names_err; ?></span>
 	            </div>
 		</div>	
@@ -541,6 +604,32 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     var num_colors = colors.length;
     var tagdata = new Array(32).fill(0).map(() => new Array(32).fill(0));
     var drawmode = "draw";
+<<<<<<< HEAD
+=======
+    // Prevent Ctrl-z
+        var ctrlDown = false;
+        var ctrlKey = 17, zKey = 90;
+        document.body.onkeydown = function(e)
+        {
+                if (e.keyCode == 17 || e.keyCode == 91)
+                {
+                        ctrlDown = true;
+                };
+                if (ctrlDown && e.keyCode == zKey)
+                {
+                        e.preventDefault();
+                        window.alert("Sorry, no undo functionality in the flag editor! :(");
+                        return false;
+                }
+        }
+        document.body.onkeyup = function(e)
+        {
+                if (e.keyCode == 17 || e.keyCode == 91)
+                {
+                        ctrlDown = false;
+                };
+        }
+>>>>>>> origin/devMap
 
 	// Draw palette
 	function drawpalette()
@@ -849,8 +938,11 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 <?php include("tail.php");?>  <!-- Contact inf and end body/html tags->
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/devMap
 
+=======
+>>>>>>> origin/devMap
 =======
 >>>>>>> origin/devMap
 =======
