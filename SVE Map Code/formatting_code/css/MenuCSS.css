@@ -9,8 +9,7 @@ ul.customStyle {
 li.customStyle {
   float: left;
 }
-
-li a, .dropbtn {
+li a, .ourdropbtn {
   display: inline-block;
   color: white;
   text-align: center;
@@ -18,15 +17,15 @@ li a, .dropbtn {
   text-decoration: none;
 }
 
-li a:hover, .dropdown:hover .dropbtn {
+li a:hover, .ourdropdown:hover .ourdropbtn {
   background-color: red;
 }
 
-li.dropdown {
+li.ourdropdown {
   display: inline-block;
 }
 
-.dropdown-content {
+.ourdropdown-content {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
@@ -35,7 +34,7 @@ li.dropdown {
   z-index: 1;
 }
 
-.dropdown-content a {
+.ourdropdown-content a {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
@@ -43,8 +42,8 @@ li.dropdown {
   text-align: left;
 }
 
-.dropdown-content a:hover {background-color: #f1f1f1;}
+.ourdropdown-content a:hover {background-color: #f1f1f1;}
 
-.dropdown:hover .dropdown-content {
+.ourdropdown:hover .ourdropdown-content {
   display: block;
 }
