@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-
+<head>
 <link rel="stylesheet" type="text/css" href="formatting_code/css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="formatting_code/css/BRCMapCSS.css" />
 <link rel="stylesheet" type="text/css" href="formatting_code/css/DropdownCSS.css" />
@@ -8,10 +8,8 @@
 <!-- <link rel="stylesheet" type="text/css" href="formatting_code/css/BRCMap_imagesCSS.cs
 s" />
  -->
-<head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
-</head>
 
  <style> body {background-image: url("images/playaBackground.jpg");} </style>
 
@@ -30,5 +28,6 @@ body {
   flex-shrink: 0;
 }
 </style>
+</head>
 <body>
-<div class=content>
+<div class="content">

@@ -1,16 +1,15 @@
 <?php include("db.php");?>  <!-- Login Session and database functions -->
 
-
 <?php
-// Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)
-{
-    header("location: teams.php");
-    exit;
-}
-
-// Include config file
-require_once "config.php";
+// // Check if the user is already logged in, if yes then redirect him to welcome page
+// if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)
+// {
+//     header("location: teams.php");
+//     exit;
+// }
+// 
+// // Include config file
+// require_once "config.php";
  
 // Define variables and initialize with empty values
 $teamname = $password = "";

@@ -3,48 +3,12 @@
 <?php include("menubar.php");?>  <!-- Common top menu bar -->
 
 <?php
-<<<<<<< HEAD
-if(isset($_POST['Accept'])) {
-	$sql = "UPDATE teams set action_points = action_points + 1  WHERE teamid = ".$_POST['Team'];
-	if (!mysqli_query($link, $sql)) {
-		echo "Error updating record: " . mysqli_error($link);
-	} else {
-		echo "Accepted Quest ".$_POST['Accept']." by Team #".$_POST['Team'];
-		mysqli_free_result($result);
-		$sql = "UPDATE questsolved set status = 6 WHERE teamid = ".$_POST['Team']." AND qid = ".$_POST['Accept'];
-		if (!mysqli_query($link, $sql)) {
-			echo "Error updating record: " . mysqli_error($link);
-		} else {
-			echo " and updated quest status";
-		}
-		mysqli_free_result($result);
-	}
-
-	if(!rename("pq_answerfiles/".$_POST['File'],"pq_perm_answerfiles/".$_POST['File']))
-		echo " but couldn't delete file ".$_POST['File'];
-}
-
-if(isset($_POST["Reject"])) {
-	echo "Rejected Quest ".$_POST['Reject']." by Team #".$_POST['Team'];
-	$sql = "UPDATE questsolved set status = 7 WHERE teamid = ".$_POST['Team']." AND qid = ".$_POST['Reject'];
-	if (!mysqli_query($link, $sql)) {
-		echo "Error updating record: " . mysqli_error($link);
-	} else {
-		echo " and updated quest status";
-	}
-	mysqli_free_result($result);
-	if(!rename("pq_answerfiles/".$_POST['File'],"pq_perm_answerfiles/".$_POST['File']))
-		echo " but couldn't delete file ".$_POST['File'];
-}
-echo "<br>";
-
-=======
 $sql = "SELECT qid, name FROM quests";
 
 if($result = mysqli_query($link, $sql)){
 	if(mysqli_num_rows($result) > 0){
 		while($row = mysqli_fetch_array($result)){
-			$qid = $row['abilityid'];
+			$qid = $row['qid'];
 			$qname[$qid] = $row['name'];
 		}
 	}
@@ -91,6 +55,7 @@ if(isset($_POST['Team'])) {
 			$mail->Subject = "Scientists vs Everyone: Quest submission accepted!";
 			$mail->Body = "Good news!<br><br>The image you uploaded for the \"".$qname[$_POST['Accept']]."\" quest was reviewed by our Scientists and deemed worthy of publication.  You have received an \"Action Point\" for completing this quest, which you can use to either gain or use an ability on the <a href=\"http://sve.nukees.com/".$rootdir."BRCMap_index.php\">Black Rock City Map</a>.  Thank you for playing Scientists vs. Everyone!<br><br>--<br>Blue and the Scientists!<br>";
 			$mail->AddAddress($email);
+			$mail->AddAddress("scientistsvseveryone@agnostica.com");
 			$mail->Send();
 			echo ", email sent";
 
@@ -131,7 +96,6 @@ if(isset($_POST['Team'])) {
 			echo " but couldn't delete file ".$_POST['File'];
 	}
 }
->>>>>>> origin/devMap
 ?>
 
 <style>
@@ -187,11 +151,9 @@ if(isset($_POST['Team'])) {
 }
 </style>
 
-<<<<<<< HEAD
-
-=======
 <a href="review_special_quests.php" class="btn btn-warning">Refresh this page</a>
->>>>>>> origin/devMap
+<br>
+<a href="imagequests.php">See previously-approved (and rejected) quest images</a>
 <div class="row">
 	<div class="abilities" style="background-color:#FFBBBB">
 		<div class="rowheader">
@@ -210,10 +172,7 @@ foreach ($files as $file) {
 	$tid = substr($file,10,strpos($file,"-")-10);
 	$quest = substr($file,strpos($file,"-")+6,strpos($file,".")-strpos($file,"-")-6);
 	list($width, $height, $ftype, $attr) = getimagesize("pq_answerfiles/".$file);
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/devMap
 	while($height>500 && $width>500) {
 		$height=$height/2;
 		$width=$width/2;

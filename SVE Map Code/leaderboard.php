@@ -3,7 +3,7 @@
 <?php include("menubar.php");?>  <!-- Common top menu bar -->
 
 <?php 
-list($blockname,$blockgeom,$blockown,$blockownid,$blocknext,$blocknextid,$teamids)=getblocks($link);
+list($blockname,$blockgeom,$blockown,$blockownid,$blocknext,$blocknextid,$blockvalue,$teamids)=getblocks($link);
 ?>
 
   <style>
@@ -82,7 +82,11 @@ list($blockname,$blockgeom,$blockown,$blockownid,$blocknext,$blocknextid,$teamid
 
 
 if(isset($blockownid)) {
-    $lead = array_count_values($blockownid);
+    foreach ($blockownid as $bid => $own) {
+	    $lead[$own] += $blockvalue[$bid];
+    }
+
+//    $lead = array_count_values($blockownid);
     arsort($lead);
     // $test = implode(",", $lead);
     // echo "<p> ", $test, "</p>";

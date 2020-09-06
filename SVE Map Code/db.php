@@ -1,44 +1,19 @@
 <?php
-// Initialize the session
-<<<<<<< HEAD
-<<<<<<< HEAD
-ini_set('session.gc_maxlifetime', 86400);
 
-session_set_cookie_params(86400);
-=======
->>>>>>> origin/devMap
-=======
->>>>>>> origin/devMap
+$rootdir = "";  // CHANGE THIS SUNDAY!
+
+// Initialize the session
 if (session_status() !== PHP_SESSION_ACTIVE) {
+	ini_set('session.gc_maxlifetime', 86400);
 	session_start([
 		'cookie_lifetime' => 86400
 	]);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> origin/devMap
-	ini_set('session.gc_maxlifetime', 86400);
-
 	session_set_cookie_params(86400);
 
-<<<<<<< HEAD
->>>>>>> origin/devMap
-=======
->>>>>>> origin/devMap
 }
 
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-	$teamname = htmlspecialchars($_SESSION["teamname"]);
-<<<<<<< HEAD
-<<<<<<< HEAD
-	if(isset($_SESSION["abilityerror"])) {
-		$alert = $_SESSION["abilityerror"];
-		echo "<script>alert(\"",$alert,"\");</script>";
-
-=======
-=======
->>>>>>> origin/devMap
+	$teamname = $_SESSION["teamname"];
         if(isset($_SESSION["achievements"])) {
 		$achtext .= $_SESSION["achievements"];
 //                echo "<script>alert(\"",$achtext,"\");</script>"; 
@@ -46,21 +21,13 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 	}
 	if(isset($_SESSION["abilityerror"])) {
 		$alert = $_SESSION["abilityerror"];
-<<<<<<< HEAD
-		echo "<script>alert(\"",$alert,"\");</script>";
->>>>>>> origin/devMap
-=======
 //		echo "<script>alert(\"",$alert,"\");</script>";
-<<<<<<< HEAD
->>>>>>> origin/devMap
-=======
->>>>>>> origin/devMap
 		unset($_SESSION["abilityerror"]);
 	}
 }
 
 // Include config file
-require_once "config.php";
+require_once "/home/nukees/sve_private/config.php";
 
 if(isset($teamname)) {
 
@@ -76,10 +43,11 @@ if(isset($teamname)) {
 		mysqli_free_result($result);
 	}
 }
+$teamname = htmlspecialchars($teamname);
 
 function error($msg, $loc = "BRCMap_index.php") {
 	$_SESSION['abilityerror'] = $msg;
-	header("Location: ".$loc);
+	header("Location: ".$loc."?error=".$msg);
 	exit;
 }
 
@@ -119,15 +87,7 @@ function getabilities($link, $teamid) {
 
 function getachievements($link) {
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        $sql = "SELECT achid, name, description, flufftext, impact, max_num FROM achievements";
-=======
         $sql = "SELECT achid, name, description, flufftext, impact, max_num FROM achievements ORDER BY achid";
->>>>>>> origin/devMap
-=======
-        $sql = "SELECT achid, name, description, flufftext, impact, max_num FROM achievements ORDER BY achid";
->>>>>>> origin/devMap
 
         if($result = mysqli_query($link, $sql)){
                 if(mysqli_num_rows($result) > 0){
@@ -153,7 +113,7 @@ function getachievements($link) {
 
 function getblocks($link) {
 
-	$sql = "SELECT blockid, time, letter, geometry, num_sides FROM blocks";
+	$sql = "SELECT blockid, time, letter, geometry, num_sides, value FROM blocks";
 
 	if($result = mysqli_query($link, $sql)){
 		if(mysqli_num_rows($result) > 0){
@@ -161,6 +121,7 @@ function getblocks($link) {
 				$blockid = $row['blockid'];
 				$blockname[$blockid] = $row['time']."&".$row['letter'];
 				$blockgeom[$blockid] = $row['geometry'];
+				$blockvalue[$blockid] = $row['value'];
 				$num_sides = $row['num_sides'];
 				$bsql = "SELECT blocksides.side, blocksides.teamid, teams.teamname FROM blocksides, teams WHERE blocksides.blockid = '$blockid' AND teams.teamid = blocksides.teamid ORDER BY blocksides.side";
 				if($bresult = mysqli_query($link, $bsql)){
@@ -188,14 +149,9 @@ function getblocks($link) {
 		// Free result set
 		mysqli_free_result($result);
 	}
-	return array($blockname, $blockgeom, $blockown, $blockownid, $blocknext, $blocknextid, $teamids);
+	return array($blockname, $blockgeom, $blockown, $blockownid, $blocknext, $blocknextid, $blockvalue, $teamids);
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> origin/devMap
 function getblockgrid($link) {
                 
         $sql = "SELECT blockid, begin_row, end_row, begin_sec, end_sec FROM blocks";
@@ -221,9 +177,70 @@ function getblockgrid($link) {
 
 }
 
-<<<<<<< HEAD
->>>>>>> origin/devMap
-=======
->>>>>>> origin/devMap
+function getpuzzlesforteam($link, $teamid)
+{
+	// SELECT name, difficulty, status
+	// FROM `puzzlesolved`, puzzles
+	// WHERE (puzzles.pid = puzzlesolved.pid) AND (puzzlesolved.teamid = 5)
+
+	$sql = "SELECT puzzles.pid, name, difficulty, status, url, released FROM puzzlesolved, puzzles WHERE (puzzles.pid = puzzlesolved.pid) AND (puzzlesolved.teamid = '$teamid') ORDER BY puzzles.pid";
+
+	$num_results = 0;
+	$returnpuzzles = null;
+	if($result = mysqli_query($link, $sql))
+	{
+		if(mysqli_num_rows($result) > 0)
+		{
+			while($row = mysqli_fetch_array($result))
+			{
+				$returnpuzzles[$num_results]['id'] = $row['pid'];
+				$returnpuzzles[$num_results]['name'] = $row['name'];
+				$returnpuzzles[$num_results]['difficulty'] = $row['difficulty'];
+				$returnpuzzles[$num_results]['status'] = $row['status'];
+				$returnpuzzles[$num_results]['url'] = $row['url'];
+				$returnpuzzles[$num_results]['released'] = $row['released'];
+
+				$num_results++;
+			}
+		}
+		// Free result set
+		mysqli_free_result($result);
+	}
+
+	return $returnpuzzles;
+}
+
+function getquestsforteam($link, $teamid)
+{
+	// SELECT name, difficulty, status
+	// FROM `questsolved`, quests
+	// WHERE (quests.qid = questsolved.qid) AND (questsolved.teamid = 5)
+
+	$sql = "SELECT quests.qid, name, difficulty, status, url, released FROM questsolved, quests WHERE (quests.qid = questsolved.qid) AND (questsolved.teamid = '$teamid') ORDER BY quests.qid";
+
+	$num_results = 0;
+	$returnquests = null;
+	if($result = mysqli_query($link, $sql))
+	{
+		if(mysqli_num_rows($result) > 0)
+		{
+			while($row = mysqli_fetch_array($result))
+			{
+				$returnquests[$num_results]['id'] = $row['qid'];
+				$returnquests[$num_results]['name'] = $row['name'];
+				$returnquests[$num_results]['difficulty'] = $row['difficulty'];
+				$returnquests[$num_results]['status'] = $row['status'];
+				$returnquests[$num_results]['url'] = $row['url'];
+				$returnquests[$num_results]['released'] = $row['released'];
+				$num_results++;
+			}
+		}
+		// Free result set
+		mysqli_free_result($result);
+	}
+	return $returnquests;
+}
+
+
 ?>
 

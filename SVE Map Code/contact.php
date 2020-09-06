@@ -52,10 +52,14 @@ hr {
 		<h2 id="id1"> Contact us at: </h2>
 		<p id='demo'>
 			<ul> 
+				<li> <i> Primary Help Email</i> : scientistsvseveryone@agnostica.com </li>
+<br>
 				<li> <i> Darren Bleuel </i> : darren@nukees.com </li>
 				<li> <i> Adriana Sweet </i> : adriana@teews.com </li>
 				<li> <i> Eric Sweet </i> :    eric@teews.com </li>
 				<li> <i> Freya Wolles </i> :  freya.wolles@gmail.com </li>
+                                <li> <i> <a style="color:black" href="http://zoom.us/j/92980350437">Office hours via Zoom each evening from 18:00-20:00 PDT</a></i></li>
+
 			</ul>
 		</p>
     </div>

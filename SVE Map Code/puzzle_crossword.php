@@ -11,13 +11,15 @@ body, html {
 }
 
 .transbox {
-  width: 1300px;
-  padding: 60px;
-  margin: 40px;
+  width: 800px;
+  padding: 30px;
+  margin: 10px;
   background-color: #ffffff;
   border: 2px solid black;
   opacity: 1.0;
-  text-align: center;
+  text-align: left;
+  margin-left: auto ;
+  margin-right: auto ;
 }
 
 .transbox p {
@@ -70,16 +72,32 @@ margin-right: auto ;
 
   
 <!-- <div id="splash"> -->
-<div id="transbox">
+<div>
     <div class="post">
         <div class="button2">
             <a href="teams.php"> <font color="red" style="font-size:50px"><b>Submit Answer Here!</b></font></a>
         </div>
         <div class="button2">
-            <a href="puzzle_crossword.pdf"><font color="red" style="background-color:powderblue;" style="font-size:14px"><b>(Click here to download if you can't view the PDF below)</b></font></a>
+            <a href="puzzle_crossword.pdf"><font color="red" style="background-color:powderblue;" style="font-size:14px"><b>(Click here to download a pdf if you can't see/play the puzzle below)</b></font></a>
+<p>
         </div>
+</div>
+<div class="transbox">
+<p>
+<div class="button2">
 
-        <p><embed src="puzzle_crossword.pdf" width="800px" height="1100px" /></p>
+<font size="+1"><i>Hidden in this crossword puzzle is your next code. Complete the puzzle to decipher the code, using the hints below. </i></font>
+</p><center><p>
+<font size="+1"><b>5-7&nbsp;&nbsp;11.6&nbsp;&nbsp;24-21&nbsp;&nbsp;22.6&nbsp;&nbsp;9.6&nbsp;&nbsp;10-2&nbsp;&nbsp;12.2&nbsp;&nbsp;3.6&nbsp;&nbsp;14.7&nbsp;&nbsp;13-18&nbsp;&nbsp;6.13</b></font>
+</p>
+</center>
+	<p>
+<script src="https://www.puzzlefast.com/en/puzzles/2020082921191369N/nsl-script?width=600px&height=800px" type="text/javascript"></script>
+<br>Note: For any Virgin Burners, make sure to consider the Principles of Burning Man! And to all those who heard Slater’s voice when reading clue 22, extra points for you!*
+</p>
+<br><br><br><br><br><br><br>
+<font size="-2">*points are arbitrary and non-redeemable until 2021</font>
+</p>
     </div>
 </div>
 

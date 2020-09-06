@@ -1,91 +1,114 @@
-<?php
-if(isset($_SESSION["achievements"])) {
-	$achtext = $_SESSION["achievements"];
-	unset($_SESSION["achievements"]);
-}
-?>
 <?php include("db.php");?>  <!-- Login Session and database functions -->
-<<<<<<< HEAD
-<<<<<<< HEAD
-<?php include("header.php");?>  <!-- Header. Replace if you want to customize -->
-<?php include("menubar.php");?>  <!-- Common top menu bar -->
+<?php 
 
-=======
->>>>>>> origin/devMap
-=======
->>>>>>> origin/devMap
-<?php list($achname, $achdescription, $achfluff, $achimpact, $achmaxnum, $achteam)=getachievements($link); 
-list($blockname,$blockgeom,$blockown,$blockownid,$blocknext,$blocknextid,$teamids)=getblocks($link);
-
-$sql = "SELECT achid,blockid FROM achievementblocks";
-
-if($result = mysqli_query($link, $sql)){
-	if(mysqli_num_rows($result) > 0){
-		while($row = mysqli_fetch_array($result)) {
-			$achblocks[$row['achid']][] = $row['blockid'];
-		}
-	}
-	mysqli_free_result($result);
-}
+list($achname, $achdescription, $achfluff, $achimpact, $achmaxnum, $achteam)=getachievements($link); 
+list($blockname,$blockgeom,$blockown,$blockownid,$blocknext,$blocknextid,$blockvalue,$teamids)=getblocks($link);
 
 function achieve($link, $aid, $teamid, $newimp) {
 //	echo $teamid," ACHIEVED ACHIEVEMENT #",$aid,"<br>";
 	$sql = "UPDATE teams SET impact_factor = ".$newimp." WHERE teamid = ".$teamid;
 	if (!mysqli_query($link, $sql)) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-		error("Error updating record: " . mysqli_error($link));
-=======
 		error("Error1 updating record: " . mysqli_error($link));
->>>>>>> origin/devMap
-=======
-		error("Error1 updating record: " . mysqli_error($link));
->>>>>>> origin/devMap
 	}
 
 	$sql = "INSERT INTO achieved (achid, teamid) VALUES (".$aid.",".$teamid.")";
 	if (!mysqli_query($link, $sql)) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-		error("Error updating record: " . mysqli_error($link));
-=======
 		error("Error2 updating record: " . mysqli_error($link));
->>>>>>> origin/devMap
-=======
-		error("Error2 updating record: " . mysqli_error($link));
->>>>>>> origin/devMap
         }
 
 	return true;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> origin/devMap
+function addpending($link, $aid, $teamid) {
+
+        $sql = "INSERT INTO achieved (achid, teamid, pending) VALUES (".$aid.",".$teamid.", 1)";
+        if (!mysqli_query($link, $sql)) {
+                error("Error3 updating record: " . mysqli_error($link));
+        }
+
+        return true;
+}
+
+function checkpending($link, $aid, $teamid, $newimpact, $aname) {
+	$sql = "SELECT pending FROM achieved WHERE pending = TRUE AND teamid = ".$teamid." AND achid = ".$aid;
+	if($result = mysqli_query($link, $sql)){
+		if(mysqli_num_rows($result)==1) {
+			$psql = "DELETE FROM achieved WHERE pending = TRUE AND teamid = ".$teamid." AND achid = ".$aid;
+			if (!mysqli_query($link, $psql)) {
+				error("Error4 updating record: " . mysqli_error($link));
+			}
+			mysqli_free_result($result);
+			achieve($link,$aid,$teamid,$newimpact);
+
+			return $newimpact;
+		}
+	}
+	mysqli_free_result($result);
+	return FALSE;
+}
+
+
+if(isset($teamid)) {
+
+$activequests = getquestsforteam($link, $teamid);
+$activepuzzles = getpuzzlesforteam($link, $teamid);
+
+if(isset($achtext) && $achtext != "") $carryoverachtext = $achtext;
+
+$sql = "SELECT achid,blockid FROM achievementblocks";
+
+if($result = mysqli_query($link, $sql)){
+        if(mysqli_num_rows($result) > 0){
+                while($row = mysqli_fetch_array($result)) {
+                        $achblocks[$row['achid']][] = $row['blockid'];
+                }
+        }
+        mysqli_free_result($result);
+}
+
+$sql = "SELECT achid FROM achieved WHERE teamid = ".$teamid." AND pending = TRUE";
+
+if($result = mysqli_query($link, $sql)){
+        if(mysqli_num_rows($result) > 0){
+                while($row = mysqli_fetch_array($result)) {
+                        $pending[$row['achid']] = TRUE;
+                }
+        }
+        mysqli_free_result($result);
+}
 
 $origimpact=$impact;
+// if(in_array($teamid,$blockownid)) $achblocks[0][0] = array_search($teamid,$blockownid);  // I think this is my achievement #0 hack?
 $achtext = "";
-if(in_array($teamid,$blockownid)) $achblocks[0][0] = array_search($teamid,$blockownid);
 
-<<<<<<< HEAD
->>>>>>> origin/devMap
-=======
->>>>>>> origin/devMap
 foreach ($achname as $aid => $aname) {
 //	echo "<br>",$aid," -- ",$aname," -- ",sizeof($achteam[$aid])," -- ",$achmaxnum[$aid],"<br>";
-	if($achmaxnum[$aid]>sizeof($achteam[$aid]) && !isset($achteam[$aid][$teamid])) {
+	if(($achmaxnum[$aid]>sizeof($achteam[$aid]) && !isset($achteam[$aid][$teamid])) || $pending[$aid]) {
+ //       echo "<br>",$aid," -- ",$aname," -- ",sizeof($achteam[$aid])," -- ",$achmaxnum[$aid],"<br>";
+
 		switch(true) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-		case ($aid <=28):
-=======
-		case ($aid >= 0 && $aid <=29):
->>>>>>> origin/devMap
-=======
-		case ($aid >= 0 && $aid <=29):
->>>>>>> origin/devMap
+		case ($aid == 0):
+			if(in_array($teamid,$blockownid)) {
+				$impact += $achimpact[$aid];
+				achieve($link,$aid,$teamid,$impact);
+                                $achtext .= "\n".$aname;
+			}
+			break;
+		case ($aid >= 1 && $aid <= 8):  // Admin-assigned achievements
+                        if($newimpact = checkpending($link, $aid, $teamid, ($impact+$achimpact[$aid]), $aname)) {
+                                $achtext .= "\n".$aname;
+                                $impact = $newimpact;
+			}
+			break;
+		case($aid == 9):
+			$on = 1;
+			if(!in_array(39,$blockownid) && $on) {
+				$impact += $achimpact[$aid];
+				achieve($link,$aid,$teamid,$impact);
+				$achtext .= "\n".$aname;
+			}
+			break;
+		case ($aid >= 10 && $aid <=39):
 //			echo "<br>ACHID: ",$aid,"; BLOCKS: ";
 			$by = 0;
 			foreach($achblocks[$aid] as $bid) {
@@ -93,20 +116,20 @@ foreach ($achname as $aid => $aname) {
 //				echo $bid.": ".$blockownid[$bid],", TID: ",$teamid,"<br>";
 			}
 //			echo "BY: ",$by," (out of ",sizeof($achblocks[$aid]),")<br>";
-<<<<<<< HEAD
-<<<<<<< HEAD
-			if(sizeof($achblocks[$aid])==$by) achieve($link,$aid,$teamid,$impact+$achimpact[$aid]);
-			break;
-=======
-=======
->>>>>>> origin/devMap
 			if(sizeof($achblocks[$aid])==$by) {
 				$impact += $achimpact[$aid];
 				achieve($link,$aid,$teamid,$impact);
-				$achtext .= "\\n".$aname;
+				$achtext .= "\n".$aname;
 			}
 			break;
-		case ($aid == 30):
+		case ($aid == 40):
+			if($newimpact = checkpending($link, $aid, $teamid, ($impact+$achimpact[$aid]), $aname)) {
+				$achtext .= "\n".$aname;
+				$impact = $newimpact;
+				break;
+			}
+
+
 			$missingrows = 3;   // Hack for now.  Probably forever.
 			list($brs,$bss,$bgrid) = getblockgrid($link);
 //			echo "SO: ",sizeof($bgrid).", ",sizeof($bgrid[0]),"<br>";
@@ -132,37 +155,48 @@ foreach ($achname as $aid => $aname) {
 			}
 			$ctid = 0;
 			$ctid = array_search(0,$tcheck);
-			echo "CTID:", $ctid,"<br>";
+//			echo "CTID:", $ctid,"<br>";
 			if(isset($ctid) && $ctid>0) {
 //				echo "FINAL TEAM CHECK: ",$ctid,", ",$tcheck[$ctid],"; ",isset($ctid),"<br>";
                                 $impact += $achimpact[$aid];
 //				echo "New impact: ",$impact,"<br>";
 				achieve($link,$aid,$teamid,$impact);
-				$achtext .= "\\n".$aname." (for surrounding team ".$teamids[$ctid].")\\n";
+				$achtext .= "\n".$aname." (for surrounding team ".$teamids[$ctid].")";
 				if($achmaxnum[$aid+1]>sizeof($achteam[$aid+1])) {
-					$sql = "SELECT impact_factor FROM teams WHERE teamid = ".$ctid;
+					addpending($link,($aid+1),$ctid);  // Delayed award until team logs in
 
-					if($result = mysqli_query($link, $sql)){
-						if(mysqli_num_rows($result)==1) {
-							$otimpact = mysqli_fetch_array($result)['impact_factor'];
-						}
-					}
-					mysqli_free_result($result);
-					$otimpact += $achimpact[$aid+1];
-					achieve($link,($aid+1),$ctid,$otimpact);
+//                                      $sql = "SELECT impact_factor FROM teams WHERE teamid = ".$ctid;
+
+//					if($result = mysqli_query($link, $sql)){
+//						if(mysqli_num_rows($result)==1) {
+//							$otimpact = mysqli_fetch_array($result)['impact_factor'];
+//						}
+//					}
+//					mysqli_free_result($result);
+//					$otimpact += $achimpact[$aid+1];
+//					achieve($link,($aid+1),$ctid,$otimpact);
 				}
 			}
 			break;
-		case ($aid == 31):
+		case ($aid == 41):
+			if($newimpact = checkpending($link, $aid, $teamid, ($impact+$achimpact[$aid]), $aname)) {
+				$achtext .= "\n".$aname;
+				$impact = $newimpact;
+                                break;
+                        }
+
+
 			$missingrows = 3;   // Hack for now.  Probably forever.
 			$tcheck = 0;
 			$last = 0;
                         list($brs,$bss,$bgrid) = getblockgrid($link);
 //                      echo "SO: ",sizeof($bgrid).", ",sizeof($bgrid[0]),"<br>";
                         for($i=0;$i<sizeof($bgrid)+$missingrows;$i++) {
+///				echo $i." ";
                                 for($j=0;$j<sizeof($bgrid[0]);$j++) {
                                         $bid = $bgrid[$i][$j];
                                         $tid = $blockownid[$bid];
+//					echo $tid;
                                         if(isset($bgrid[$i][$j]) && $tid==$teamid) {  // Wow this is inefficient...  but it was too easy to steal from the previous routine.
 //                                              echo "(",$i,",",$j,"): ",$tid,"<br>\n";
                                                         $nar[$blockownid[$bgrid[$i+1][$j]]]++;
@@ -173,56 +207,91 @@ foreach ($achname as $aid => $aname) {
                                         }
 
                                 }
+//				echo "<br>";
                         }
+//			echo "X ".sizeof(array_keys($nar))." - ".in_array($teamid,array_keys($nar));
+//			exit;
 			if(sizeof(array_keys($nar))-in_array($teamid,array_keys($nar))==1) {
-				$oteam = array_keys($nar)[array_keys($nar)[0]==$teamid];
+				$oteam = array_keys($nar)[array_keys($nar)[0]==$teamid];   // You are a weird programmer, Darren
 //                              echo "FINAL TEAM CHECK: ",array_keys($nar)[0],"/",$teamid,", ",$oteam,"<br>";
-                                $impact += $achimpact[$aid];
-//                              echo "New impact: ",$impact,"<br>";
-                                achieve($link,$aid,$teamid,$impact);
-                                $achtext .= "\\n".$aname." (for being surrounded by team ".$teamids[$oteam].")\\n";
-                                if($achmaxnum[$aid-1]>sizeof($achteam[$aid-1])) {
-                                        $sql = "SELECT impact_factor FROM teams WHERE teamid = ".$oteam;
-                                        if($result = mysqli_query($link, $sql)){
-                                                if(mysqli_num_rows($result)==1) {
-                                                        $otimpact = mysqli_fetch_array($result)['impact_factor'];
-                                                }
-                                        }
-                                        mysqli_free_result($result);
-                                        $otimpact += $achimpact[$aid-1];
-                                        achieve($link,($aid-1),$oteam,$otimpact);
-                                }
-echo "<br>",$oteam,", ",$otimpact,", ",$aid;
+				if($oteam != 0) {	
+					$impact += $achimpact[$aid];
 
+//                              echo "New impact: ",$impact,"<br>";
+					achieve($link,$aid,$teamid,$impact);
+					$achtext .= "\n".$aname." (for being surrounded by team ".$teamids[$oteam].")";
+					if($achmaxnum[$aid-1]>sizeof($achteam[$aid-1])) {
+						addpending($link,($aid-1),$oteam);  
+//                                        $sql = "SELECT impact_factor FROM teams WHERE teamid = ".$oteam;
+//                                        if($result = mysqli_query($link, $sql)){
+//                                                if(mysqli_num_rows($result)==1) {
+//                                                        $otimpact = mysqli_fetch_array($result)['impact_factor'];
+//                                                }
+//                                        }
+//                                        mysqli_free_result($result);
+//                                        $otimpact += $achimpact[$aid-1];
+//                                        achieve($link,($aid-1),$oteam,$otimpact);
+					}
+// echo "<br>",$oteam,", ",$otimpact,", ",$aid;
+				}
                         }
 
 			break;
-
-<<<<<<< HEAD
->>>>>>> origin/devMap
-=======
->>>>>>> origin/devMap
+		case ($aid >= 42 && $aid <= 47):
+			$type = array("quest", "quest", "quest", "puzzle", "puzzle", "puzzle")[$aid-42];
+			$releasedhack = ($aid-41)%3;
+			if($releasedhack == 0)$releasedhack = 3;
+			if($result = mysqli_query($link, "SELECT released FROM ".$type."s WHERE released = ".$releasedhack)) $r = mysqli_num_rows($result);
+			$id = 0;
+			if ($type == "quest")
+			{
+				foreach($activequests as $activequest) 
+				 	if(($activequest['released'] == (($aid-41)%3) && ($activequest['status']%4) == 2) || ($aid == 44 && $activequest['released'] == 3)) $id++;
+			} else {
+				foreach($activepuzzles as $activepuzzle) 
+                                        if(($activepuzzle['released'] == (($aid-41)%3) && ($activepuzzle['status']%4) == 2) || ($aid == 47 && $activepuzzle['released'] == 3)) $id++;
+			}
+			if($id>=$r && $r>0) {
+				$impact += $achimpact[$aid];
+				achieve($link,$aid,$teamid,$impact);
+				$achtext .= "\n".$aname;
+			}
+			break;
+		case ($aid >= 48 && $aid <= 50):
+			$blocksneeded = array(20,50,100);
+			print_r(array_count_values($blockownid));
+			if(array_count_values($blockownid)[$teamid]>=$blocksneeded[$aid-48]) {
+				$impact += $achimpact[$aid];
+				achieve($link,$aid,$teamid,$impact);
+				$achtext .= "\n".$aname;
+			}
+			break;
 		}
-
 	}
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
-
 mysqli_close($link);
 
-=======
-=======
->>>>>>> origin/devMap
-mysqli_close($link);
+if(isset($carryoverachtext)) $_SESSION['achievements'] = $carryoverachtext;
 
-if($achtext != "") $_SESSION['achievements'] = "Congratulations, you have earned the following achievements:\\n".$achtext."\\nThis increased your impact factor by ".($impact-$origimpact)."!";
+//echo "CARRYOVER: ".$carryoverachtext."<br><br>";
+//echo "ACHTEXT: ".$achtext."<br><br>";
+//echo "SESSION: ".$_SESSION['achievements']."<br><br>";
 
-// echo $_SESSION['achievements'];
-<<<<<<< HEAD
->>>>>>> origin/devMap
-=======
->>>>>>> origin/devMap
+if($achtext != "") {
+	if(isset($carryoverachtext)) $_SESSION['achievements'] .= "\n";
+	$_SESSION['achievements'] .= "Congratulations, you have earned the following achievements:".$achtext."\nThis increased your impact factor by ".($impact-$origimpact)."!";
+}
+}
+//echo "CARRYOVER: ".$carryoverachtext."<br><br>";
+//echo "ACHTEXT: ".$achtext."<br><br>";
+//echo "SESSION: ".$_SESSION['achievements']."<br><br>";
+//exit;
+
+if(!empty(trim($_GET['l']))) {
+	header("Location: ".$_GET['l']);
+	exit;
+}
+	
 header("Location: BRCMap_index.php");
 
 ?>
@@ -230,11 +299,4 @@ header("Location: BRCMap_index.php");
 
 <!--CONTENT GOES HERE-->
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<?php include("tail.php");?>  <!-- Contact inf and end body/html tags->
-=======
->>>>>>> origin/devMap
-=======
->>>>>>> origin/devMap
 

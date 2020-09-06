@@ -1,159 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<?php
-// Include config file
-require_once "config.php";
- 
-// Define variables and initialize with empty values
-$teamname = $password = $confirm_password = $player_names = "";
-$teamname_err = $password_err = $confirm_password_err = $player_names_err = "";
- 
-// Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
- 
-    // Validate teamname
-    if(empty(trim($_POST["teamname"]))){
-        $teamname_err = "Please enter a team name.";
-    } else{
-        // Prepare a select statement
-        $sql = "SELECT teamid FROM teams WHERE teamname = ?";
-        
-        if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s", $param_teamname);
-            
-            // Set parameters
-            $param_teamname = trim($_POST["teamname"]);
-            
-            // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                /* store result */
-                mysqli_stmt_store_result($stmt);
-                
-                if(mysqli_stmt_num_rows($stmt) == 1){
-                    $teamname_err = "This teamname is already taken.";
-                } else{
-                    $teamname = trim($_POST["teamname"]);
-                }
-            } else{
-                echo "Oops! Something went wrong. Please try again later.";
-            }
-
-            // Close statement
-            mysqli_stmt_close($stmt);
-        }
-    }
-    
-    // Validate password
-    if(empty(trim($_POST["password"]))){
-        $password_err = "Please enter a password.";     
-    } elseif(strlen(trim($_POST["password"])) < 6){
-        $password_err = "Password must have at least 6 characters.";
-    } else{
-        $password = trim($_POST["password"]);
-    }
-    
-    // Validate confirm password
-    if(empty(trim($_POST["confirm_password"]))){
-        $confirm_password_err = "Please confirm password.";     
-    } else{
-        $confirm_password = trim($_POST["confirm_password"]);
-        if(empty($password_err) && ($password != $confirm_password)){
-            $confirm_password_err = "Password did not match.";
-        }
-    }
-
-
-    $player_names = trim($_POST["player_names"]);
-
-    
-    // Check input errors before inserting in database
-    if(empty($teamname_err) && empty($password_err) && empty($confirm_password_err)){
-        
-        // Prepare an insert statement
-        $sql = "INSERT INTO teams (teamname, password, player_names) VALUES (?, ?, ?)";
-         
-        if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "sss", $param_teamname, $param_password, $param_player_names);
-            
-            // Set parameters
-            $param_teamname = $teamname;
-            $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
-	    $param_player_names = $player_names;
-            
-            // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                // Redirect to login page
-                header("location: login.php");
-            } else{
-                echo "Something went wrong. Please try again later.";
-		echo "<br>$sql<br>Hi";
-		echo "<br>$stmt<br>Hi";
-            }
-
-            // Close statement
-            mysqli_stmt_close($stmt);
-        }
-    }
-    
-    // Close connection
-    mysqli_close($link);
-}
-?>
- 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Sign Up</title>
-    <link rel="stylesheet" href="http://www.nukees.com/sve/bootstrap.css">
-    <style type="text/css">
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 350px; padding: 20px; }
-    </style>
-</head>
-<body>
-    <div class="wrapper">
-        <h2>Sign Up</h2>
-        <p>Please fill this form to create an account.</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group <?php echo (!empty($teamname_err)) ? 'has-error' : ''; ?>">
-                <label>Team Name</label>
-                <input type="text" name="teamname" class="form-control" value="<?php echo $teamname; ?>">
-                <span class="help-block"><?php echo $teamname_err; ?></span>
-            </div>    
-            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                <label>Password</label>
-                <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
-                <span class="help-block"><?php echo $password_err; ?></span>
-            </div>
-            <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
-                <label>Confirm Password</label>
-                <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
-                <span class="help-block"><?php echo $confirm_password_err; ?></span>
-            </div>
-            <div class="form-group <?php echo (!empty($player_names_err)) ? 'has-error' : ''; ?>">
-                <label>Player names</label>
-		<textarea name="player_names" rows="5" cols="40" class="form-control"><?php echo $player_names; ?></textarea>
-                <span class="help-block"><?php echo $player_names_err; ?></span>
-            </div>
-
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Submit">
-                <input type="reset" class="btn btn-default" value="Reset">
-            </div>
-            <p>Already have an account? <a href="login.php">Login here</a>.</p>
-        </form>
-    </div>    
-</body>
-</html>
-=======
-=======
->>>>>>> origin/devMap
-=======
->>>>>>> origin/devMap
 <?php include("db.php");?>  <!-- Login Session and database functions -->
 <?php
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
@@ -181,12 +25,8 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 	$mail->Port = '465'; //465
 	$mail->isHTML();
 	$mail->Username = 'nukees';
-<<<<<<< HEAD
-	$mail->Password = 'g250vc132';
-=======
 	include("/home/nukees/sve_private/email.php");
 
->>>>>>> origin/devMap
 //	$mail->SMTPSecure = "tls";
 	$mail->SetFrom('scientistsvseveryone@agnostica.com','Scientists Vs. Everyone');
 
@@ -217,13 +57,9 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 	    {
 	        $teamname_err = "Please enter a team name.";
 	    } 
-<<<<<<< HEAD
-	    else
-=======
 	    elseif (strlen(trim($_POST["teamname"])) > 25) {
 		$teamname_err = "Please choose a team name less than 25 characters, thanks.";
 	    } else 
->>>>>>> origin/devMap
 	    {
 	        // Prepare a select statement
 	        $sql = "SELECT teamid FROM teams WHERE teamname = ?";
@@ -274,13 +110,10 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 	    {
 		    $email_err = "Please enter a valid email address.";
 	    } 
-<<<<<<< HEAD
-=======
 	    elseif(strlen(trim($_POST["email"])) > 256)
             {
                 $email_err = "C'mon, no one has an email that long.";
             }
->>>>>>> origin/devMap
 	    else
 	    {
 
@@ -320,13 +153,10 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 		    }
 
 	    }
-<<<<<<< HEAD
-=======
             if(strlen(trim($_POST["player_names"])) > 1024)
             {
                 $player_names_err = "Sorry, there's a 1024 character limit on player names.  Have you thought about splitting into multiple teams?";
             }
->>>>>>> origin/devMap
 
 	    
 	    // Validate password
@@ -337,15 +167,11 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 	    elseif(strlen(trim($_POST["password"])) < 6)
 	    {
 	        $password_err = "Password must have at least 6 characters.";
-<<<<<<< HEAD
-	    } 
-=======
 	    }
 	    elseif(strlen(trim($_POST["password"])) > 256)
             {
                 $password_err = "Password must have less than 256 characters.";
             } 
->>>>>>> origin/devMap
 	    else
 	    {
 	        $password = trim($_POST["password"]);
@@ -427,12 +253,9 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 
 	            // Close statement
 	            mysqli_stmt_close($stmt);
-<<<<<<< HEAD
-=======
 
 		    $sql = "INSERT INTO questsolved (qid, teamid, status) VALUES (0, ".$teamid.", 1)";
 		    mysqli_query($link, $sql);
->>>>>>> origin/devMap
 	        }
 	    }
 	    
@@ -497,59 +320,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 		</div>
                 <div class="column" style="line-height: 1.5">
 
-                    <div class="form-group <?php echo (!empty($teamname_err)) ? 'has-error' : ''; ?>">
-<<<<<<< HEAD
-                        <label>Team Name</label>
-                        <input type="text" name="teamname" class="form-control" value="<?php echo $teamname; ?>">
-=======
-                        <label>Team Name <font size=-2>(25 char limit)</font></label>
-                        <input type="text" maxlength="25" name="teamname" class="form-control" value="<?php echo $teamname; ?>">
->>>>>>> origin/devMap
-                        <span class="help-block"><?php echo $teamname_err; ?></span>
-                    </div>
-	            <div class="form-group <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
-	                <label>Email Address</label>
-<<<<<<< HEAD
-	                <input type="text" name="email" class="form-control" value="<?php echo $email; ?>">
-=======
-	                <input maxlength="255" type="text" name="email" class="form-control" value="<?php echo $email; ?>">
->>>>>>> origin/devMap
-	                <span class="help-block"><?php echo $email_err; ?></span>
-		    <p style="font-size:8pt">Note: We're not going to spam you or sell your s%*@, we're Burners.
-		    The game is dynamic and we'll email you updates and announcements during the week of Aug 30-Sep 5.
-		    After that, we'd like to let you know if we ever offer a new free game to play like this, both on and
-		    off the playa.  But if you never want us to email you again after this game ends, uncheck this box:</p>
-	            </div>
-                    <div class="form-group">
-                        <p style="font-size:10pt"><input type="checkbox" name="ham" value="ham" checked>  Yes!  Send me delicious ham!</p>
-                    </div>
-	            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-	                <label>Password</label>
-<<<<<<< HEAD
-	                <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
-=======
-	                <input maxlength="255" type="password" name="password" class="form-control" value="<?php echo $password; ?>">
->>>>>>> origin/devMap
-	                <span class="help-block"><?php echo $password_err; ?></span>
-	            </div>
-	            <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
-	                <label>Confirm Password</label>
-<<<<<<< HEAD
-	                <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
-=======
-	                <input maxlength="255" type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
->>>>>>> origin/devMap
-	                <span class="help-block"><?php echo $confirm_password_err; ?></span>
-	            </div>
-	            <div class="form-group <?php echo (!empty($player_names_err)) ? 'has-error' : ''; ?>">
-	                <label>Player names</label>
-<<<<<<< HEAD
-					<textarea name="player_names" rows="5" cols="40" class="form-control"><?php echo $player_names; ?></textarea>
-=======
-					<textarea maxlength="1023" name="player_names" rows="5" cols="40" class="form-control"><?php echo $player_names; ?></textarea>
->>>>>>> origin/devMap
-	                <span class="help-block"><?php echo $player_names_err; ?></span>
-	            </div>
+			<label>Sorry, this game has ended.  Feel free to doodle on the flag generator, though.  Creative expression strengthens the mind.</font></label>
 		</div>	
 		<div class="column" style="line-height: 1.5">
 		    <label>Draw your unique tag</label><br>
@@ -572,10 +343,6 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 			<br>
 		</div>
 		<div class="column" style="line-height: 1.5">
-			<div class="form-group">
-				<input type="submit" class="btn btn-primary" value="Submit" onclick="uploadcanvas();">
-				<input type="reset" class="btn btn-default" value="Reset">
-			</div>
 			<div style="font-size:10pt">Here's a preview of what it will look like:</div>
 			<canvas id="preview" width="192" height="64" style="border:1px solid #d3d3d3;">
 				Your browser does not support the HTML5 canvas tag.
@@ -604,8 +371,6 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     var num_colors = colors.length;
     var tagdata = new Array(32).fill(0).map(() => new Array(32).fill(0));
     var drawmode = "draw";
-<<<<<<< HEAD
-=======
     // Prevent Ctrl-z
         var ctrlDown = false;
         var ctrlKey = 17, zKey = 90;
@@ -629,7 +394,6 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
                         ctrlDown = false;
                 };
         }
->>>>>>> origin/devMap
 
 	// Draw palette
 	function drawpalette()
@@ -936,14 +700,3 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 
 
 <?php include("tail.php");?>  <!-- Contact inf and end body/html tags->
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> origin/devMap
-
-=======
->>>>>>> origin/devMap
-=======
->>>>>>> origin/devMap
-=======
->>>>>>> origin/devMap

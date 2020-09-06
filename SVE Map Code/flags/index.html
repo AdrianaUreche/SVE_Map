@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+
+<link rel="stylesheet" type="text/css" href="formatting_code/css/BRCMapCSS.css" />
+<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+-->
+<head>
+	<meta charset="utf-8">
+ 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- Bootstrap CSS CDN -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+	
+<style>
+
+body, html {
+  height: 100%;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+body {
+	background-image: url('images/playa_blackholeBG.gif');
+	height: 450%;
+	background-position: center;
+	background-size: cover;
+	background-attachment: fixed;
+	position: relative;
+}
+h1, h2, h3, p {
+	color: white;
+	font-weight: bold;
+}
+h1, h2, h3 {
+	text-decoration: underline;
+}
+
+.playa {
+  background-image: url("images/playaBackground2.jpg");
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+  color: black;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 25px;
+  opacity: 0.7;
+}
+
+.blackhole{
+  background-image: url('images/BlackHoleGif.gif');
+  height: 450%;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+  color: black;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 25px;
+  z-index:+1;
+}
+
+.button-facebook {background-color: #4267B2;}
+.button{
+	color: white;
+	background-color: tomato;
+}
+
+
+//image container code
+* {
+  box-sizing: border-box;
+}
+
+img {
+  vertical-align: middle;
+}
+
+/* Position the image container (needed to position the left and right arrows) */
+.ImageContainer {
+  	position: relative;
+  	left: 50%;
+  	-ms-transform: translate(-50%, -50%);
+  	transform: translate(-50%, -50%);
+  	padding: 2px 16px;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+  margin: auto; 
+}
+
+/* Add a pointer when hovering over the thumbnail images */
+.cursor {
+  cursor: pointer;
+}
+
+.row_gallery:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: relative;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 20px;
+  padding: 8px 12px;
+  position: relative;
+  top: 0;
+}
+
+/* Container for image text */
+.caption-ImageContainer {
+  text-align: center;
+  background-color: black;
+  padding: 2px 16px;
+  color: white;
+  width: 100%;
+  opacity:0.75;
+}
+
+
+/* Six columns side by side */
+.column {
+  float: left;
+  width: 16.66%;
+}
+
+/* Add a transparency effect for thumnbail images */
+.demo {
+  opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+  opacity: 1;
+}
+
+.jumbotron {
+      margin-bottom:10px;
+ }
+
+.nav_bgColor {
+	background-color: darkblue;
+}
+</style>
+</head>
+
+
+
+<body>
+
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0" nonce="xpBUNARO"></script>
+
+<nav class="navbar navbar-expand-sm nav_bgColor fixed-top">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <button class="button-facebook" onclick="window.location.href='https://www.facebook.com/events/3176665699080869/?notif_t=plan_user_invited&notif_id=1595264538751360';">
+        Facebook Event Page
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="button" onclick="location.href='register.php';" >Register Team</button>
+    </li>
+    <li class="nav-item">
+      <button class="button" onclick="location.href='MeetTheBurners.html';">Meet the Burners</button>  
+    </li>
+    <li class="nav-item">
+      <button class="button" onclick="location.href='login.php';">Login</button>
+    </li>
+    <li class="nav-item">
+	    <button class="button" onclick="location.href='BRCMap_index.php';">Game Board</button>
+    </li>
+  </ul>
+  <ul class="nav navbar-nav navbar-right">
+    <li class="nav-item">
+	    <font color="white">Game has ended!  Thanks everyone for playing!</font>
+    </li>
+  </ul>
+</nav>
+<br><br><br><br>
+
+<div class="container" style="position: relative;">
+
+
+		<div class="jumbotron text-center bg-dark text-white position-relative" style="opacity: 60%">
+			<h1>Scientists VS. Everyone</h1>
+			<h2 style="text-decoration: none"> The Space Time Fabric is Falling Apart! We Need your Help!</h2>
+			<button class="button" onclick="location.href='register.php';" >Register Team</button><br>
+			<button class="button" onclick="location.href='https://youtu.be/grurD5_0g7k';" >Watch the Intro</button>
+		</div>
+		<div class="container bg-dark ontop" style="margin-top: 0px;">
+			<div class="row" style="height:200px; overflow: scroll;">
+				<div class="col-sm-12 border text-white" style="background-color:#999966">
+					<h2 class="text-center" style="margin:0; padding:0"> Bulletin of the Day</h2>
+					<font size="-3"><center><span style="margin:0; padding:0">(scroll in this window for more)</center></font>
+					<p class="text-left"><b>9/5/2020</b><br>
+					Yo Scientists!
+					</p><p>
+And the game has ended!  Thank you all so much for playing and especially to those of you who came to the closing ceremony.  If you missed it, or want to watch the whole game unfold again, check out the entire past week boiled down into four minutes:
+					</p><p>
+					<a href="https://youtu.be/SabpRnNwJQs">SvE Game replay</a>
+					</p><p>
+Or watch it *narrated* (from the closing ceremony) by Yours Bluely:
+					</p><p>
+					<a href="https://youtu.be/i6XqjSw1N0A">Narrated SvE Game Replay</a>
+					</p><p>
+In the last seconds, Team "My GF made me do this" spewed chaos by destroying two blocks on the board, making the final tally a tie between "Before the World ENds" and "Lucky."  All three teams will be receiving original artwork that went into the game (logo and caricatures from the instructions and puzzle icons).
+					</p><p>
+If you still want to work on the puzzles and quests, a list of them all can be found here:
+					</p><p>
+					<a href="http://sve.nukees.com/pqs.php">http://sve.nukees.com/pqs.php</a>
+					</p><p>
+Feel free to email me to check your answers.
+					</p><p>
+If you unchecked the box to receive emails about future games like this, this will be the last you hear from us.  If you changed your mind about that, though, drop us a line and ask to be added!
+					</p><p>
+It's been a thrill!  I had a blast (several) and hope you did too!  Did we make it to the good universe?  Take a walk outside, look around, and decide for yourself!  But wear your mask just in case.
+					</p><p>
+					--Blue<br>
+Scientist
+					</p>
+
+					<p class="text-left"><b>9/4/2020</b><br>
+					Hello again Scientists,
+					</p><p>
+*Sigh*, what's the point?  This universe is just too damaged.  From radioactive monkeys to meteors and fires and -nado's, both torn- and cephalopoded...  I mean, what's going to happen today?!  Earthquake?  Desert tsunami?  Instantaneous climate change (boy, that was a bad premise for a movie...).  Chupacabra?  Hey, did you know the Chupacabra is just the alien from Species?  Look it up.
+					</p><p>
+Whatever.  We're all doomed anyway.  Let me take a look at the map and see what's destroying it now...
+					</p><p>
+Huh.  Looks okay.  The only one destroying it is us!  And we're doing a hell of a job!!  Oh, I'm so happy at all the fine work you've all put into securing our way back home!
+					</p><p>
+Ack, sorry fate!  I didn't mean to express optimism!  Don't hurt me!
+					</p><p>
+...
+					</p><p>
+It's still fine!  I guess there's no disaster today.
+					</p><p>
+Okay then, this is the last day, everyone make it the best!  Looks like some big moves are in the works!!  And remember, TOMORROW AT NOON (PDT) we will announce the winner, virtually distribute prizes (and I'll mail you something cool), and you'll be allowed to complain about your least favorite puzzles/quests/disasters via Zoom:
+					</p><p>
+					<a href="http://zoom.us/j/92980350437">Zoom Room #92980350437</a>
+					</p><p>
+I hope to see all your smiling, unscarred faces then!  Looks like we're going to make it!  No disasters today!  I'm so...
+					</p><p>
+					*Ow*, my toe.</p>
+					<p class="text-left"><b>9/3/2020</b><br>
+				How's everyone doing, Scientists?
+					</p><p>
+Wow, the City has changed!  Some big moves yesterday, but even though the board is filling up, there's still plenty of time and turns to spread your flag around.  Remember, some of you have lots of territory while others have lots more potential action points! Yesterday's meteor shower was a shocker, but the worst is over and it looks like a lot of the fires were put out.  Great work, gang, though there are still some notable conflagrations spreading throughout the...
+					</p><p>
+Oh, you have got to be kidding me.
+					</p><p>
+What is that in the southeast corner?  It can't be...  Is it?
+					</p><p>
+It's a squidnado.
+					</p><p>
+I'm sorry, Scientists, this seems to be par for the course here in the bad universe.  The squidnado appears to be moving across the playa from east to west, flipping blocks in its wake.  Well...  look on the bright side. Maybe it'll put some of the fires out?  Or lift and deposit my parents somewhere less... isolated?
+					</p><p>
+Last puzzle/quest release tomorrow at noon!  And be sure to save time at noon PDT on Saturday for our wrap-up, awards ceremony, and complain-about-your-least-favorite-quest/puzzle/bug Zoom session!	
+					</p>	
+					<p class="text-left"><b>9/2/2020</b><br>
+Great day, Scientists!
+					</p><p>
+Thanks to Talk-o Tuesday, I'm starting to perk up a bit.  You guys are doing a great job occupying Black Rock City and for the first time, I feel like we're really going to leave this sad excuse for a universe behind us and be sipping those margaritas soon.  New puzzles and quests are being released today and soon we'll see another surge of progress.  I got energized last night and I think I even made our digital link to BRC work on Safari and iPhones, despite not owning an iPhone (two hours of texting Scientist Emoji: "Reload it again!  No?  Damnit!").
+					</p><p>
+I mean, maybe this universe isn't even as bad as I thought.  The birds are chirping.  Folks around me are wearing masks without complaining.  I think there was only one hurricane instead of two?  The stars are shining brightly in the...  daytime sky?
+					</p><p>
+JOHNNY FREAKINOITER, THE SKY IS FALLING!!!  Ah crap on a shingle, METEORS!!  They've struck Black Rock City, starting fires everywhere!!  I fear these fires will spread over the next few days, destroying your hard-earn blocks, unless they are flipped and extinguished!  Oh, the clamato!!!  No.  The other word.  Calamity!
+					</p><p>
+Help us, Scientists!  And yourselves, if you get the chance.
+					</p><p>
+
+					<p class="text-left"><b>9/1/2020</b><br>
+					Welcome, Scientists, to TALKO TUESDAY!
+					</p><p>
+
+Today is the day that your esteemed game designer gets lonely and desperate for attention and wants to see your smiling faces and/or hear your thoughts.  So we're adding a new Achievement: "TALKO TUESDAY."  All you need to do is drop by Zoom office hours tonight between 6-8pm PDT (info on the home page), or leave a message in the Discord channel, or post something about your experience in the game to any social media outlet (and email us to let us know where to find it), or just email us with your thoughts, and you'll earn the Achievement and another impact factor point (to be awarded after office hours ends).
+					</p><p>
+Speaking of new Achievements, I had to add one yesterday...  for, well, helping me out... or rather, helping the universe out by rounding up an unfortunate release of radioactive monkeys that I had nothing to do with.  The person who eliminates the last block of radioactive monkeys will earn the Achievement and three more impact factor points.
+					</p><p>
+					<img width="200" height="192" src="images/monkeymonday.png"><br>
+(state of the monkeys last night)
+					</p><p>
+Thanks to Lucky who has already eliminated two monkeys.  Speaking of Lucky, she has earned massive props for completing at least five puzzles/quests EVEN THOUGH THEY HAD ERRORS IN THEM.  And also thanks to "Before The World ENds" who has reported most of those errors.  They each have made the game *seem* less buggy for everyone else.  In fact, thanks to everyone (Charm &amp; Strange, Gavzdad, and Drunken Spider), who has found and reported bugs.  There are more teams earning that achievement than I would have hoped.
+					</p><p>
+It's still anyone's universe!  Remember, there are a finite number of turns, so even if you have a late start, you still have just as much opportunity to cause damage (er, I mean, save the universe) as anyone!  Maybe more.
+					</p><p>
+New quests/puzzles released tomorrow!
+					</p>
+					<p class="text-left"><b>8/31/2020 UPDATE</b><br>
+					Oh dear.  Something has made its way onto the map...  If someone could help me round them
+					up... there's a new Achievement in it for you...</p>
+					<p class="text-left"><b>8/31/2020</b><br>
+					Hello Scientists!<p>
+					</p>
+<p class="text-left">Our efforts to return to "the good universe" are well underway and I have you all to thank for it!  Already, many of you have made strides to occupy the city which will, I'm sure, facilitate our quantum slide back home.  
+</p>
+<p class="text-left">Today at noon, we released three new puzzles and three new quests!  And if you solve all of one or the other (including the ones from Sunday) first, you'll earn a coveted Achievement!
+</p>
+<p class="text-left">Expect new Scientists to join, too, as this event is now being promoted on my mildly-popular comic, Nukees (http://www.nukees.com).  But you were smart enough to get the jump on the game, weren't you?
+</p>
+<p class="text-left">A reminder: if you have any questions, technical problems, need help with a quest/puzzle, or just want to chat, we are holding office hours in the Zoom Room#92980350437 today from 6-8pm PDT (express link at the top of http://sve.nukees.com ).  Apologies to anyone who showed up yesterday--I had mistyped the date as the 30th instead of the 31st.  I'll really be there tonight!
+</p>
+<p class="text-left">Finally, we will be using your wonderfully-crafted team photos to promote the game both in the gallery on the main page and in venues like Facebook or other social media.  PLEASE RESPOND TO THIS EMAIL IF YOU DO NOT WANT YOUR PHOTO USED IN THIS WAY.  We will be happy to keep it private.
+</p>
+<p class="text-left">One more thing:  If any of you happen to, I don't know, see or hear a radioactive monkey in your neighborhood...  I'd appreciate you letting me know at least 30 minutes before you call the authorities...  Just as a favor.  No need to worry, but maybe keep your doors locked on principle.  Thanks!
+</p>
+<p class="text-left">--Blue<br>
+SCIENTIST!</p>
+					<h3 class="text-center"> Bulletin Archive</h3>
+					<p class="text-left"> <b>Aug 30, 2020</b><br>"Scientists vs. Everyone" has begun!  Register your team, login, read the instructions, and start playing.<br><br>
+Missed the Opening Briefing? Or just want to see it again? <a href="https://youtu.be/grurD5_0g7k">Watch it here</a>.
+<br><br>
+
+If you have questions (or bug reports), today's office hours have ended.  Please send an email to scientistsvseveryone@agnostica.com or drop by Monday's office hours from 6-8pm PDT in the following Zoom channel:
+					<a href="http://zoom.us/j/92980350437">Zoom meeting #92980350437</a></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6 border">
+ 					<h3>What is this Madness?</h3>
+ 					<p>Scientists vs. Everyone combines quests, puzzles, a board game, and an RPG in a weeklong adventure to occupy Black Rock City.  Normally played on the playa, this year the puzzles, quests, and game board will be created online, for you to complete from your couches.  Form your team now and get ready for the fight of your life.  Well, I mean the fight of everyone else's life.  The fight of the universe!  This universe, I mean.  The expendable one.</p>
+ 				</div>
+ 				<div class="col-sm-6 border">
+					<h3>About Scientists VS...</h3>
+					<p>In 2018, it was <q>Scientists vs. Robots.</q> In 2019, the Scientists turned their reality-warping offense towards the (presumed) enemy, Kafka. It did not go well for the universe. Now in 2020, finding ourselves in the darkest timeline, we Scientists will turn our unbridled technologies towards all the forces of the multiverse to find our way back to the good universe, by any means, at any cost. This year, join SCIENTISTS VS. EVERYONE.</p>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-sm-12 border">
+					<h3 class="text-center">Join Us in Discord</h3>
+					<iframe src="https://discordapp.com/widget?id=744639329162493953&theme=dark" width="100%" height="200" allowtransparency="false" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+ 				</div>
+			</div>
+
+		</div>
+		<br> <br>	
+		<div style="text-align: center">
+			<h3 style="font-size:30px;margin-top:50px;text-decoration: underline"> Gallery </h3>
+		  	<a class="prev" onclick="plusSlides(-1)">❮</a>
+			<a class="next" onclick="plusSlides(1)">❯</a>
+
+		</div>	
+		<div class="mySlides">
+		<img src="images/SvE_2020_logo.png" style="width:50%">
+		</div>
+
+		<div class="mySlides">
+		    <img src="images/FNA_frontage.jpg" style="width:50%">
+		</div>
+
+		<div class="mySlides">
+		    <img src="images/board_darren.jpg" style="width:50%">
+		</div>
+
+		<div class="mySlides">
+		    <img src="images/thefolly.jpg" style="width:50%">
+		</div>
+
+		<div class="mySlides">
+		    <img src="images/darren.jpg" style="width:50%">
+		</div>
+
+		<div class="mySlides">
+		    <img src="images/board_eric_freya.jpg" style="width:50%">
+		</div>
+		<div class="mySlides">
+                    <img src="images/teams_gavzdad.jpeg" style="width:50%">
+                </div>
+
+		<div class="mySlides">
+                    <img src="images/teams_lensdarby.jpeg" style="width:50%">
+                </div>
+
+		<div class="mySlides">
+                    <img src="images/teams_lucky.png" style="width:50%">
+                </div>
+
+
+		<div style="width 100%; height 5px; background-color:black">
+		</div>
+
+		<div class="row_gallery" style="margin-top:5px">
+		<div class="column">
+			<img class="demo cursor" src="images/SvE_2020_logo.png" style="width:100%" onclick="currentSlide(1)" alt="">
+		</div>
+		<div class="column">
+			<img class="demo cursor" src="images/FNA_frontage.jpg" style="width:100%" onclick="currentSlide(2)" alt="">
+		</div>
+		<div class="column">
+		 	<img class="demo cursor" src="images/board_darren.jpg" style="width:100%"onclick="currentSlide(3)" alt="">
+		</div>
+		<div class="column">
+		 	<img class="demo cursor" src="images/thefolly.jpg" style="width:100%" onclick="currentSlide(4)" alt="">
+		</div>
+		<div class="column">
+		 	<img class="demo cursor" src="images/darren.jpg" style="width:100%" onclick="currentSlide(5)" alt="">
+		</div>    
+		<div class="column">
+		 	<img class="demo cursor" src="images/board_eric_freya.jpg" style="width:100%" onclick="currentSlide(6)" alt="">
+		</div>
+		</div>
+                <div class="row_gallery" style="margin-top:5px">
+
+		<br><br><br><br><br /><p>
+		<div class="column">
+                        <img class="demo cursor" src="images/teams_gavzdad.jpeg" style="width:100%" onclick="currentSlide(7)" alt="">
+                </div>                
+		<div class="column">
+                        <img class="demo cursor" src="images/teams_lensdarby.jpeg" style="width:100%" onclick="currentSlide(7)" alt="">
+                </div>
+		<div class="column">
+                        <img class="demo cursor" src="images/teams_lucky.png" style="width:100%" onclick="currentSlide(9)" alt="">
+                </div>
+		 
+
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  var captionText = document.getElementById("caption");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  captionText.innerHTML = dots[slideIndex-1].alt;
+}
+
+</script>
+</div>
+</div>
+</body>
+</html>
